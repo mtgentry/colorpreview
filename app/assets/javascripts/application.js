@@ -29,4 +29,5 @@
 //= require_tree ./colors
 //= require colorjson
 //= require colorwheel
+//= require ahoy
 //= require_tree . 

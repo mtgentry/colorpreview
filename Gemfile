@@ -103,7 +103,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'ahoy_matey'
 gem 'figaro'
+gem 'geocoder'
 gem 'groupdate'
+gem 'maxminddb'
 gem 'pundit'
 
 # detect user language
