@@ -1,0 +1,18 @@
+.mobile-menu {
+  min-width: 120px;
+  background: #303030;
+  min-height: 100%;
+}
+
+.mob-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+
+  .mob-link {
+    padding: 8px 0;
+    // margin-bottom: 15px;
+    color: #fff;
+    font-size: 18px;
+  }
+}

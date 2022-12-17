@@ -1,0 +1,2 @@
+class PaymentAttempt < ApplicationRecord
+end

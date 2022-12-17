@@ -1,0 +1,63 @@
+<% content_for :pagetitle do %>Color Picker — A handy design tool from Color Supply<% end %>
+<% content_for :description do %>Use the color wheel to select a style you like. Then pick a hex code..<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container container-fluid">
+  <div class="page-title__container">
+    <h1 class="page-title">Visitor Analytics</h1>
+  </div>
+
+  <div>
+    <h2 style='text-align: center;'>( <%= (@start_analytic).strftime("%m-%d-%Y") %> ) - ( <%= (@end_analytic).strftime("%m-%d-%Y") %> )</h2>
+  </div>
+
+  <div class="analytics-filter">
+    <%= form_tag analytics_path, method: :post, id: "filter-analytic" do %>
+      <div class="row">
+        <div class="col-md-6">
+        	<div class="form__group">
+        		<label for="" class="form__label">Period</label>
+        		<div class="input-group-inline">
+              <% view_params = params[:filter].present? ? params[:filter][:view] : "Last 7 Days" %>
+              <%= select_tag "filter[view]", 
+                  options_for_select(Ahoy::Visit::VIEW_ANALYTICS_OPTIONS, view_params), 
+                  include_blank: "",
+                  class: "base-input", id: "search-entry" %>
+        		</div>
+        	</div>
+        </div>
+        <div class="col-md-6">
+          <div class="form__group">
+            <label for="" class="form__label">On date range</label>
+            <div class="input-group-inline">
+              <%= text_field_tag "filter[date_range]", params[:filter][:date_range], 
+                  class: "base-input daterange", 
+                  id: "date-range-analytic", autocomplete: "off",
+                  data: {auto_input: params[:filter][:date_range].present?},
+                  readonly: true %>
+              <%= link_to "Reset", analytics_path, class: "btn btn--blue" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="analytics-table">
+  	<%= render partial: "analytics/partials/table", locals: {ahoy_visits: @ahoy_visits, pagy: @pagy} %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("#date-range-analytic").click(function() {
+      $("#search-entry").val(null);
+    });
+
+    $("#search-entry").change(function() {
+      $("#date-range-analytic").val(null);
+      $('#filter-analytic').submit();
+    });
+  });
+</script>

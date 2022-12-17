@@ -1,0 +1,68 @@
+{
+  "modal1": {
+  	"slider1": {
+	    "title": "example slider1",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "slideshow_comp1.jpg"
+  	},
+  	"slider2": {
+	    "title": "example slider2",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "slideshow_comp2.jpg"
+  	},
+  	"slider3": {
+	    "title": "example slider3",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "slideshow_comp3.jpg"
+  	}
+  	,"slider4": {
+	    "title": "example slider4",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "slideshow_comp4.jpg"
+  	}
+  },
+  "modal2": {
+  	"slider1": {
+	    "title": "example slider1",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_1.png"
+  	},
+  	"slider2": {
+	    "title": "example slider2",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_2.png"
+  	},
+  	"slider3": {
+	    "title": "example slider3",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_3.png"
+  	}
+  	,"slider4": {
+	    "title": "example slider4",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_4.png"
+  	}
+  },
+  "modal3": {
+  	"slider1": {
+	    "title": "example slider1",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_1.png"
+  	},
+  	"slider2": {
+	    "title": "example slider2",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_2.png"
+  	},
+  	"slider3": {
+	    "title": "example slider3",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_3.png"
+  	}
+  	,"slider4": {
+	    "title": "example slider4",
+	    "desc": "lorem ipsum dolor sitamet",
+		"image": "/img_4.png"
+  	}
+  }
+}

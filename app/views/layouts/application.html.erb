@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html version="XHTML+RDFa 1.0" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%= I18n.locale %>">
+  <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MZCS4PV');</script>
+
+    <title><%= content_for(:pagetitle).present? ? content_for(:pagetitle) : "Color picking made easy"%></title>
+    <meta name="description" content="<%= content_for(:description) if content_for(:description).present? %>">
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--Facebook-->
+    <meta property="og:site_name" content="Color Supply — A Color Picking Tool">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://colorsupplyyy.com/app">
+    <meta property="og:title" content="Color Picker — A handy design tool from Color Supply">
+    <meta property="og:description" content="Use the color wheel to select a style you like.  Then pick a hex code.">
+    <meta property="og:image" content="https://colorsupplyyy.com/color-picker-wheel-hex-code.jpg">
+
+    <!--Twitter -->
+    <meta name="twitter:domain" content="colorsupplyyy.com">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:url" content="https://colorsupplyyy.com/app">
+    <meta name="twitter:title" content="Color Picker — A handy design tool from Color Supply">
+    <meta name="twitter:description" content="Use the color wheel to select a style you like.  Then pick a hex code.">
+    <meta name="twitter:image" content="https://colorsupplyyy.com/color-picker-wheel-hex-code.jpg">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,500,500i,%7CLora:400,400i,%7COswald:500,500i" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', async: false %>  
+
+    <%= javascript_packs_with_chunks_tag 'application' %>
+    <% if params[:controller].eql?('subscriptions') && (params[:action].eql?('index') || params[:action].eql?('payment_info')) %>
+      <script src="https://js.stripe.com/v3/"></script>
+    <% end %>
+  </head>
+
+  <body id="<%= controller.controller_name + '_' + controller.action_name %>">
+    <div class="wrapper">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+
+      <% if user_signed_in? && current_user.payment_sessions.present? %>
+        <% if current_user.payment_sessions.last.licenses.map(&:user_id).all? {|x| x.nil?} %>
+          <div class="alert-activate close-alert">
+            Almost done! Visit the <%= link_to "account page", account_index_path %> to activate your account. 
+            <div aria-hidden="true" class="alert-close-icon alert-icon-close-active">
+              <%= image_tag "close_white.svg" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @updated_to_jp %>
+        <div class="alert-activate close-alert">
+          If the site is performing poorly please try refreshing your browser. If that doesn't work, reset the cache
+          <div aria-hidden="true" class="alert-close-icon alert-icon-close-active">
+            <%= image_tag "close_white.svg" %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="content content_app">
+        <div class="main-wrapper">
+          <%= yield %>
+        </div>
+        <%= render 'shared/footer' %>   
+      </div>
+      <%= render 'shared/mobile_menu' %>
+
+      <% if user_signed_in? && current_user.subscription.present?%>
+        <% if current_user.subscription.licenses.map(&:user_id).all? {|x| x.nil?} %>
+       
+
+        <!-- ANIMATED SVG MODAL ACTIVATE START -->
+          <div class="modal fade" id="modal-how-activate" role="dialog"  aria-labelledby="myModalLabel">
+            <div href="#" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content modal-how-custom">
+                <div class="modal-body">
+                <h2 class="page-title how-title" style="font-family: inherit !important; font-weight: normal;">How to activate</h2>
+                <p class="text-how-activate">Look at the bottom of your account page for a license key. Then copy/paste it in the relevant field at the top to activate your account.</p>
+                <div id="how_activate" class="how_activate"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--     ANIMATED SVG MODAL ACTIVATE  END -->
+        <% end %>
+      <% end %>
+    </div>
+    <span id='client-ip' data-ip='<%= request.remote_ip %>'></span>
+
+    <!-- BEGIN PLERDY CODE -->
+    <script type="text/javascript" defer>
+        var _protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        var _site_hash_code = "48e21bb40141f01b9a92648d9553f575";
+        var _suid = 16721;
+        </script>
+    <script type="text/javascript" defer src="https://a.plerdy.com/public/js/click/main.js"></script>
+    <!-- END PLERDY CODE -->
+  </body>
+  <!-- SnapSVG JavaScript / Needed for Color Wheel and library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js" type="text/javascript" charset="utf-8" async defer></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '<%= @tracking_id %>', 'auto');
+    ga('send', 'pageview');
+  </script>
+</html>

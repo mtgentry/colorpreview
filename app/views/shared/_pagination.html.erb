@@ -1,0 +1,82 @@
+<%#
+  This template is i18n-ready: if you don't use i18n, then you can replace the pagy_t
+  calls with the actual strings ("&lsaquo; Prev", "Next &rsaquo;", "&hellip;").
+  The link variable is set to a proc that returns the link tag.
+  Usage: link.call( page_number [, text [, extra_attributes_string ]])
+-%>
+<% link = pagy_link_proc(pagy) %>
+<% converted_params         = params.permit!.select{|key, value| key unless ["authenticity_token", "controller", "action"].include?(key) }.to_h %>
+<div class="btn-group ml-auto pagination-box pagy_nav pagination" role="navigation">
+  <ul class="pagination justify-content-center">
+    <% if pagy.prev %>
+      <li class="page-item page">
+        <% if request.method.eql?("POST") %>
+          <% converted_params[:page] = pagy.prev %>
+          <% query_params            = converted_params.to_query %>
+          <%== link_to pagy_t('pagy.nav.next').html_safe, "#{request.path}?#{query_params}", class: "page-link" %>
+        <% else %>
+          <%== link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'class="page-link"') %>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="page-item page prev disabled">
+        <%= link_to "&lsaquo; #{t('actions.prev')}".html_safe, "javascript:void(0);", class: "page-link" %>
+      </li>
+    <% end %>
+
+    <% pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36] %>
+      <% converted_params[:page]  = item %>
+      <% converted_params[:items] = params[:items] || 10 %>
+      <% query_params             = converted_params.to_query %>
+      <% if item.is_a?(Integer) %>
+        <li class="page-item page">
+          <% if request.method.eql?("POST") %>
+            <%== link_to pagy_t("pagy.nav.page", page_number: item, extra_class: "").html_safe,
+                 "#{request.path}?#{query_params}", class: "page-link" %>
+          <% else %>
+            <%== link.call(item, pagy_t("pagy.nav.page", page_number: item, extra_class: ""), 'class="page-link"') %>
+          <% end %>
+        </li>
+      <% elsif item.is_a?(String) %>
+        <li class="page-item active page current active">
+          <% if request.method.eql?("POST") %>
+            <%== link_to pagy_t("pagy.nav.page", page_number: item, extra_class: "").html_safe,
+                 "#{request.path}?#{query_params}", class: "page-link" %>
+          <% else %>
+            <%== link.call(item, pagy_t("pagy.nav.page", page_number: item, extra_class: ""), 'class="page-link"') %>
+          <% end %>
+        </li>
+      <% elsif item == :gap %>
+        <span class="page gap"><%== pagy_t('pagy.nav.gap') %></span>
+      <% end %>
+    <% end %>
+
+    <% if pagy.next %>
+      <li class="page-item page">
+        <% if request.method.eql?("POST") %>
+          <% converted_params[:page] = pagy.next %>
+          <% query_params            = converted_params.to_query %>
+          <%== link_to pagy_t('pagy.nav.next').html_safe, "#{request.path}?#{query_params}", class: "page-link" %>
+        <% else %>
+          <%== link.call(pagy.next, pagy_t('pagy.nav.next'), 'class="page-link"') %>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="page-item page next disabled">
+        <%= link_to "&rsaquo; #{t('actions.next')}".html_safe, "javascript:void(0);", class: "page-link" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      $(".page-link").click(function() {
+        var pageNum = $(this).attr("href").split("#")[1];
+        $("#hidden-page-num").val(pageNum);
+        $("#pagination-form-button").click();
+      });
+    });
+  </script>
+<% end if local_assigns[:method].eql?(:post) %>

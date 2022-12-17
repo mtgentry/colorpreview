@@ -1,0 +1,14 @@
+<div class="final-step__page">
+  <%= render 'shared/header' %>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(window).load(function() { 
+			document.cookie = "promotion=true";
+			setTimeout(function(){
+		    window.location = '/app';
+				},100);
+			})
+	});
+</script>

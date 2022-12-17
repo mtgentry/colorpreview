@@ -1,0 +1,429 @@
+@import "../tools/colors";
+
+.form {
+  &__content {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height:79vh;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    font-size: 34px;
+    color: $darkGray;
+    letter-spacing: 1.7px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $blue;
+    margin-bottom: 70px;
+  }
+
+  &__container {
+    max-width: 494px;
+    margin: 0 auto 40px;
+
+    &--payment {
+      max-width: 484px;
+    }
+
+    @media screen and (min-width: 375px) {
+      margin: 0 auto 80px;
+    }
+  }
+
+  &__group-title {
+   margin-top: 50px;
+    margin-bottom: 25px;
+    color: $darkGray;
+    font-size: 24px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+
+    &.margined {
+      margin-bottom: 39px;
+    }
+  }
+
+  &__label {
+    margin: 0 0 6px 14px;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+    color: #000000;
+  }
+}
+
+.input-group-inline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @media screen and (min-width: 375px) {
+    flex-direction: row;
+  }
+
+  .input {
+    flex: 1;
+    margin-bottom: 15px;
+
+    @media screen and (min-width: 375px) {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+
+    input {
+      width: 100%;
+      font-size: 20px;
+      padding: 8px 10px 7px 14px;
+    }
+  }
+  .form_icon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+
+    @media(max-width: 500px){
+      margin-left: auto;
+      right: 15px;
+    }
+  }
+
+  .form_password{
+    position: relative;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  margin-bottom: 27px;
+
+  label {
+    margin-left: 14px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+  }
+
+  &__wider{
+    width: 290px;
+    margin-bottom: 27px;
+  }
+
+}
+
+.base-input {
+  padding: 8px 1px 8px 14px;
+  border: solid 1px #e5e5e5;
+  background-color: #ffffff;
+  letter-spacing:.5px;
+  color: $blue;
+  transition: 0.2s;
+  font-size: 20px;
+  font-family: sans-serif;
+  &:focus {
+    outline: none;
+    border-color: $blue;
+  }
+  &.daterange-input {
+    width: 255px;
+    margin-right: 10px;
+  }
+}
+
+.licensed-input{
+  padding: 7px 15px !important;
+  font-size: 18px !important;
+
+  &:focus{
+    outline: none;
+    border-color: $blue;
+  }
+}
+
+.title_payment{
+  font-size:45px; 
+  margin-left: -50px;
+  @media(max-width: 500px){
+    font-size: auto;
+    margin-left: auto;
+  }
+}
+
+.form_payment{
+  width: 100%;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.wrap_email{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.wrap_password{
+  display: flex;
+  position: relative;
+}
+
+.email_box{
+  display: inline;
+}
+
+input.error{
+  border-color: #ec5447;
+
+  &:focus{
+    border-color: #ec5447 !important;
+  }
+}
+
+.promo_coupon{
+  width: 100%;
+}
+
+.form_payment.coupon {
+  margin-right: 20px;
+}
+
+.coupon_message {
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.error_message{
+  color: #ec5447;
+}
+
+.success_message{
+  color: #00bbff;
+}
+
+.payment_container {
+  margin-top: 20px;
+
+  .cc-number {
+    width: 54%;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exp-date {
+    width: 23%;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cvc {
+    width: 14%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media(max-width:567px){
+    .payment-info-container {
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .cc-number {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+    
+    .exp-date,.cvc {
+      width: 45%;
+      margin: 0;
+    }
+  }
+
+  .payment-info-container {
+    margin-bottom: 20px;
+  }
+
+  .promo-code {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.wrap-exp{
+  display: flex;
+  @media(max-width: 500px){
+    display: block;
+    width: 107%;
+  }
+  @media(max-width: 375px){
+    width: auto;
+  }
+
+  .input-group-inline{
+    margin-top:6px;
+  }
+}
+
+.exp_form{
+  margin-right: 20px;
+  width: 105px;
+  height: 45px;
+  font-size: 20px;
+  font-family: sans-serif;
+  
+  &.card-cvc {
+    width: 80px;
+    margin-right: 0;
+  }
+
+  @media(max-width: 500px){
+    margin-right: 0;
+    width: 280px;
+  }
+
+  @media(max-width: 380px){
+    width: auto;
+  }
+
+  &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder {
+    color: #e5e5e5;
+  }
+
+  &:focus::-webkit-input-placeholder, &:focus:-moz-placeholder, &:focus::-moz-placeholder, &:focus:-ms-input-placeholder {
+    color: #F0F0F0;
+  }
+}
+
+.form-control {
+  padding: 8px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 0;
+  color: $blue;
+  font-size: 20px;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button-container {
+  padding-top: 6px;
+  margin-bottom: 9px;
+  width: 240px;
+
+  &__wider{
+    width: 290px;
+  }
+}
+
+.forgot-link {
+  width: 240px;
+  color: $blue;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  margin: -20px 0 25px 0;
+}
+
+#error_explanation {
+  margin-bottom: 10px;
+  margin-top: -44px;
+
+  h2 {
+    display: none;
+    margin-bottom: 8px;
+  }
+
+  ul {
+    li {
+      font-size: 16px;
+      color: $red;
+    }
+  }
+}
+
+.field_with_errors {
+  input { 
+    border-color: $red;
+  }
+}
+
+.hex_input {
+  height: 45px;
+  width: 100%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 124.8%;
+  letter-spacing: 0.05em;
+  color: #434343;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  box-shadow: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &::placeholder {
+    color: #C1C1C1;
+  }
+
+  &:focus {
+    border: 1px solid #00BBFF;
+  }
+
+  &:focus + .hex_tag {
+    color: #434343;
+  }
+  
+  &:not(:placeholder-shown) + .hex_tag {
+    color: #434343;
+  }
+}
+
+.hex_input_container {
+  position: relative;
+}
+
+.hex_tag {
+  font-size: 24px;
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  color: #C1C1C1;
+  font-weight: 300;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.hex_input.hex_error {
+  border-color: #EC5447;
+}
+
+.color_picker_toggler {
+  position: absolute;
+  right: 12px;
+  top: 2px;
+  width: 41px;
+  height: 41px;
+  cursor: pointer;
+}
+
+.color-preview {
+  margin-bottom: 26px;
+}

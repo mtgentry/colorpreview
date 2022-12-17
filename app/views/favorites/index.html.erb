@@ -1,0 +1,269 @@
+<%= render 'shared/header' %>
+<div class="app_container">
+  <style type="text/css" media="screen">
+    .cs{
+      display: inline-block;
+      width: 31px;
+      height: 16px;
+    }
+  </style>
+  <section class="section">
+    <div class="container favorite_color__">
+      <div class="page-title__container title_fav load_fading">
+        <h2 class="page-title"><%= t('favorites.favorites') %>
+        </h2>        
+          <%= image_tag('link.svg', alt: 'Link icon', class: 'icon_link', id:'link')%>
+      </div>
+      <div class="form_link_container">
+        <div class="form_link">
+          <label class="label-form">Shareable link</label>
+          <input type="text" class="base-input link-form" readonly>
+          <button class="btn btn btn--blue btn--small btn-copy">Copy</button>
+        </div>
+      </div>
+      <div class="color_selector_favorites load_fading">
+        <div class="row favorites-color">
+          <% @favorites_with_index.in_groups_of(10).each_with_index do |favorites, idx1| %>
+            <% idx1 = idx1+1 %>
+            <div>
+              <div class="row_selector_badge col-md-2 <%= idx1.eql?(1) ? 'col-md-offset-1' : ''%>" id="draggable<%= idx1 %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
+                <% favorites.each_with_index do |favorite, idx2| %>
+                  <% idx2 = idx2+1+((idx1-1)*10) %>
+                  <% if favorite.nil? %>
+                    <div class="selector_badge" data-position="<%= idx2 %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
+                      <div class="color_blank"></div>
+                    </div>
+                  <% else %>
+                    <% if favorite[:idx].eql?(idx2) %>
+                    <div class="checkbox_color">
+                      <input type="checkbox" data-favorite-id="<%= favorite[:favorite].id %>" data-shared-favorite-id="" <%= 'checked' if @shared.include?(favorite[:favorite].id) %> class="<%= 'checked' if @shared.include?(favorite[:favorite].id) %>">
+                      <span class="checkmark"></span>
+                    </div>
+                    <div class="selector_badge" data-position="<%= idx2 %>" data-favorite-id="<%= favorite[:favorite].id %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
+                      <% colors = favorite[:favorite].color %>
+                      <div class="color_selector" data-col1="<%= colors.first %>" data-col2="<%= colors.second %>" data-col3="<%= colors.third %>" data-col4="<%= colors.fourth %>" style="transform: scale(1);">
+                        <a class="selector_link">
+                          <% colors.each_with_index do |color, idx3| %>
+                            <% idx3 = idx3+1 %>
+                            <span class="cs colors_<%= idx3 %>" style="background:<%= color %>"></span>
+                          <% end %>
+                        </a><div class="author"></div>
+                      </div>
+                    </div>
+                    <% else %>
+                      <div class="selector_badge" data-position="<%= idx2 %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
+                        <div class="color_blank"></div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="select_color_button">
+          <button type="submit" data-shared-favorite-id="" class="<%= 'hide' unless @all_check %> button-gray button-select deselect"><span>DESELECT ALL</span></button>
+          <button type="submit" data-shared-favorite-id="" class="<%= 'hide' if @all_check %> button-gray button-select select"><span>SELECT ALL</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container load_fading">
+      <div class="svg_box">
+        <div class="object_sq">  <!-- 1 badges -->
+					<object id="b1_4c" data="<%= image_path('badge1_4colors.svg') %>"></object>
+					<object id="b2_4c" data="<%= image_path('badge2_4colors.svg') %>"></object>
+					<object id="b3_4c" data="<%= image_path('badge3_4colors.svg') %>"></object>
+					<object id="b4_4c" data="<%= image_path('badge4_4colors.svg') %>"></object>
+				</div>
+        <div class="triangles"> <!-- 2 triangles -->
+          <object id="triangle_svg" class="triangles__desktop" width="850" height="120" data="<%= image_path('triangles.svg') %>" type="image/svg+xml"></object>
+					<object id="triangle_svg" class="triangles__mobile" width="850" height="300" data="<%= image_path('triangles_mobile.svg') %>" type="image/svg+xml"></object>
+        </div>
+
+        <div class="bottom_sq"> <!-- 3 hex squares -->
+          <div class="color_squares">
+            <div class="bottom-square colors_2">
+              <div class="sq1"></div>
+              <p id="sq1"></p>
+            </div>
+            <div class="bottom-square colors_2">
+              <div class="sq2"></div>
+              <p id="sq2"></p>
+            </div>
+            <div class="bottom-square colors_3">
+              <div class="sq3"></div>
+              <p id="sq3"></p>
+            </div>
+            <div class="bottom-square colors_4">
+              <div class="sq4"></div>
+              <p id="sq4"></p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="gradients"> <!-- 5  gradient circles -->
+          <div class="gradient_circles">              <!-- order -->
+            <div class="gradient_circle gc1 "></div>  <!-- 1 - 2 -->
+            <div class="gradient_circle gc2 "></div>  <!-- 1 - 3 -->
+            <div class="gradient_circle gc4 "></div>  <!-- 2 - 3 -->
+            <div class="gradient_circle gc3 "></div>  <!-- 1 - 4 -->
+            <div class="gradient_circle gc5 "></div>  <!-- 2 - 4 -->
+            <div class="gradient_circle gc6 "></div>  <!-- 3 - 4 -->
+          </div>
+          <div class="gradient_squares_wrapper"> <!-- 6  gradient squares -->
+            <div class="gradient_squares">
+              <div class="gradient_square gs1 colors_3"></div>
+              <div class="gradient_square gs2 colors_3"></div>
+              <div class="gradient_square gs3 colors_3"></div>
+              <div class="gradient_square gs4 colors_3"></div>
+            </div>
+            <div class="gradient_squares">
+              <div class="gradient_square gs5 colors_3"></div>
+              <div class="gradient_square gs6 colors_3"></div>
+              <div class="gradient_square gs7 colors_3"></div>
+              <div class="gradient_square gs8 colors_3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="favorite_id"></div>
+      <div class="wrap-button-gray button-remove-wrapper">
+        <% if user_signed_in? %>
+          <% if current_user.favorites.present? %>
+            <button type="submit" class="button-gray button-remove"><%= t('favorites.remove_from_favorites') %></button>
+          <% end %>
+        <% else %>
+          <% if Favorite.where(last_pick_color_in_ip: request.remote_ip).present? %>
+            <button type="submit" class="button-gray button-remove"><%= t('favorites.remove_from_favorites') %></button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  
+<!-- MODAL CLICK REACHED -->
+<% if user_signed_in? && !current_user.is_payed? && !current_user.subscription.present? && !current_user.payment_sessions.present? && !current_user.license.present? || !user_signed_in? %>
+	<div class="modal-usage-limit" id="modal-usage-limit">
+		<div class="modal-usage-content">
+		<%= t("trial_ended_modal.free_trial") %> 
+		<%= image_tag("#{trial_countdown(cookies[:counter].to_i, 'icon')}", :alt => "LIMIT USAGE", :class => "img-responsive img-tip", width:"100%")%>
+		</div>
+	</div>
+
+	<div class="modal-usage-limit-message hide" id="modal-usage-limit-message">
+		<div class="icon-close-limit">
+			<%= image_tag("close_button_very_small.svg", :alt => "Close", :class => "img-responsive", width:"100%")%>
+		</div>
+		<div class="text-tip"><%= trial_countdown(cookies[:counter].to_i, "text") %></div>
+		<% if cookies[:counter].to_i >= 6 %>
+			<div class="subtext-tip">
+				<%= link_to t("trial_ended_modal.upgrade_now"), pricing_path(promo: "vDOLkivN") %> <%= "#{t("trial_ended_modal.upgrade_with_code", code: "vDOLkivN")}".html_safe %>
+			</div>
+		<% end %>
+	</div>
+
+	<%= render 'main/usage-modal' %>
+<% end %>
+
+
+</div><!-- end container -->
+
+<script type="text/javascript" charset="utf-8" async defer>
+  $('.selector_badge').click(function(){
+    favorite_id = $(this).data('favorite-id')
+    $('.favorite_id').attr('data-id', favorite_id);
+  })
+ 
+  var getid = $('.color_selector:first').parent().data('favorite-id')
+  $('.favorite_id').attr('data-id',getid)
+
+  $('.button-remove').click(function(){
+    $(this).attr('disabled', 'disabled');
+    favorite_id = $('.favorite_id').data('id');
+    if(favorite_id){
+      $.ajax({
+        type: "DELETE",
+        dataType:"json",
+        url: "/favorites/"+favorite_id,
+        success: function(result){
+          console.log(result.notice);
+        }
+      });
+    }else{
+      console.log("Please Select Color First");
+    }
+
+  })
+  <% @favorites_with_index.in_groups_of(10).each_with_index do |favorites, idx1| %>
+    var getclass =  document.getElementById('draggable<%= idx1+1 %>')
+    function sortable(disable){
+        var sortable = Sortable.create(getclass,{
+        swap : true,    
+        draggable: ".selector_badge",
+        group : 'replace',  
+        ghostClass: 'blue-background-class',
+        animation : 150,
+        ghostClass: "sortable-ghost",
+        disabled: disable,
+        onEnd: function (evt) {
+          // get element item drag
+          element1 = $(evt.item);
+          columnIndex1 = element1.data('column-index');
+          position1 = element1.data('position');
+
+          // get element item target
+          columnIndex2 = element1.parent().data('column-index')
+          position2 = columnIndex2 + evt.newIndex + 1
+          element2 = $("div[data-position='" + position2 + "']");
+
+          // set attribute between 2 elements (item drag and item target)
+          element1.data('position', position2);
+          element1.data('column-index', columnIndex2);
+          element2.data('position', position1);
+          element2.data('column-index', columnIndex1);
+
+          function arraymove(arr, fromIndex, toIndex) {
+            var element = arr[fromIndex];
+            arr.splice(fromIndex, 1);
+            arr.splice(toIndex, 0, element);
+          }
+
+          if($('.favorites-trial').length !== 0){
+            arraymove(color_fav, evt.oldIndex, evt.newIndex)
+            $.cookie('favorites', JSON.stringify(color_fav))
+
+          }
+
+          // restore id
+          id1 = element1.data('favorite-id');
+          id2 = element2.data('favorite-id');
+          $.ajax({
+            type: "PUT",
+            dataType:"json",
+            data: {
+              favorite:{
+                id1: id1,
+                position1: position2,
+                id2: id2,
+                position2: position1
+              }
+            },
+            url: "/favorites/update_index_favorite",
+            success: function(result){
+              location.reload();
+            }
+          });
+        },
+      })
+    }
+
+    if(window.innerWidth < 768){
+      sortable(true)
+    }else{
+      sortable(false)
+    }
+  <% end %>
+</script>

@@ -1,0 +1,39 @@
+<table class="datatable" data-table-pagination="false">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Date</th>
+      <th>Sessions</th>
+      <!-- <th>Visits</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% num = @pagy.from %>
+    <% ahoy_visits.each do |visit| %>
+      <tr align="center">
+        <td>
+          <span><%= num %></span>
+        </td>
+        <td>
+          <span><%= link_to visit['date'].strftime("%m-%d-%Y"), analytics_daily_path(:date => visit['date'].strftime("%m-%d-%Y")) %></span>
+        </td>
+        <td>
+          <span><%= visit['visit_count'] %></span>
+        </td>
+        <!-- <td>
+          <span><%#= visit['event_count'] %></span>
+        </td> -->
+      </tr>
+      <% num = num + 1 %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="btn-toolbar d-flex" role="toolbar">
+  <div class="py-2 px-0">
+    <span>
+      <%== pagy_info(pagy) %>
+    </span>
+  </div>
+  <%= render partial: 'shared/pagination', locals: { pagy: pagy } %>
+</div>

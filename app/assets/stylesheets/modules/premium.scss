@@ -1,0 +1,110 @@
+.premium {
+  &__title-container {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 21px;
+    width: 100%;
+
+    @media screen and (min-width: 736px) {
+      margin: 100px 0 21px;
+    }
+  }
+
+  &__content {
+    max-width: 356px;
+    margin: 0 auto;
+  }
+
+  &__description {
+    margin-bottom: 60px;
+    font-size: 15px;
+    line-height: 1.22;
+    letter-spacing: 0.6px;
+
+    @media screen and (min-width: 736px) {
+      margin-bottom: 110px;
+    }
+  }
+
+  &__pricing-title {
+    margin-bottom: 25px;
+    font-weight: normal;
+    font-family: inherit;
+    font-size: 34px;
+    letter-spacing: 1.7px;
+    text-align: center;
+
+    @media screen and (min-width: 736px) {
+      margin-bottom: 45px;
+      text-align: left;
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 39px;
+    }
+
+    &:last-child {
+      margin-bottom: 46px;
+    }
+
+    .label {
+      &__title {
+        font-size: 22px;
+        letter-spacing: 0.5px;
+
+        @media screen and (min-width: 736px) {
+          font-size: 24px;
+        }
+      }
+
+      &__description {
+        font-size: 15px;
+        letter-spacing: 0.8px;
+
+        strong {
+          font-size: 18px;
+          font-weight: bold;
+          font-family: inherit;
+          letter-spacing: 0.9px;
+        }
+      }
+    }
+  }
+}
+
+.pricing-form {
+  display: flex;
+
+  .control-label {
+    display: none;
+  }
+
+  .upgrade_type {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+  }
+
+  .collection_radio_buttons {
+    display: none;
+  }
+
+  .radio {
+    height: 59px;
+    padding-top: 10px;
+
+    &:not(:last-child) {
+      margin-bottom: 39px;
+    }
+
+    .radio_buttons {
+      cursor: pointer;
+    }
+  }
+}

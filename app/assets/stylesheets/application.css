@@ -1,0 +1,10 @@
+/* require modules
+*= require_self
+*= require bootstrap.min 
+*= require vendor/datatables.min
+*= require vendor/daterangepicker
+*= require animate.min
+*= require bootstrap-datepicker.min
+*= require main
+
+*/

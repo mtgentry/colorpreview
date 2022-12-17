@@ -1,0 +1,28 @@
+<div class="mobile-menu hidden">
+  <% if user_signed_in? %>
+    <nav class="mob-nav">
+      <%= link_to(t('create_page.color_wheel'), app_path, class: 'mob-link') %>
+      <%= link_to(t('create_page.hex_match'), hex_match_path, class: 'mob-link') %>
+      <%= link_to(t('home_page.header.favorites'), favorites_path, class: 'mob-link') %>
+      <%= link_to(t('home_page.header.is_user.library'), colors_path, class: 'mob-link') %>
+      <%= link_to(t('home_page.header.is_user.account'), account_index_path, class: 'mob-link') %>
+      <%= link_to(t('home_page.header.is_user.contact'), contact_path, class: 'mob-link') %> 
+      <%# if freebies_for_selected_country %>
+        <%#= link_to(t('home_page.header.freebies'), freebies_path, class: 'mob-link') %>
+      <%# end %>
+      <%= link_to(t('home_page.header.is_user.logout'), destroy_user_session_path, method: :delete, class: 'mob-link') %>
+    </nav>
+  <% else %>
+    <nav class="mob-nav">
+      <%= link_to(t('create_page.color_wheel'), app_path, class: 'mob-link') %>
+      <%= link_to(t('create_page.hex_match'), hex_match_path, class: 'mob-link') %>
+      <%= link_to(t('home_page.header.favorites'), favorites_path, class: 'mob-link') %> 
+      <%= link_to(t('home_page.header.pricing'), pricing_path, class: 'mob-link') %> 
+      <%# if freebies_for_selected_country %>
+          <%#= link_to(t('home_page.header.freebies'), freebies_path, class: 'mob-link') %>
+      <%# end %>
+      <%#= link_to(t('pricing.upgrade), upgrade_path, class: 'mob-link') %>
+      <%= link_to(t('home_page.header.login'), new_user_session_path, class: 'mob-link') %> 
+    </nav>
+  <% end %>
+</div>

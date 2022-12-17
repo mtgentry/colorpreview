@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /thank_you
+Noindex: /thank_you
+Disallow: /final_step
+Noindex: /final_step
+
+Allow: /
+Sitemap: https://colorsupplyyy.com/sitemap.xml

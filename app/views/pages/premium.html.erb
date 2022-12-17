@@ -1,0 +1,33 @@
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <div class="premium__title-container">
+    <h2 class="page-title">Color Supply Premium </h2>
+  </div>
+
+  <div class="premium__content">
+    <p class="premium__description">
+      Color Supply premium has everything you love about the free version plus much more. You’ll get access to entire sets of colors from working artists,
+      as well as great artists from history. You’ll also get pallets with specific themes such as “80’s”, “Summertime” and “Modern”.
+    </p>
+
+    <h2 class="premium__pricing-title">Pricing</h2>
+
+    <div class="pricing-form">
+      <div class="premium__labels">
+        <% @plans.each do |plan| %>
+          <label class="premium__label">
+            <span class="label__title"><%=plan.nickname%> – $<%=plan_detail(plan, "amount")%>/year</span>
+            <span class="label__description">Works on up to <strong><%= plan_detail(plan, "transform_usage") %></strong> computers</span>
+          </label>          
+        <% end %>
+      </div>
+    </div>
+    <% if current_user.present? %>
+      <%= link_to "#{t("trial_ended_modal.upgrade_now").upcase}", pricing_path, class: 'btn btn--blue'  %>
+    <% else %>
+      <%= link_to 'SIGN UP', new_user_registration_path, class: 'btn btn--blue'  %>
+    <% end %>
+
+  </div>
+</div>

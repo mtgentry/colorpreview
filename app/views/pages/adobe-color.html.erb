@@ -1,0 +1,103 @@
+<% content_for :pagetitle do %>Adobe Color - A Breakup Letter<% end %>
+<% content_for :description do %>Why I don't like using Adobe Color any more.<% end %>
+
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+
+ <div class="premium__title-container">
+
+
+<h1 class="page-title">Dear Adobe Color <br> <p class="p-sub">(A breakup letter)</p></h1>
+  </div>
+
+  </div>
+
+  <div class="page-section__text course">
+    <div class="page-container">
+     
+
+<p class="page-text">
+When Adobe Color first came around 2009 I wanted to like it. I really did. But every time I used it, I came away feeling frustrated with no colors for my project. <p>
+
+<p class="page-text">For starters, it has too many color options. I don’t want the option to pick every color in the universe, which is what it presents you with:</p>
+
+ <%= image_tag 'adobe_color.jpg', :width => '100%' %>
+<br ><br ><br><br>
+<p class="page-text">I’m better off just thinking up a random hex code color and trying that. </p>
+
+
+<p class="page-text">The interface is wonky too. I think I’m a fairly savvy internet user but it confuses even me. What is the point of moving these handles:
+ </p>
+
+  <%= image_tag 'adobe_color_handle.gif', :width => '100%' %>
+<br><br>
+
+<br><br>
+<p class="page-text">It looks like a rave in your browser.</p>
+
+
+<p class="page-text"><strong>Explore tab</strong></p>
+
+<p class="page-text">There are collections of themes by made by users. And some of these are o.k. But I generally don’t trust the wisdom of the crowd to pick colors for me. That doesn’t work in Fashion, Art, or Design. 
+</p>
+
+<p class="page-text">Nor does it work for colors:</p>
+
+
+  <p><%= image_tag 'explore_colors.jpg', :width => '100%' %></p>
+
+<br>
+
+<p class="page-text"><strong>Starting from Scratch</strong></p>
+
+
+<p class="page-text">Ultimately I decided to build the tool that I wish existed. <em>(Spoiler alert: its this <a href="https://colorsupplyyy.com/app" target="_blank">color picker</a> ).</em>
+All of the color suggestions are based on color theory. You pick an initial color relationship (complementary, triad, etc) and the results after that are sorted accordingly. </p>
+
+<p class="page-text">All of the results are hand-picked. Some colors are made by me, and some were sampled with permission from talented Illustrators like <a href="https://www.coenpohl.com" target="_blank">Coen Pohl</a>  and <a href="https://danieltriendl.com" target="_blank">Daniel Triendl</a>:</p>
+
+<p><%= image_tag 'coen.jpg', :width => '100%' %></p>
+
+<p><%= image_tag 'daniel.jpg', :width => '100%' %></p>
+
+<p class="page-text">You don’t have to use their exact colors, rather they can be a jumping off point for your project. </p>
+
+<p class="page-text"><strong>Building the interface</strong></p>
+
+
+<p class="page-text">At first, I tried to design the interface so that clicking the right arrow below would lead to color wheels beyond the first five based on color theory. But this felt clunky. There were six different elements competing for attention:
+</p>
+  <p><%= image_tag 'color_wheel_old.gif', :width => '100%' %></p>
+
+
+<p class="page-text">But it was too busy. After taking a step back, I realized the most essential elements were:</p>
+
+<ul>	
+<li><strong>1. The arrows for toggling back and forth</strong></li>
+<li><strong>2. The name of the current color wheel</strong></li>
+</ul>
+
+<p class="page-text">The previous and upcoming colors were nice to know, but not essential. If it meant having a cluttered UI it wasn’t worth it.
+
+</p>
+
+<p class="page-text">After messing around a bit, I came up with this solution:</p>
+
+
+  <p><%= image_tag 'color_wheel_new.gif', :width => '100%' %></p>
+
+<p class="page-text">Here you just click to move between color wheels. No more buttons underneath. Now there are only three elements to look at. Two arrows, and the name of the current wheel. One principal of design is that if two elements are close to one another, it implies a relationship. This solution works well because of the close proximity of the arrows to the wheel. The user groks that clicking the arrow will change the wheel. </p>
+
+<p class="page-text">This is a better solution.</p>
+
+
+<p class="page-text">In the end, I ended up with a <a href="https://colorsupplyyy.com/app" target="_blank">color picker</a> that I really liked. Give it a try and let me know what you think!
+</p>
+
+
+
+
+</div>
+</div>
+</div>

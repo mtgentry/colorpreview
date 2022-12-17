@@ -1,0 +1,208 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+jp:
+  clients_number_string: クライアント
+  home_page:
+    color_picking_made_easy: 色選びが簡単に
+    header:
+      create: 作成
+      favorites: お気に入り
+      pricing: 価格
+      freebies: 無料サンプル
+      login: ログイン
+
+      is_user:
+        library: ライブラリー
+        account: アカウント
+        contact: 連絡先
+        logout: ログアウト
+    color_supply: カラーサプライ
+    color_picker_for_designer: デザイナーとイラストレーターのためのカラーピッカー
+    try_now: 今すぐ試す
+
+  create_page:
+    color_wheel: カラーホイール
+    hex_match: Hexマッチ
+    startup: Startup
+    colors_theory:
+      split: 補色する
+      analogous: アナロジー
+      triad: トライアド
+      splitc: 補色を分ける
+      square: スクエア
+      fresh: フレッシュ
+      manga: マンガ
+      nature: ネイチャー
+      painters: ペインター
+      rich: リッチ
+    back: 戻る
+    next: 次へ
+    add_to_favorites: お気に入りに追加
+    free_trial: 無料体験
+    you_have_session_left: "残りのセッションは %{counter} 回です"
+
+  pricing:
+    upgrade: アップグレード
+    upgrade_to_premium: プレミアムアカウントにアップグレードする
+    conquer_color_like_a_pro: プロのように色を扱う
+    one_time_payment_no_subscription: 定期購入はありません。
+    best_value: ベストバリュー
+    business: ビジネス
+    professional: プロフェッショナル
+    hobbyist: 趣味
+    for_medium_sized_team: 中規模チーム、代理店、開発ショップ向け。
+    for_designer: "デザイナー、イラストレーター、開発者、小規模チーム向け。"
+    perfect_for_student: 学生、若者、DIY派の方に最適。
+    one_time_payment: ドル 1回払い
+    5_basic_color: 5つの基本カラーホイール
+    fresh: フレッシュ
+    manga: マンガ
+    nature: ネイチャー
+    painters: ペインター
+    rich: リッチ
+    license_for_25: 25台分のライセンス
+    license_for_5: 5台分のライセンス
+    license_for_2: 2台分のライセンス
+    50_favorites: 最大50のお気に入りを保存
+    buy_now: 今すぐ購入
+    color_supply_is_used: Color Supplyはこんな会社で使われています
+    testimonials: お客様のお声
+    change_a_plan: Change a Plan
+    select: Select
+
+  account:
+    activate: 起動
+    activated: 起動済み
+    account: アカウントページ
+    cancel_account: Cancel account
+    free_account: Free account
+    license_key: ライセンスキー
+    my_activation_key: マイアクティベーションキー
+    my_license_key: マイライセンスキー
+    my_seven_digit_key: 私の7桁のキー
+    basics: 基本
+    email_address: Eメールアドレス
+    password: パスワード
+    update: アップデート
+    reset: リセット
+    my_plan: マイプラン
+    account_activation: アカウントの有効化
+    used: 使用済み
+    switch_plans: Switch plans
+    to_active_your_account: アカウントを有効にするには、このページの下部にあるライセンスキーのいずれかをコピーします。それを「私の7桁のキー」と書かれたフォームフィールドに貼り付けます。最後に、「起動」ボタンをクリックして アカウントを有効にしてください。
+
+  library:
+    library: ライブラリー
+    my_colors: マイカラー
+    split: 補色する
+    analogous: アナロジー
+    triad: トライアド
+    splitc: 補色を分ける
+    square: スクエア
+    fresh: フレッシュ
+    manga: マンガ
+    nature: ネイチャー
+    painters: ペインター
+    rich: リッチ
+    sort_pattern_here: Sort your color palettes here.
+
+  payment:
+    email: Eメール
+    create_password: パスワード作成
+    card_number: カード番号
+    exp_date: 有効期限
+    cvc: CVC
+    promo_code: プロモーションコード
+    apply: お申込み
+    payment_processing: 支払処理中
+    pay: お支払い
+
+  freebies:
+    freebies: 無料サンプル
+    partnered_with_indie_stock: <a href='http://indiestock.co/' class='freebies__link' target='_blank'>Indie Stock</a>社と提携し、無料で高品質なデザイン素材を提供しています。是非お楽しみください！
+    analog_wonderland: 「アナログワンダーランド」
+    analog_wonderland_desc: 手作業の長時間露光の印刷実験によってつくられたビジュアル。大文字26文字。
+    abstact_lights: 「抽象的な画像」
+    abstact_lights_desc: 夜の抽象的な街路灯の画像42枚
+
+  login:
+    login: ログイン
+    email_address: Eメールアドレス
+    password: パスワード
+    forgot_password: パスワードをお忘れですか？
+    reset_password: パスワードのリセット
+    dont_have_account: アカウントをお持ちでない方　アップグレード
+    here: はこちら
+
+  sign_up:
+    get_started: さあ始めよう
+    first_name: 名前
+    last_name: 姓
+    email_address: Eメールアドレス
+    password: パスワード
+    confirm_password: パスワードを確認
+    done: 完了
+    have_an_account: アカウントをお持ちの方
+    login: ログイン
+
+  favorites:
+    back_to_favorite: "< Back to favorites"
+    favorites: お気に入り
+    remove_from_favorites: お気に入りから削除
+
+  contact:
+    contact: 連絡先
+    contact_color_supply_team: カラーサプライチームへのお問い合わせは、
+
+  licensed_account:
+    add_licensed_account: ライセンスアカウントの追加
+    friend_or_coworker_has_given: 友人や同僚からライセンスキーをもらっている場合は、以下で新規アカウントを作成し、アカウント欄にライセンスキーを入力してください。
+    account: アカウント
+    email_address: Eメールアドレス
+    password: パスワード
+    next: 次へ
+
+  footer:
+    designed_by: デザイン：
+    contact: 連絡先
+    add_licensed_account: ライセンスアカウントの追加
+    privacy_policy: プライバシーポリシー
+    terms_use: ご利用条件
+
+  trial_ended_modal:
+    free_trial: 無料体験
+    free_trial_ended: 無料トライアル終了
+    upgrade_now: 今すぐアップグレードする
+    upgrade_now_desc: カラーサプライをお試しいただきありがとうございます！引き続きサイトをご利用いただくには、今すぐアップグレードしてください。
+    upgrade_with_code: "と10％オフになります。コード: <b>%{code}</b>"
+    use_promo_code: '24時間以内にアップグレードすると<strong><i>10％</i></strong>オフになります。プロモコード：<span class="blue-link"><b>%{code}</b></span>をご利用ください。'
+    used_companies: カラーサプライはこんな会社で使われています

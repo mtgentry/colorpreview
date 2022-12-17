@@ -1,0 +1,30 @@
+<% content_for :pagetitle do %>Freebies<% end %>
+<% content_for :description do %>Free design assets.<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container">
+  <div class="page-title__container">
+    <h1 class="page-title">
+      <%= t("freebies.freebies") %>
+      <p class="p-sub freebies__description"><%= t("freebies.partnered_with_indie_stock").html_safe %></p>
+    </h1>
+  </div>
+
+  <div class="freebies__container">
+    <div class="freebies__item">
+      <a href="http://indiestock.co/products/analog-wonderland" target="_blank">
+        <%= image_tag "freebies/analog-wonderland.png", class: "freebies__item-poster" %>
+        <h4 class="freebies__item-title"><%= t("freebies.analog_wonderland") %></h4>
+        <span class="freebies__item-description"><%= t("freebies.analog_wonderland_desc") %></span>
+      </a>
+    </div>
+    <div class="freebies__item">
+      <a href="http://indiestock.co/products/abstract-lights" target="_blank">
+        <%= image_tag "freebies/abstract-lights.png", class: "freebies__item-poster" %>
+        <h4 class="freebies__item-title"><%= t("freebies.abstact_lights") %></h4>
+        <span class="freebies__item-description"><%= t("freebies.abstact_lights_desc") %></span>
+      </a>
+    </div>
+  </div>
+</div>

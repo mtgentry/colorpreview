@@ -1,0 +1,257 @@
+<% content_for :pagetitle do %>Color Picker — A handy design tool from Color Supply<% end %>
+<% content_for :description do %>Use the color wheel to select a style you like. Then pick a hex code..<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container" id="main_app">
+	<!-- sidenav -->
+	<div class="sidenav_color_combinations color_combinations" id="color_sq">
+		<div class="color_selectors sidenav_color_selectors"></div>
+	</div>
+	<section class="section colorwheel show">
+		<div class="container">
+			<div class="canvas_wrap">
+				<div class="color_picker">
+					<div id="selected_colorwheels" style="display: none">
+						<% @colors.each do |color| %>
+							<div data-id="<%= color.alias %>" data-name="<%= t('create_page.colors_theory.' + color.alias) %>"></div>
+						<% end %>
+					</div>
+					<div id="canvas_container">
+						<svg id="svg_layout" version="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="400" height="400" viewBox="0 0 437 437" enable-background="new 0 0 437 437" xml:space="preserve">
+							<defs>
+								<clipPath id="rect_clipPath">
+									<rect x="0" y="0" width="437" height="437" />
+								</clipPath>
+
+								<pattern id="grid_patt" width="24" height="24" patternUnits="userSpaceOnUse">
+									<rect x="0" y="0" width="24" height="24" stroke="grey" stroke-width="0.5" fill="none" />
+								</pattern>
+							</defs>
+
+							<g id="colorwheel">
+							</g>
+
+							<!--rect id="grid_tile" width="480" height="300" y="0" x="0" fill="url(#grid_patt)" opacity="0.2"/ -->
+							
+							<g id="rotate">
+								<g id="default" class="colortheory" transform="translate(-87,-178)" style="display: block;">
+									<line fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" x1="305.334" y1="253.737" x2="305.334" y2="400"></line>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="305.243" cy="237.242" r="16.051"/>
+								</g>
+
+								<g id="split" class="colortheory" transform="translate(-87,-178)" style="display: block;">
+									<line fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" x1="305.334" y1="253.737" x2="305.334" y2="540.475"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="305.243" cy="237.242" r="16.051"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="305.629" cy="556.525" r="16.051"/>
+								</g>
+
+
+								<g id="splitc" class="colortheory" transform="translate(-87,-178)" style="display: none;">
+									<line fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" x1="314.431" y1="262.833" x2="377.988" y2="527.712"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="228.709" cy="543" r="16.051"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="383.709" cy="543" r="16.051"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="305.709" cy="249" r="16.051"/>
+									<line fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" x1="235.431" y1="527.713" x2="298.988" y2="263.833"/>
+								</g>
+
+								<g id="analogous" class="colortheory" transform="translate(33,-109)" style="display: none;">
+									<path fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" d="M331.945,393.713c7.16-15.791,11.772-32.979,13.336-51.041"/>
+									<path fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" d="M278.918,457.573c14.232-9.98,26.729-22.263,36.957-36.307"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="325.452" cy="408.348" r="16.072"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="265.304" cy="466.355" r="16.072"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="345.815" cy="326.656" r="16.072"/>
+								</g>
+
+								<g id="triad" class="colortheory" transform="translate(-87,-216)" style="display: none;">
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="173.231" cy="511.139" r="16.051"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="306.718" cy="281.703" r="16.051"/>
+									<circle fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" cx="439.231" cy="508.139" r="16.051"/>
+									<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="298.51" y1="297.04" x2="183.5" y2="497.98"/>
+									<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="428.717" y1="495.819" x2="313.365" y2="296.63"/>
+									<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="189.199" y1="511.981" x2="423.839" y2="511.981"/>
+								</g>
+
+								<g id="square" class="colortheory" transform="translate(-87,-178)" style="display: none;">
+									<path fill="none" d="M311.98,251.694c0.105-0.045,0.217-0.079,0.321-0.125l-6.348-6.348l-6.536,6.537
+									c1.85,0.771,3.875,1.202,5.996,1.233c2.287-0.04,4.455-0.552,6.419-1.443L311.98,251.694z"/>
+									<path fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" d="M312.302,251.568c5.646-2.542,9.583-8.205,9.583-14.797
+									c0-8.964-7.268-16.231-16.231-16.231s-16.23,7.268-16.23,16.231c0,6.754,4.127,12.541,9.995,14.986"/>
+									<path fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" d="M450.409,402.451c2.529,5.674,8.208,9.635,14.82,9.635
+									c8.964,0,16.231-7.268,16.231-16.231s-7.268-16.231-16.231-16.231c-6.724,0-12.493,4.089-14.956,9.917"/>
+									<path fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" d="M299.96,540.912c-5.628,2.548-9.552,8.202-9.552,14.782
+									c0,8.964,7.267,16.231,16.23,16.231s16.231-7.268,16.231-16.231c0-6.952-4.38-12.867-10.524-15.18"/>
+									<g>
+										<path fill="none" d="M161.584,390.036c-0.037-0.112-0.066-0.228-0.107-0.338l-6.365,6.366l5.88,5.88
+										c0.903-1.981,1.423-4.171,1.458-6.481c-0.033-1.86-0.385-3.64-0.992-5.297L161.584,390.036z"/>
+										<path fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" d="M161.477,389.698c-2.262-6.241-8.225-10.708-15.246-10.708
+										c-8.964,0-16.23,7.268-16.23,16.231s7.267,16.231,16.23,16.231c6.562,0,12.203-3.903,14.761-9.509"/>
+										<path fill="none" stroke="#221F1F" stroke-width="2" stroke-miterlimit="10" d="M448.999,395.854c0-0.077,0.011-0.151,0.012-0.229
+										c-0.002-0.079-0.014-0.156-0.014-0.235c-0.007-2.24,0.439-4.375,1.254-6.319L311.98,251.694c-1.947,0.828-4.078,1.309-6.327,1.309
+										c-0.081,0-0.159-0.011-0.239-0.012c-0.076,0.001-0.148,0.013-0.225,0.013c-2.21,0.007-4.316-0.432-6.24-1.226L161.584,390.036
+										c0.554,1.631,0.878,3.367,0.878,5.185c0,0.082-0.013,0.16-0.013,0.241c0,0.075,0.01,0.147,0.01,0.223
+										c0.008,2.4-0.52,4.674-1.449,6.728l139.273,138.373c1.955-0.836,4.095-1.322,6.355-1.322c0.074,0,0.146,0.009,0.219,0.011
+										c0.083-0.002,0.162-0.015,0.245-0.015c2.011-0.007,3.93,0.37,5.71,1.033l137.472-138.364
+										C449.471,400.195,448.999,398.083,448.999,395.854z"/>
+										<path fill="none" d="M161.584,390.036l-0.127,0.129c0.607,1.657,0.959,3.437,0.992,5.297c0-0.081,0.013-0.16,0.013-0.241
+										C162.462,393.403,162.138,391.667,161.584,390.036z"/>
+									</g>
+									<path fill="none" d="M311.98,251.694l-0.147-0.146c-1.964,0.891-4.132,1.403-6.419,1.443c0.08,0.001,0.158,0.012,0.239,0.012
+									C307.902,253.003,310.033,252.522,311.98,251.694z"/>
+								</g>
+
+								<circle id="bigcircle" cx="218" cy="218" r="220" fill="#000000" style="opacity: 0.01;"></circle>
+
+							</g>
+						</svg>
+					</div><!-- end svg_layout -->
+					<div id="color_picker_label" class="color_picker_label" data-language="<%= I18n.locale %>">
+						Startup
+					</div>
+					<div class="color_set_controls">
+						<span class="color_set_controls__trigger left">
+							<%= image_tag 'arrow-left.svg', class: 'color_picker_arrow', :alt => 'arrow-left' %> <%= t('create_page.back') %>
+						</span>
+						<span class="color_set_controls__trigger right">
+							<%= t('create_page.next') %> <%= image_tag 'arrow-right.svg', class: 'color_picker_arrow', :alt => 'arrow-right' %>
+						</span>
+					</div>
+				</div>
+				<div class="color_combinations" id="color_sq">
+					<div class="color_selectors"></div>
+					<div class="color_sqg">
+                    <div class="flushright">
+						<div class="sq1 btn-square colors_1" data-color=""></div>
+						<div class="sq2 btn-square colors_2" data-color=""></div>
+						<div class="sq3 btn-square colors_3" data-color=""></div>
+						<div class="sq4 btn-square colors_4" data-color=""></div>
+                        </div>
+						<p id="designer" > </p>
+					</div>
+				</div> <!-- end color_sq -->				
+			</div>
+			<div class="">
+				<div class="object_sq load_fading">  <!-- 1 badges -->
+					<object id="b1_4c" data="<%= image_path('badge1_4colors.svg') %>" type="image/svg+xml"></object>
+					<object id="b2_4c" data="<%= image_path('badge2_4colors.svg') %>" type="image/svg+xml"></object>
+					<object id="b3_4c" data="<%= image_path('badge3_4colors.svg') %>" type="image/svg+xml"></object>
+					<object id="b4_4c" data="<%= image_path('badge4_4colors.svg') %>" type="image/svg+xml"></object>
+				</div>
+				<div class="triangles load_fading"> <!-- 2 triangles -->
+					<object id="triangle_svg" class="triangles__desktop" width="850" height="120" data="<%= image_path('triangles.svg') %>" type="image/svg+xml"></object>
+					<object id="triangle_svg" class="triangles__mobile" width="850" height="300" data="<%= image_path('triangles_mobile.svg') %>" type="image/svg+xml"></object>
+				</div>
+
+				<div class="bottom_sq"> <!-- 3 hex squares -->
+					<div class="color_squares">
+						<div class="bottom-square colors_1">
+							<div class="sq1"></div>
+							<p id="sq1">#ffffff</p>
+						</div>
+						<div class="bottom-square colors_2">
+							<div class="sq2"></div>
+							<p id="sq2">#ffffff</p>
+						</div>
+						<div class="bottom-square colors_3">
+							<div class="sq3"></div>
+							<p id="sq3">#ffffff</p>
+						</div>
+						<div class="bottom-square colors_4">
+							<div class="sq4"></div>
+							<p id="sq4">#ffffff</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="gradients"> <!-- 5  gradient circles -->
+					<div class="gradient_circles">							<!-- order -->
+						<div class="gradient_circle gc1 "></div>	<!-- 1 - 2 -->
+						<div class="gradient_circle gc2 "></div>	<!-- 1 - 3 -->
+						<div class="gradient_circle gc4 "></div>	<!-- 2 - 3 -->
+						<div class="gradient_circle gc3 "></div>	<!-- 1 - 4 -->
+						<div class="gradient_circle gc5 "></div>	<!-- 2 - 4 -->
+						<div class="gradient_circle gc6 "></div>	<!-- 3 - 4 -->
+					</div>
+					<div class="gradient_squares_wrapper"> <!-- 6  gradient squares -->
+						<div class="gradient_squares">
+							<div class="gradient_square gs1 colors_3"></div>
+							<div class="gradient_square gs2 colors_3"></div>
+							<div class="gradient_square gs3 colors_3"></div>
+							<div class="gradient_square gs4 colors_3"></div>
+						</div>
+						<div class="gradient_squares">
+							<div class="gradient_square gs5 colors_3"></div>
+							<div class="gradient_square gs6 colors_3"></div>
+							<div class="gradient_square gs7 colors_3"></div>
+							<div class="gradient_square gs8 colors_3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="button-gray add-favorite"><%= t('create_page.add_to_favorites') %></button>
+		</div>
+		<!-- <div style="width: 840px; display: flex; justify-content: center; margin: 0 auto;">
+		</div> -->
+	</section>
+</div><!-- end container -->
+
+<!-- POPUP FOOTER START-->
+<div class="modal-popup">
+	<div class="modal-content-body">
+		<div class="img-modal">
+			<%= image_tag("sales_small.jpg", :alt => "fashion_site_colors", :class => "sales-img img-responsive") %>
+		</div>
+		<div class="text-wrap">
+			<p class="title-free">Free Design Course</p>
+			<p class="text-case">17 Case Studies. Detailed description.</p>
+			<%= link_to free_design_course_url, class: 'btn-go' do%>
+				GO
+			<%end%>
+		</div>
+		<div class="icon-close">
+			<a href="javascript:;" class="form_close_button"><img src="<%= image_path('small_close.svg', alt: 'Close') %>"></a>
+		</div>
+	</div>
+</div>
+<div class="backdrop-course hide"></div>
+<!-- POPUP FOOTER END -->
+    
+<!-- POPUP PRO TIP START -->
+  <!-- <div class="modal-tip hidden-tip">
+    <div class="img-tip">
+      <%#= image_tag("arrow_new.svg", :alt => "fashion_site_colors", :class => "img-responsive", :style => "width:65px; margin-top:30px" )%>
+    </div>
+    <div class="wrap-pro-text">
+      <p class="title-tip"><b>Pro tip:</b></p>
+      <p class="sub-text-tip">Use the <b>up</b>, <b>down</b>, <b>left</b> and <b>right</b> keyboard arrows to quickly toggle through the palettes</p>
+    </div>
+      <div class="tip-close">
+          <a href="javascript:;" class="form_close_button"><img src="<%#= image_path('close.svg', alt: 'Close') %>"></a>
+      </div>
+  </div> -->
+<!-- POPUP PRO TIP END -->
+
+<!-- MODAL CLICK REACHED -->
+<% if user_signed_in? && !current_user.is_payed? && !current_user.subscription.present? && !current_user.payment_sessions.present? && !current_user.license.present? %>
+	<div class="modal-usage-limit" id="modal-usage-limit">
+		<div class="modal-usage-content">
+		<%= t('create_page.free_trial') %>
+		<%= image_tag("#{trial_countdown(cookies[:counter].to_i, 'icon')}", :alt => "LIMIT USAGE", :class => "img-responsive img-tip", width:"100%")%>
+		</div>
+	</div>
+
+	<div class="modal-usage-limit-message hide" id="modal-usage-limit-message">
+		<div class="icon-close-limit">
+			<%= image_tag("close_button_very_small.svg", :alt => "Close", :class => "img-responsive", width:"100%")%>
+		</div>
+		<div class="text-tip"><%= trial_countdown(cookies[:counter].to_i, "text") %></div>
+		<% if cookies[:counter].to_i >= 6 %>
+			<div class="subtext-tip">
+				<%= link_to t("trial_ended_modal.upgrade_now"), pricing_path(promo: "vDOLkivN") %> <%= "#{t("trial_ended_modal.upgrade_with_code", code: "vDOLkivN")}".html_safe %>
+			</div>
+		<% end %>
+	</div>
+
+	<%= render 'main/usage-modal' %>
+<% end %>

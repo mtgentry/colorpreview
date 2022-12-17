@@ -1,0 +1,15 @@
+<% content_for :pagetitle do %>Payment Success!<% end %>
+<% content_for :description do %>Upgrade to a premium account.<% end %>
+
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <div class="app_container app_container--message">
+    <div class="page-title__container">
+      <h2 class="page-title">Success!
+        <p class="p-sub--message">You have successfully purchased a plan.<br/>Now visit the account section to activate a license.</p>
+        <%= link_to 'View Account', account_index_path, class: "btn btn btn--blue btn--small btn-copy" %>
+      </h2>
+    </div>
+  </div>
+</div>

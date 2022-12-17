@@ -1,0 +1,119 @@
+<% content_for :pagetitle do %><%= t('pricing.upgrade') %><% end %>
+<% content_for :description do %><%= t('pricing.upgrade_to_premium') %><% end %>
+
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <div class="app_container app_container--pricing">
+    <div class="page-title__container">
+      <h2 class="page-title">
+        <%= t('pricing.conquer_color_like_a_pro') %>
+        <p class="p-sub">
+          <%= t('pricing.one_time_payment_no_subscription') %>
+        </p>
+      </h2>
+    </div>
+
+    <div class="plans__container content-pay">
+      <%= simple_form_for :select_plan do |f| %>
+        <div class="plan__form">
+          <% @plans.reverse_each do |plan| %>
+          <div class="plan__item">
+            <% if plan.transform_quantity.divide_by.eql?(5) %>
+              <div class="plan__best-value">
+                <span class="plan__best-value__text">
+                  <%= t('pricing.best_value').upcase %>
+                </span>
+              </div>
+            <% end %>
+            <div class="plan__container">
+              <label class="plan__label">
+                <span class="label__title"><%= plan_detail(plan, "amount") %></span>
+                <span class="label__description"><%= plan_detail(plan, "desc").html_safe %></span>
+                <span class="plan__pricing">
+                  <span class="plan__dollar_sign">$</span>
+                  <span><%= plan_detail(plan, "price") %></span>
+                  <span class="label__payment">
+                    <%= t('pricing.one_time_payment') %>
+                  </span>
+                </span>
+                <div class="plans__description"><%= plan_detail(plan, "transform_usage") %></div> 
+              </label>
+              <div class="stripe-button-container">
+                <%# if current_user.present? %>
+                  <%#= link_to 'javascript:void(0)', class: "btn btn--blue btn--block checkout-btn", data: {planid: plan.id} do %>
+                    <%#= t('pricing.buy_now').upcase %>
+                  <%# end %>
+                <%# else %>
+                  <%= link_to payment_info_path(plan_id: plan.id), class: "btn btn--blue btn--block" do %>
+                    <%= t('pricing.buy_now').upcase %>
+                  <% end %>
+                <%# end %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="plan_logo">
+        <h6 class="plan_logo__title"><%= t('pricing.color_supply_is_used') %></h6>
+        <%= image_tag('logos.svg', alt: 'Companies logo')%>
+      </div>
+
+    </div>
+  </div>
+
+  <h2 class="page-title"><%= t('pricing.testimonials')%></h2>
+  <div class="tweet__container">
+    <div class="tweet__column">
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">omg omg it’s time too talk about my favorite website.... i use <a href="https://t.co/uaeb7Uti3T">https://t.co/uaeb7Uti3T</a> 🥺🥺 it’s got a really cool graph that you can change the tones of and even has like different examples how how the colors can be used together, it’s just such a cool tool for digital art</p>&mdash; m a r s 🎉 +1 check 📌 (@woodzwayo) <a href="https://twitter.com/woodzwayo/status/1284609670456520704?ref_src=twsrc%5Etfw">July 18, 2020</a></blockquote>
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Here&#39;s a fun resource for any artists out there that struggle with color, this is <a href="https://t.co/POWGFcNCUz">https://t.co/POWGFcNCUz</a> . It brings up tons of useful color assists if you&#39;re stuck! Obviously not something you should solely depend on, but if you need the little boost it&#39;s a great resource <a href="https://t.co/9cV5XmVDMq">pic.twitter.com/9cV5XmVDMq</a></p>&mdash; marie lum 林 ♿ (@PuccaNoodles) <a href="https://twitter.com/PuccaNoodles/status/1090451999248637952?ref_src=twsrc%5Etfw">January 30, 2019</a></blockquote>
+    </div>
+    <div class="tweet__column">
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">For any <a href="https://twitter.com/hashtag/gamedev?src=hash&amp;ref_src=twsrc%5Etfw">#gamedev</a> that outgrew their programmer art, visit this page and click the Split-Complement radio button.<br>What a great tool!<a href="https://t.co/GRk9fRVsU4">https://t.co/GRk9fRVsU4</a> <a href="https://t.co/YKo4FYjCJa">pic.twitter.com/YKo4FYjCJa</a></p>&mdash; Bram Stolk (@BramStolk) <a href="https://twitter.com/BramStolk/status/997339842395570176?ref_src=twsrc%5Etfw">May 18, 2018</a></blockquote>
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://t.co/MM1V4CzFPs">https://t.co/MM1V4CzFPs</a> KEEP THIS IN YOUR BOOKMARKS MY DEAR ARTISTS JEDI</p>&mdash; kiDChan @ will meet you soon (@cyanparade) <a href="https://twitter.com/cyanparade/status/1122198398247956480?ref_src=twsrc%5Etfw">April 27, 2019</a></blockquote>
+    </div>
+    <div class="tweet__column">
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Love the simplicity of this colour picker <a href="https://t.co/o1noz9o2ij">https://t.co/o1noz9o2ij</a></p>&mdash; Mister Phil (@mrpillustration) <a href="https://twitter.com/mrpillustration/status/740156532554354688?ref_src=twsrc%5Etfw">June 7, 2016</a></blockquote>
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">That’s an interesting color picker, with previews and color schemes preselected by featured artists.<br><br>↬ Color Supply<a href="https://t.co/WPoJbSEx4Y">https://t.co/WPoJbSEx4Y</a> <a href="https://t.co/9V3TcUQDZe">pic.twitter.com/9V3TcUQDZe</a></p>&mdash; Smashing Magazine (@smashingmag) <a href="https://twitter.com/smashingmag/status/1109852120532959232?ref_src=twsrc%5Etfw">March 24, 2019</a></blockquote>
+    </div>
+  </div>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+<!-- <script type="text/javascript">
+  // Create an instance of the Stripe object with your publishable API key
+  // var stripe = Stripe('<%= ENV['stripe_publishable_key'] %>');
+
+  // document.querySelectorAll('.checkout-btn').forEach(item => {
+  //   item.addEventListener('click', event => {
+  //     var plan_id = $(item).attr('data-planid');
+
+  //     console.log(plan_id);
+
+  //     fetch('/checkout?plan_id='+plan_id, {
+  //       method: 'POST',
+  //     })
+  //     .then(function(response) {
+  //       return response.json();
+  //     })
+  //     .then(function(session) {
+  //       console.log(session);
+  //       return stripe.redirectToCheckout({ sessionId: session.id });
+  //     })
+  //     .then(function(result) {
+  //       // If `redirectToCheckout` fails due to a browser or network
+  //       // error, you should display the localized error message to your
+  //       // customer using `error.message`.
+  //       if (result.error) {
+  //         alert(result.error.message);
+  //       }
+  //     })
+  //     .catch(function(error) {
+  //       console.error('Error:', error);
+  //     });
+  //   })
+  // })
+</script> -->

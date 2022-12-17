@@ -1,0 +1,89 @@
+<div class="app_container">
+  <div class="header">
+    <div class="header__content">
+      <%= link_to(t("favorites.back_to_favorite"), favorites_path, class: 'header__nav-link') %>
+    </div>
+  </div>
+<style type="text/css" media="screen">
+  .cs{
+    display: inline-block;
+    width: 31px;
+    height: 16px;
+  }
+</style>
+  <section class="section">
+    <%= render 'favorites/favorites' %>
+  </section>
+</div><!-- end container -->
+
+<script type="text/javascript" charset="utf-8" async defer>
+  <%# @favorites_with_index.in_groups_of(10).each_with_index do |favorites, idx1| %>
+    // var getclass =  document.getElementById('draggable<%#= idx1+1 %>')
+    // function sortable(disable){
+    //     var sortable = Sortable.create(getclass,{
+    //     swap : true,    
+    //     draggable: ".selector_badge",
+    //     group : 'replace',  
+    //     ghostClass: 'blue-background-class',
+    //     animation : 150,
+    //     ghostClass: "sortable-ghost",
+    //     disabled: disable,
+    //     onEnd: function (evt) {
+    //       // get element item drag
+    //       element1 = $(evt.item);
+    //       columnIndex1 = element1.data('column-index');
+    //       position1 = element1.data('position');
+
+    //       // get element item target
+    //       columnIndex2 = element1.parent().data('column-index')
+    //       position2 = columnIndex2 + evt.newIndex + 1
+    //       element2 = $("div[data-position='" + position2 + "']");
+
+    //       // set attribute between 2 elements (item drag and item target)
+    //       element1.data('position', position2);
+    //       element1.data('column-index', columnIndex2);
+    //       element2.data('position', position1);
+    //       element2.data('column-index', columnIndex1);
+
+    //       function arraymove(arr, fromIndex, toIndex) {
+    //         var element = arr[fromIndex];
+    //         arr.splice(fromIndex, 1);
+    //         arr.splice(toIndex, 0, element);
+    //       }
+
+    //       if($('.favorites-trial').length !== 0){
+    //         arraymove(color_fav, evt.oldIndex, evt.newIndex)
+    //         $.cookie('favorites', JSON.stringify(color_fav))
+
+    //       }
+
+    //       // restore id
+    //       id1 = element1.data('favorite-id');
+    //       id2 = element2.data('favorite-id');
+    //       $.ajax({
+    //         type: "PUT",
+    //         dataType:"json",
+    //         data: {
+    //           favorite:{
+    //             id1: id1,
+    //             position1: position2,
+    //             id2: id2,
+    //             position2: position1
+    //           }
+    //         },
+    //         url: "/favorites/update_index_favorite",
+    //         success: function(result){
+    //           location.reload();
+    //         }
+    //       });
+    //     },
+    //   })
+    // }
+
+    // if(window.innerWidth < 768){
+    //   sortable(true)
+    // }else{
+    //   sortable(false)
+    // }
+  <%# end %>
+</script>

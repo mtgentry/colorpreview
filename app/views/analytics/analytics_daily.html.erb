@@ -1,0 +1,67 @@
+<% content_for :pagetitle do %>Color Picker — A handy design tool from Color Supply<% end %>
+<% content_for :description do %>Use the color wheel to select a style you like. Then pick a hex code..<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container">
+  <div class="page-title__container">
+    <h1 class="page-title">Visitor Analytics</h1>
+  </div>
+
+  <div><h2 style='text-align: center;'><%= params[:date] %></h2></div>
+  
+
+  <div class="analytics-filter">
+	<div class="form__group">
+		<label for="" class="form__label">Search Entry</label>
+		<div class="input-group-inline">
+		<input class="base-input" id="datatable-search"/>
+		</div>
+	</div>
+  </div>
+
+	<table class="datatable stripe">
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>IP Address</th>
+				<th>Number of Visits</th>
+				<th>City</th>
+				<th>Country</th>
+				<th>Logged In User</th>
+				<th>Timestamp</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @ahoy_visits.each_with_index do |visit, index| %>
+				<tr align="center">
+					<td>
+						<span><%= index + 1 %></span>
+					</td>
+					<td>
+						<span><%= visit.ip %></span>
+					</td>
+					<td>
+            <div><%= visit.events.size %></div>
+					</td>
+					<td>
+						<span><%= visit.city %></span>
+					</td>
+					<td>
+						<span><%= visit.country %></span>
+					</td>
+					<td>
+						<span><%= visit.user ? visit.user.email : false %></span>
+					</td>
+					<td>
+						<span><%= visit.started_at %></span>
+					</td>
+          <td>
+            <div class="analytics_details__links"><%= link_to "Details", analytics_details_path(:visit_id => visit.id), class: "details_links" %></div>
+          </td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

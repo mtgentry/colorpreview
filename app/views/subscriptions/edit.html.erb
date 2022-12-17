@@ -1,0 +1,29 @@
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <div class="page-title__container">
+    <h2 class="page-title"><%= t("pricing.change_a_plan") %></h2>
+  </div>
+
+  <div class="plans__container">
+    <div class="plan__form">
+      <% @plans.each do |plan| %>
+        <%= simple_form_for :subscription, url: subscription_path(current_user.subscription), method: :put do |f| %>
+          <%= hidden_field_tag :plan_id, plan.id %>
+          <div class="plan__item">
+            <label class="plan__label">
+              <span class="label__title"><%= plan_detail(plan, "amount") %></span>
+              <span class="label__description"><%= plan_detail(plan, "desc") %></span>
+              <hr>
+              <span class="label__description"><%= plan_detail(plan, "transform_usage") %></span>
+              <span class="label__description price"><span>$</span><%= plan_detail(plan, "price") %></span>
+            </label>
+            <div class="stripe-button-container">
+              <%= f.button :button, t("pricing.select"), type: 'submit', name: 'selected', class: 'btn btn--blue' %>
+            </div>
+          </div>
+        <% end %>  
+      <% end %>
+    </div>
+  </div>
+</div>

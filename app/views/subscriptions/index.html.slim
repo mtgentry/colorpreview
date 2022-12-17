@@ -1,0 +1,21 @@
+container.main-cont
+  .row
+    - @plans.each do |plan|
+      .col-xs-12.col-md-4
+        .plan class="ex-card-box #{ 'most-popular' if plan.id == 'standard'}"
+          h2.header #{plan.name}
+          - if plan.id == 'standard'
+            h4 Most Popular
+          .description
+            p Bla bla bla test
+            p Bla dddd asdasd test
+            p Bla dddd asdasd test
+            p Bla dddd asdasd test
+            p Bla dddd asdasd test
+            p Bla dddd asdasd test
+            p Bla bla sadbla test
+          .price #{plan.amount/100.00}$
+          .footer
+            = form_tag(subscriptions_path, {method: :post, plan: plan}) do
+              =hidden_field_tag :plan_id, plan.id
+              script.stripe-button data-amount="#{plan.amount}" data-currency="email" data-email="#{current_user.email}" data-image="/assets/sitepoint.png" data-key="#{Rails.configuration.stripe[:publishable_key]}" src="https://checkout.stripe.com/checkout.js"

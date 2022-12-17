@@ -1,0 +1,160 @@
+<% content_for :pagetitle do %><%= t('home_page.color_picking_made_easy') %><% end %>
+<% content_for :description do %><%= t('home_page.color_picking_made_easy') %><% end %>
+
+<%= render 'shared/header' %>
+<div class="container">
+	<section class="section intro">
+		<div class="intro_header">
+			<h1 class="letters"><%= t('home_page.color_supply') %></h1>
+		</div>
+		<div class="intro_content">
+			<h2><%= t('home_page.color_picker_for_designer') %></h2>
+		</div>
+
+		<div class="intro_action">
+			<a href="/app"><button class="button launch_button"><%= t('home_page.try_now') %></button></a>
+		</div>
+	</section>
+
+	<section class="section content">
+		<div class="content_header">
+			<div class="content_header_title">
+				<h3>COPY THE HEX CODE</h3>
+			</div>
+			<div class="content_header_sub">
+				<h4>Use the color wheel to select what you like, then copy the html color codes.</h4>
+			</div>
+		</div>
+
+		<div class="content_body">
+			<div class="content_body_one">
+				<div class="content_body_img"><%= image_tag 'kyle_miller.svg', alt: 'Kyle Miller' %></div>
+				<div class="content_body_desc">Kyle Miller</div>
+				<div class="content_body_color">
+					<div class="col-md-6">
+						<div class="color-box bg-kyle"></div>
+						<div class="text-box">#ed5740</div>
+					</div>
+					<div class="col-md-6">
+						<div class="color-box bg-miller"></div>
+						<div class="text-box">#a6d7df</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content_body_one">
+				<div class="content_body_img"><%= image_tag 'steve_scott.svg', alt: 'Steve Scott' %></div>
+				<div class="content_body_desc">Steve Scott</div>
+				<div class="content_body_color">
+					<div class="col-md-6">
+						<div class="color-box bg-steve"></div>
+						<div class="text-box">#f8d14c</div>
+					</div>
+					<div class="col-md-6">
+						<div class="color-box bg-scott"></div>
+						<div class="text-box">#2c9fd1</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content_body_one">
+				<div class="content_body_img"><%= image_tag 'mei_tan.svg', alt: 'Mei Tan' %></div>
+				<div class="content_body_desc">Mei Tan</div>
+				<div class="content_body_color">
+					<div class="col-md-6">
+						<div class="color-box bg-mei"></div>
+						<div class="text-box">#3d9cdf</div>
+					</div>
+					<div class="col-md-6">
+						<div class="color-box bg-tan"></div>
+						<div class="text-box">#cd6136</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section content">
+
+		<div class="content_header">
+			<div class="content_header_title">
+				<h3>COOL COLORS FROM THE PROS</h3>
+			</div>
+			<div class="content_header_sub">
+				<h4>Each selected artist is great at picking colors that work well together. Here are some featured artists:</h4>
+			</div>
+		</div>
+		<div class="content_body">
+			<div class="col-md-4">
+				<a class="artist_link" target="_blank" href="https://www.behance.net/coenpohl">Coen Pohl</a> <br />
+				<a class="artist_link" target="_blank" href="http://anastiia.myportfolio.com">Anastasiia Andriichuk</a> <br />
+				<a class="artist_link" target="_blank" href="http://www.wallacedsgn.com/">Dustin Wallace</a> <br />
+				<a class="artist_link" target="_blank" href="http://www.kylemillercreative.com">Kyle Miller</a> <br />
+				<a class="artist_link" target="_blank" href="http://www.meg.is/">Meg Robichaud</a> <br />
+				<a class="artist_link" target="_blank" href="http://joshwarrendesign.com/">Josh Warren</a> <br />
+				<a class="artist_link" target="_blank" href="http://kathrinhonesta.tumblr.com">Kathrin Honesta</a> <br />
+				<a class="artist_link" target="_blank" href="http://stevescott.com.au">Steve Scott</a> <br />
+				<a class="artist_link" target="_blank" href="http://lilidesbellons.com">Lili des Bellons</a> <br />
+				<a class="artist_link" target="_blank" href="http://happyloverstown.eu">Jonathan Calugi</a> <br />
+			</div>
+			<div class="col-md-4">
+				<a class="artist_link" target="_blank" href="https://www.behance.net/samyhalim">Sami Halim</a> <br />
+				<a class="artist_link" target="_blank" href="https://www.behance.net/gallery/22183763/Ecosynthesis">Olia Marchenko</a> <br />
+				<a class="artist_link" target="_blank" href="https://www.behance.net/meiytan">Mei Tan</a> <br />
+				<a class="artist_link" target="_blank" href="https://www.behance.net/lucaswaka">Lucas Wakamatsu</a> <br />
+				<a class="artist_link" target="_blank" href="http://www.jeremy-booth.com">Jeremy Booth</a> <br />
+				<a class="artist_link" target="_blank" href="http://www.forestry.no">Anna Katrin Karlsson</a> <br />
+				<a class="artist_link" target="_blank" href="http://happyloverstown.eu">Jonathan Calugi</a> <br />
+				<a class="artist_link" target="_blank" href="https://www.behance.net/Aleebaes">Alejandra Ballesteros</a> <br />
+				<a class="artist_link" target="_blank" href="http://www.lianajegers.com">Liana Jegers</a> <br />
+				<a class="artist_link" target="_blank" href="http://asukawatanabe.com">Asuka Watanabee</a> <br />
+			</div>
+			<div class="col-md-4">
+				<a class="artist_link" target="_blank" href="http://www.agrisbobrovs.lv/">Agris Bobrovs</a> <br />
+				<a class="artist_link" target="_blank" href="https://dribbble.com/almigor">Aleksandar Savić</a> <br />
+				<a class="artist_link" target="_blank" href="https://www.behance.net/niccimartin">Nicci Martin</a> <br />
+				<a class="artist_link" target="_blank" href="https://www.behance.net/lucaswaka">Lucas Wakamatsu</a> <br />
+				<a class="artist_link" target="_blank" href="http://danieltriendl.com">Daniel Triendl</a> <br />
+				<a class="artist_link" target="_blank" href="https://www.behance.net/gallery/22183763/Ecosynthesis">Olia Marchenko</a> <br />
+			</div>
+		</div>
+	</section>
+
+	<section class="section content">
+		<div class="content_header">
+			<div class="content_header_title">
+				<h3>HOW TO PICK COLORS</h3>
+			</div>
+			<div class="content_header_sub">
+				<h4>Use the color app as a starting point, then push yourself further.</h4>
+			</div>
+		</div>
+		<div class="content_body columns">
+			<p>Color is an underrated design tool. When you select the right palette, it can make a website sing. When I was a beginner, I often used too many colors in my designs. My choices weren’t based on much - either trends at the time or whatever mood I was in. Eventually, I would fumble my way to create something nice, but it often took a while.</p>
+			<p>There’s a better way!</p>
+			<p>There are three ideas you can use that will make it easier to pick colors. They are: The <strong>concept</strong> of the site, the <strong>brand</strong>, and your <strong>personal preferences</strong>. If you can figure out these three things, choosing colors will be much easier. Let's explore each of them.</p>
+
+			<p>
+			  <h5>The Concept</h5>
+			</p>
+			<p>Does your site have a concept? It probably should. Here are some handpicked examples of sites with concepts: <%= link_to "Preserve", preserve_path, class: "concept_link", target: "_blank" %>, <%= link_to "Legwork", legwork_path, class: "concept_link", target: "_blank" %>, <%= link_to "Si Le Soleil", si_le_soleil_path, class: "concept_link", target: "_blank" %>. Look at each example and try to figure out what the concept is (hint: answers at the bottom).</p>
+			<p>Having a concept can greatly narrow down your color options. If your concept is water-related, using lots of red probably won’t work well. Water & the color red live in different worlds.</p>
+			<p>Your colors should support your concept. Or at the very least, not conflict. </p>
+
+			<p>
+			  <h5>The Brand</h5>
+			</p>
+			<p>Let's say you’re doing a site for the Vietnam Veteran’s Memorial in Washington DC. That’s a very serious subject matter. The tone (or brand) of any war memorial is respectful and serious, so your color choices should be as well. Bright and happy colors would feel out of place, in the same way that someone selling balloons near the memorial would feel tacky. Blacks, whites, dark, and muted colors would be a better fit for a war memorial site, these colors would be "on brand".</p>
+			<p>Or maybe you're doing a site for a big company. In that case, they'll have a well-defined brand which will make picking colors easier. If you’re doing a site for Target, you would likely use a combination of red and white, because red is a large part of their brand. Or a site for Ikea would use their signature blue and yellow. There are some instances when the site experience you're creating will be so far removed from the brand that you can use other unrelated colors. But before doing this, make sure you clear it with your creative director or the client. </p>
+			<p>Doing a site for a small client? In this case, the brand won’t be well defined in a style guide. For small businesses, it’s much more important to find out what the owners like. Get examples of websites they admire and ask what they like about them.</p>
+			<p>Your instinct will be to push for colors you really like, but small businesses the owners live and breath the business so it’s just going to be a matter of what they like.</p>
+
+			<p>
+			  <h5>Your Tastes</h5>
+			</p>
+			<p>This is the last step. If you’ve chosen a concept and know what the brand represents, now it's time to figure out what you like and measure it against your concept and the brand. You want things you like that ALSO work with your website's concept and brand. I like to find inspiration from sites like <a class="concept_link" target="_blank" href="http://mindsparklemag.com">Mind Sparkle Mag</a>. Or sometimes I'll use the <%= link_to "random color generator", random_color_generator_path, class: "concept_link", target: "_blank" %>. Say your concept is “handmade" like in the Preserve example above. What are some other sites that embody handmade? What colors do they use? Do they use a complimentary color scheme? Analogous? My guess is many of them will use a <%= link_to "red aesthetic", red_aesthetic_path, class: "concept_link", target: "_blank" %> with warm colors because the concept of "handmade" is a very human notion.</p>
+		</div>
+		<!-- end container -->
+
+	</section>
+</div>

@@ -1,0 +1,69 @@
+<% content_for :pagetitle do %>Color Picker — A handy design tool from Color Supply<% end %>
+<% content_for :description do %>Use the color wheel to select a style you like. Then pick a hex code..<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container">
+	<div class="page-title__container">
+    <h1 class="page-title">Visitor Analytics</h1>
+  </div>
+
+  <div class="analytics_info">
+    <div class="grid-container">
+      <div class="grid-item"><strong>IP Address</strong></div>
+      <div class="grid-item"><span><%= @ahoy_visit.ip %></span></div>
+      <div class="grid-item"><strong>City</strong></div>
+      <div class="grid-item"><span><%= @ahoy_visit.city %></span></div>
+      <div class="grid-item"><strong>Country</strong></div>
+      <div class="grid-item"><span><%= @ahoy_visit.country %></span></div>
+      <div class="grid-item"><strong>Total</strong></div>
+      <div class="grid-item"><span><%= @ahoy_events.count %></span></div>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="form__group">
+    <label for="" class="form__label">Search Entry</label>
+    <div class="input-group-inline">
+      <input class="base-input" id="datatable-search"/>
+    </div>
+  </div>
+
+  <table class="datatable stripe">
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>Trial Count</th>
+				<th>Login ?</th>
+				<th>Buy Plan</th>
+				<th>Licens Actived</th>
+				<th>Timestamp</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @ahoy_events.each_with_index do |event, index| %>
+				<tr align="center">
+					<td>
+						<span><%= index + 1 %></span>
+					</td>
+					<td>
+						<span><%= read_cookies_from_tracking(event.properties, "counter") %></span>
+					</td>
+					<td>
+						<span><%= read_cookies_from_tracking(event.properties, "user_login") %></span>
+					</td>
+					<td>
+						<span><%= read_cookies_from_tracking(event.properties, "buy_plan") %></span>
+					</td>
+					<td>
+						<span><%= read_cookies_from_tracking(event.properties, "activate_license") %></span>
+					</td>
+					<td>
+						<span><%= event.time %></span>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

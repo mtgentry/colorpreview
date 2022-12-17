@@ -1,0 +1,59 @@
+<% content_for :pagetitle do %>Color Picker — A handy design tool from Color Supply<% end %>
+<% content_for :description do %>Use the color wheel to select a style you like. Then pick a hex code..<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container">
+  <div class="page-title__container">
+    <h1 class="page-title">Payment Attempts</h1>
+  </div>
+
+  <div class="form__group">
+    <label for="" class="form__label">Search Entry</label>
+    <div class="input-group-inline">
+      <input class="base-input" id="datatable-search"/>
+    </div>
+  </div>
+
+  <table class="datatable stripe">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Email</th>
+        <th>Code</th>
+        <th>Type</th>
+        <th>Message</th>
+        <th>Timestamp</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payment_attempts.each_with_index do |payment_attempt, index| %>
+        <tr>
+          <td>
+            <span><%= index + 1 %></span>
+          </td>
+          <td>
+            <span><%= payment_attempt.email %></span>
+          </td>
+          <td>
+            <span><%=h truncate(payment_attempt.code, :length => 20)  %></span>
+          </td>
+          <td>
+            <span><%=h payment_attempt.type_error %></span>
+          </td>
+          <td>
+            <span><%=h truncate(payment_attempt.message, :length => 30) %></span>
+          </td>
+          <td>
+            <span><%=h payment_attempt.created_at %></span>
+          </td>
+          <td>
+            <span><%= link_to 'Show', payment_attempt %></span>
+            <span><%= link_to 'Destroy', payment_attempt, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,34 @@
+.promotional {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #F7F7F7;
+}
+
+.promotional__title {
+  font-size: 22px !important;
+  padding: 20px 15px !important;
+  font-weight: normal;
+}
+
+.promotional__logo {
+  width: 35px;
+  height: 35px;
+}
+
+@media(max-width: 575px) {
+  .promotional {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0;
+    height: auto;
+  }
+
+  .promotional__title {
+    font-size: 14px !important;
+  }
+}

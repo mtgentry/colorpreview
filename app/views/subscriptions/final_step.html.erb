@@ -1,0 +1,21 @@
+<div class="final-step__page">
+	<%= render 'shared/header' %>
+	<div class="container-fluid text-white">
+		<div class="container">
+			<div class="final_step_content">
+				<h2 class="page-title">One more step!</h2>
+
+				<p class="page-text">
+					Go to your <%= link_to 'account page', account_index_path, class: 'blue-link' %>
+					or check your email for a license key. Then copy/paste it in the relevant field to activate your account.
+				</p>
+
+				<div class="final_step_animation">
+					<%#= image_tag 'directions_all_2X.gif', :class => 'img_animation_direction' %>
+					<div id="finalstepdiv">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

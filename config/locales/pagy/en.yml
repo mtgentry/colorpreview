@@ -1,0 +1,16 @@
+en:
+  pagy:
+    combo_nav_js: Page %{page_input} of %{pages}
+    info:
+      multiple_pages: Showing %{from} - %{to} of %{count} entries
+      no_items: No %{item_name} found
+      single_page: Showing %{from} - %{to} of %{count} entries
+    item_name:
+      one: item
+      other: items
+    items_selector_js: Show %{items_input} %{item_name} per page
+    nav:
+      gap: "&hellip;"
+      next: Next &rsaquo;
+      page: "%{page_number}"
+      prev: "&lsaquo; Prev"

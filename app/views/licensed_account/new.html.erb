@@ -1,0 +1,41 @@
+<% content_for :pagetitle do %><%= t('licensed_account.add_licensed_account') %><% end %>
+<% content_for :description do %><%= t('licensed_account.add_licensed_account') %>.<% end %>
+
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <div class="page-section__text page-height">
+    <div class="page-title__container__bottom-50">
+      <h2 class="page-title"><%= t('licensed_account.add_licensed_account') %>
+        <br/>
+        <p class="p-sub">
+          <%= t('licensed_account.friend_or_coworker_has_given') %>
+        </p>
+      </h2>
+    </div>
+    <div class="page-container">
+      <%= simple_form_for @user, url: licensed_account_index_path, method: :post, html: {class: 'center-form'} do |f| %>
+        <h3 class="form__group-title"><%= t('licensed_account.account') %></h3>
+        <div class="input-group__wider">
+          <%= f.label :email, t('licensed_account.email_address') %>
+          <%= f.email_field :email, autofocus: true, required: true, class: 'base-input form-control' %>
+        </div>
+        <div class="input-group__wider">
+          <%= f.label :password, t('licensed_account.password') %>
+          <div class="wrap_password">
+            <%= f.password_field :password, autocomplete: "off", required: true, class: 'base-input form-control password', id: 'password' %>
+            <div class="input-group-inline">
+              <div class="form_password">
+                <span class="form_icon eye_open"><%= image_tag('eye_open.svg', alt: 'Eye Open' , id:"eyeball")%></span>
+                <span class="form_icon eye_closed" style="display: none;"><%= image_tag('eye_closed.svg', alt: 'Eye Open' , id:"eyeball")%></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container__wider">
+          <%= f.submit t('licensed_account.next'), class: 'btn btn--blue btn--large btn-login' %>
+        </div>
+      <% end %>
+    </div>
+  </div> 
+</div>

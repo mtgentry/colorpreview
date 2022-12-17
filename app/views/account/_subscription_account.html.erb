@@ -1,0 +1,105 @@
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <% if user_signed_in? && current_user.subscription.present?%>
+    <% if current_user.subscription.licenses.map(&:user_id).all? {|x| x.nil?} %>
+      <%= render 'account/message' %>
+    <% end %>
+  <% end %>
+
+  <div class="page-title__container">
+    <h2 class="page-title"><%= t('account.account') %></h2>
+  </div>
+
+  <div class="form__container">
+    <h3 class="form__group-title"><%= t('account.license_key') %></h3>
+
+    <%= simple_form_for :license, url: license_account_path(@user), method: :post do |f| %>
+      <div class="form__group">
+        <label for="" class="form__label">
+          <% if current_user.subscription.present? %>
+            <%= t('account.my_activation_key') %>
+          <% else %>
+            <%= t('account.my_seven_digit_key') %>
+          <% end %>
+        </label>
+        <div class="input-group-inline">
+          <%= f.input :key, label: false, input_html: { class: 'base-input', value: @user.try(:license).try(:key).try(:upcase), disabled: @user.is_payed? }, required: true %> 
+          <% if !@user.is_payed? %>
+            <%= f.button :submit, t("account.activate"), class: 'btn btn--blue btn--small' %>
+          <% else %>
+            <%= f.button :submit, t("account.activated"), class: 'btn btn--gray btn--small', disabled: 'disabled' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form__container">
+    <h3 class="form__group-title"><%= t('account.basics') %></h3>
+
+    <%= simple_form_for @user, url: account_path(@user), method: :put do |f| %>
+      <div class="form__group margined">
+        <label for="" class="form__label"><%= t('account.email_address') %></label>
+        <div class="input-group-inline">
+          <%= f.input :email, as: :string, label: false,  input_html: { class: 'base-input' }, required: true %>
+          <%= f.button :submit, t("account.update"), class: 'btn btn--blue btn--small' %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @user, url: account_path(@user), method: :put do |f| %>
+      <div class="form__group">
+        <label for="" class="form__label"><%= t('account.password') %></label>
+        <div class="input-group-inline">
+          <%= f.input :password, label: false,  input_html: { class: 'base-input', value: 'password123' }, required: true %>
+          <%= f.button :submit, t("account.reset"), class: 'btn btn--blue btn--small' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form__container">
+    <% if current_user.subscription.present? %>
+      <h3 class="form__group-title"><%= t('account.my_plan') %></h3>
+
+      <% if !@user.is_payed? || @user.is_org_admin? %>
+        <div class="plan-container"><%= @user.plan_name %></div>
+      <% end %>
+
+      <% if !@user.is_payed? && !@user.is_org_admin? %>
+        <div class="free-note">
+          To upgrade your account <%= link_to "click here", pricing_path, class: 'blue-link' %>, or ask a premium user for a license key.
+        </div>
+      <% end %>
+
+      <% if @user.is_payed? && @user.is_org_member? %>
+        <div class="free-note">
+          This plan is being managed by: <strong><%= @user.org_admin.full_name %> (<%= @user.org_admin.email %>)</strong> If you require an additional license, please contact them.
+        </div>
+      <% end %>
+
+      <% if @user.is_org_admin? %>
+        <div class="account-buttons">
+          <%= link_to t("account.switch_plans"),  edit_subscription_path(@user.subscription), class: 'btn btn--blue col-12' %>
+          <%= link_to t("account.cancel_account"),  subscription_path(@user.subscription),  method: :delete, class: 'btn btn--gray col-12', data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+
+  <% if @user.is_org_admin? %>
+    <div class="form__container">
+      <h3 class="form__group-title"><%= t('account.my_license_key') %></h3>
+      <ul class="key__list">
+        <% @user.subscription.licenses.each_with_index do |license, i| %>
+          <li class="key__item <%= 'used' if license.user.present? %>">
+            <span class="key__index-number"><%= (i + 1).to_s %>:</span>
+            <span class="key__value"><%= license.key %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+.hamburger {
+  width: 30px;
+  padding-top: 2px;
+  cursor: pointer;
+  z-index: 10;
+
+  @media #{$tablet-screen-lg-min} {
+    display: none;
+  }
+
+  &__bar {
+    position: relative;
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #434343;
+    transition: 0.3s;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__oopen {
+    .hamburger__bar {
+      &:nth-of-type(1) {
+        transform: translateY(8px) rotate(-45deg);
+      }
+
+      &:nth-of-type(2) {
+        opacity: 0;
+      }
+
+      &:nth-of-type(3) {
+        transform: translateY(-8px) rotate(45deg);
+      }
+    }
+  }
+}
+
+
+

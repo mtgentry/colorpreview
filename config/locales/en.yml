@@ -1,0 +1,208 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  clients_number_string: Clients
+  home_page:
+    color_picking_made_easy: Color picking made easy
+    color_supply: Color Supply
+    color_picker_for_designer: A color picker for designers & illustrators
+    try_now: TRY NOW
+    header:
+      create: Create
+      favorites: Favorites
+      pricing: Pricing
+      freebies: Freebies
+      login: LOGIN
+
+      is_user:
+        library: Library
+        account: Account
+        contact: Contact
+        logout: Logout
+
+  create_page:
+    color_wheel: Color Wheel
+    hex_match: Hex Match
+    startup: Startup
+    colors_theory:
+      split: COMPLEMENTARY
+      analogous: ANALOGOUS
+      triad: TRIAD
+      splitc: SPLIT-COMPLEMENT
+      square: SQUARE
+      fresh: FRESH
+      manga: MANGA
+      nature: NATURE
+      painters: PAINTERS
+      rich: RICH
+    back: Back
+    next: Next
+    add_to_favorites: Add To Favorites
+    free_trial: Free Trial
+    you_have_session_left: "You have %{counter} sessions left."
+
+  pricing:
+    upgrade: Upgrade
+    upgrade_to_premium: Upgrade to a premium account.
+    conquer_color_like_a_pro: Conquer color like a pro
+    one_time_payment_no_subscription: One time payment. No subscription.
+    best_value: Best Value
+    business: Business
+    professional: Professional
+    hobbyist: Hobbyist
+    for_medium_sized_team: For medium-sized teams, agencies, and dev shops.
+    for_designer: For designers, illustrators, developers & small teams.
+    perfect_for_student: Perfect for students, teens, and DIY folks.
+    one_time_payment: One time payment
+    5_basic_color: 5 basic color wheels
+    fresh: Fresh
+    manga: Manga
+    nature: Nature
+    painters: Painters
+    rich: Rich
+    license_for_25: License for 25 computers
+    license_for_5: License for 5 computers
+    license_for_2: License for 2 computers
+    50_favorites: Save up to 50 favorites
+    color_supply_is_used: Color Supply is used at these companies
+    buy_now: Buy Now
+    testimonials: Testimonials
+    change_a_plan: Change a Plan
+    select: Select
+
+  account:
+    activate: Activate
+    activated: Activated
+    account: Account
+    cancel_account: Cancel account
+    free_account: Free account
+    license_key: License Key
+    my_activation_key: My activation key
+    my_license_key: My License Keys
+    my_seven_digit_key: My seven digit key
+    basics: Basics
+    email_address: Email Address
+    password: Password
+    update: Update
+    reset: Reset
+    my_plan: My Plan
+    account_activation: Account Activation
+    used: Used
+    switch_plans: Switch plans
+    to_active_your_account: To activate your account, copy one of the license keys at the bottom of this page. Then paste it in the form field that says ‘My seven digit key’. Finally, click the ‘ACTIVATE’ button to activate your account.
+
+  library:
+    library: Library
+    my_colors: "My colors:"
+    split: Complementary
+    analogous: Analogous
+    triad: Triad
+    splitc: Split-Complementary
+    square: Square
+    fresh: Fresh
+    manga: Manga
+    nature: Nature
+    painters: Painters
+    rich: Rich
+    sort_pattern_here: Sort your color palettes here.
+
+  payment:
+    email: Email
+    create_password: Create Password
+    card_number: Card Number
+    exp_date: Exp date
+    cvc: CVC
+    promo_code: Promo Code
+    apply: Apply
+    payment_processing: Payment processing...
+    pay: Pay
+
+  freebies:
+    freebies: Freebies
+    partnered_with_indie_stock: We partnered with <a href='http://indiestock.co/' class='freebies__link' target='_blank'>Indie Stock</a> to provide you with some free high-quality design assets. Enjoy!
+    analog_wonderland: ‘Analog Wonderland’
+    analog_wonderland_desc: Long exposure typographic experiments visuals created by hand. 26 uppercase letters.
+    abstact_lights: ‘Abstract Lights’
+    abstact_lights_desc: 42 images of abstract street lights at night.
+
+  login:
+    login: Log in
+    email_address: Email Address
+    password: Password
+    forgot_password: Forgot your password?
+    reset_password: Reset Password
+    dont_have_account: Don't have an account? Upgrade
+    here: here
+
+  sign_up:
+    get_started: Let’s Get Started
+    first_name: First Name
+    last_name: Last Name
+    email_address: Email Address
+    password: Password
+    confirm_password: Confirm Password
+    done: Done
+    have_an_account: Already have an account?
+    login: Login
+
+  favorites:
+    back_to_favorite: "< Back to favorites"
+    favorites: Favorites
+    remove_from_favorites: Remove From Favorites
+
+  contact:
+    contact: Contact
+    contact_color_supply_team: "You can contact the Color Supply team at:"
+
+  licensed_account:
+    add_licensed_account: Add Licensed Account
+    friend_or_coworker_has_given: If a friend or coworker has given you a license key, create a new account below and enter the licence key in the account section.
+    account: Account
+    email_address: Email Address
+    password: Password
+    next: Next
+
+  footer:
+    designed_by: Designed by
+    contact: Contact
+    add_licensed_account: Add Licensed Account
+    privacy_policy: Privacy policy
+    terms_use: Terms of Use
+
+  trial_ended_modal:
+    free_trial: Free Trial
+    free_trial_ended: Free trial ended
+    upgrade_now: Upgrade now
+    upgrade_now_desc: Thanks for trying Color Supply! To keep using the site please upgrade now.
+    upgrade_with_code: "for 10% off. Use code : <b>%{code}</b>"
+    use_promo_code: 'Get <strong><i>10% off</i></strong> if you upgrade in the next 24 hrs. Use promo code: <span class="blue-link"><b>%{code}</b></span>'
+    used_companies: Color Supply is used at these companies

@@ -1,0 +1,18 @@
+<div class="modal-usage-reached hide" id="modal-usage-reached">
+    <div class="modal-reached-body">
+        <h2 class="title-modal"><%= t("trial_ended_modal.free_trial_ended") %></h2>
+        <div class="text-modal">
+          <p><%= t("trial_ended_modal.upgrade_now_desc") %></p>
+          <p><%= t("trial_ended_modal.use_promo_code", code: "vDOLkivN").html_safe %></p>
+        </div>
+        <div class="upgrade">
+          <%= link_to t("trial_ended_modal.upgrade_now"), pricing_path(promo: "vDOLkivN"), class: 'btn btn--blue btn-uppremium', target: "_blank" %>
+        </div>
+        <div>
+            <h6 class="text-modal-logo"><%= t("trial_ended_modal.used_companies") %>: </h6>
+            <%= image_tag('logos.svg', alt: 'Companies logo', class: 'modal-reached-logos')%>
+        </div>
+    </div>
+    <div class="border-bottom-tip"></div>
+</div>
+<div class="backdrop-usage hide"></div>

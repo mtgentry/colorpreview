@@ -1,0 +1,106 @@
+<div class="final-step__page">
+  <%= render 'shared/header' %>
+  <div class="container-fluid text-white">
+    <div class="container">
+      <div class="final_step_content">
+        <div class="container form__container form__container--payment">
+          <div class="payment_container">
+            <div class="plan-container">
+              <%= plan_detail(@plan, "amount") %> - $<%= plan_detail(@plan, "price") %> 
+              <input type="hidden" class="plan_id" value="<%= @plan.id %>" data-price="<%= @plan.unit_amount_decimal %>" required>
+            </div>
+
+            <%= form_tag checkout_path(plan_id: @plan.id), id: 'payment-form', remote: true, method: :post do |f| %>
+              <% if !current_user.present? %>
+                <input type="hidden" class="favorites_color">
+                <div class="form__group">
+                  <label for="" class="form__label"><%= t('payment.email') %></label>
+                  <div class="wrap_email">
+                  <div class="email_box">
+                    <div class="input-group-inline">
+                      <input type="email" class="base-input form_payment email account-form" name="user_attributes[email]" required>
+                    </div>
+                  </div>
+                  <div class="error_message"></div>
+                </div>
+                  <label for="" class="form__label"><%= t('payment.create_password') %></label>
+                  <div class="wrap_password">
+                    <input type="password" minlength="8" class="base-input form_payment password account-form" name="user_attributes[password]" id="password">
+                    <div class="input-group-inline">
+                      <div class="form_password">
+                        <span class="form_icon eye_open"><%= image_tag('eye_open.svg', alt: 'Eye Open' , id:"eyeball")%></span>
+                        <span class="form_icon eye_closed" style="display: none;"><%= image_tag('eye_closed.svg', alt: 'Eye Open' , id:"eyeball")%></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% else %>
+                <input type="hidden" class="email" value="<%= @current_user.email %>" required>
+              <% end %>
+
+              <div class="form__container">
+                <div class="payment_container">
+                  <div class="form__group">
+                    <div class="input-group-inline payment-info-container">
+                      <div class="cc-number">
+                        <label for="" class="form__label"><%= t('payment.card_number') %></label>
+                        <div id="cardNumber" class="base-input"></div>
+                      </div>
+                      
+                      <div class="exp-date">
+                        <label class="form__label"><%= t('payment.exp_date') %></label>
+                        <div id="expDate" class="base-input"></div>
+                      </div>
+
+                      <div class="cvc">
+                        <label class="form__label"><%= t('payment.cvc') %></label>
+                        <div id="cvcNumber" class="base-input"></div>
+                      </div>
+                    </div>
+
+                    <% if cookies[:promotion] == "true" %>
+                      <div class="promo-code">
+                        <label for="" class="form__label"><%= t('payment.promo_code') %></label>
+                        <div class="input-group-inline promo_coupon">
+                          <input type="text" class="base-input form_payment coupon" name="">
+                          <button type="button" class="coupon-apply btn btn--dark-gray" disabled><%= t('payment.apply') %></button>
+                        </div>
+                        <div class="coupon_message"></div>
+                      </div>
+                    <% end %>
+
+                    <%= button_tag(type: 'submit', class: "btn btn--blue submit-button btn_next_payment", id: "btn-save-subscription", 'data-price': plan_detail(@plan, "price")) do %>
+                      <span><%= t('payment.pay') %></span>
+                      <span class="price-display">$<%= plan_detail(@plan, "price")%></span>
+                    <% end %>
+                    <span id="process_message" class="hide_process process_message"><small><%= t('payment.payment_processing') %></small></span>
+
+                    <%#= link_to 'Buy Now', 'javascript:void(0)', class: "btn btn--blue submit-button btn_next_payment checkout-btn ", id: "btn-buy-now", data: {planid: @plan.id, sessionid: @session_id}, style: 'text-align: center;display: none;' %>
+                  </div>
+                </div>
+                
+                <div class="input-group-inline">
+                  <%= image_tag('powered_by_stripe.svg', alt: 'Powered stripe', class:'powered_stripe')%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'stripe_validation', 'data-get': 'stripe_form', 'data-id': Rails.configuration.stripe[:publishable_key] %>
+
+<script type="text/javascript">
+  // Create an instance of the Stripe object with your publishable API key
+  // var stripe = Stripe('<%#= ENV['stripe_publishable_key'] %>');
+
+  // $('#btn-buy-now').click(function(){
+  //   var session_id = $(this).attr('data-sessionid');
+  //     if(session_id){
+  //       return stripe.redirectToCheckout({ sessionId: session_id });
+  //     }
+  // });
+</script>

@@ -1,0 +1,2 @@
+module PaymentAttemptsHelper
+end

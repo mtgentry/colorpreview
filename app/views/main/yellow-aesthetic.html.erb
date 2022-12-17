@@ -1,0 +1,105 @@
+<% content_for :pagetitle do %>Yellow Aesthetic - examples of the color yellow at work<% end %>
+<% content_for :description do %>Yellow Aesthetic - examples of yellow at work.<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container">
+	<section class="section colorwheel show">
+		<div class="container">
+			<div class="canvas_wrap">
+				<div class="color_picker">
+					<h1 class="page-title__left">Yellow Aesthetic</h1>
+					<p></p>
+					<p>Yellow is a primary color. It is a warm color and is often used in design to convey happiness, wisdom, energy, and playfulness. When saturated and bright, yellow is good at attracting attention.</p>
+
+						<p>In some countries, it is used on signs and traffic signals to indicate a warning.</p>
+
+						<p>Click each palette to see examples of yellow being paired successfully with different shades of blue and red.</p>
+				</div>
+				<div class="color_combinations" id="color_sq">
+					<div class="color_selectors"></div>
+					<div class="color_sqg">
+                    <div class="flushright">
+						<div class="sq1 btn-square colors_1" data-color=""></div>
+						<div class="sq2 btn-square colors_2" data-color=""></div>
+						<div class="sq3 btn-square colors_3" data-color=""></div>
+						<div class="sq4 btn-square colors_4" data-color=""></div>
+                        </div>
+						<p id="designer" > </p>
+					</div>
+				</div> <!-- end color_sq -->				
+			</div>
+			<div class="">
+				<div class="object_sq">  <!-- 1 badges -->
+					<object id="b1_4c" data="<%= image_path('badge1_4colors.svg') %>"></object>
+					<object id="b2_4c" data="<%= image_path('badge2_4colors.svg') %>"></object>
+					<object id="b3_4c" data="<%= image_path('badge3_4colors.svg') %>"></object>
+					<object id="b4_4c" data="<%= image_path('badge4_4colors.svg') %>"></object>
+				</div>
+				<div class="triangles"> <!-- 2 triangles -->
+					<object id="triangle_svg" class="triangles__desktop" width="850" height="120" data="<%= image_path('triangles.svg') %>" type="image/svg+xml"></object>
+					<object id="triangle_svg" class="triangles__mobile" width="850" height="300" data="<%= image_path('triangles_mobile.svg') %>" type="image/svg+xml"></object>
+				</div>
+
+				<div class="bottom_sq"> <!-- 3 hex squares -->
+					<div class="color_squares">
+						<div class="bottom-square colors_1">
+							<div class="sq1"></div>
+							<p id="sq1">#ffffff</p>
+						</div>
+						<div class="bottom-square colors_2">
+							<div class="sq2"></div>
+							<p id="sq2">#ffffff</p>
+						</div>
+						<div class="bottom-square colors_3">
+							<div class="sq3"></div>
+							<p id="sq3">#ffffff</p>
+						</div>
+						<div class="bottom-square colors_4">
+							<div class="sq4"></div>
+							<p id="sq4">#ffffff</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="gradients"> <!-- 5  gradient circles -->
+					<div class="gradient_circles">							<!-- order -->
+						<div class="gradient_circle gc1 "></div>	<!-- 1 - 2 -->
+						<div class="gradient_circle gc2 "></div>	<!-- 1 - 3 -->
+						<div class="gradient_circle gc4 "></div>	<!-- 2 - 3 -->
+						<div class="gradient_circle gc3 "></div>	<!-- 1 - 4 -->
+						<div class="gradient_circle gc5 "></div>	<!-- 2 - 4 -->
+						<div class="gradient_circle gc6 "></div>	<!-- 3 - 4 -->
+					</div>
+					<div class="gradient_squares_wrapper"> <!-- 6  gradient squares -->
+						<div class="gradient_squares">
+							<div class="gradient_square gs1 colors_3"></div>
+							<div class="gradient_square gs2 colors_3"></div>
+							<div class="gradient_square gs3 colors_3"></div>
+							<div class="gradient_square gs4 colors_3"></div>
+						</div>
+						<div class="gradient_squares">
+							<div class="gradient_square gs5 colors_3"></div>
+							<div class="gradient_square gs6 colors_3"></div>
+							<div class="gradient_square gs7 colors_3"></div>
+							<div class="gradient_square gs8 colors_3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="footer">
+					<div class="designhelp">
+        
+					<% if !current_user || !current_user.is_payed? %>
+          	<p>Want to see other colors? Check out our <%= link_to  "Color Picker", app_path, class: "blue-link"%>. </p>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<!-- <div style="width: 840px; display: flex; justify-content: center; margin: 0 auto;">
+		</div> -->
+	</section>
+</div><!-- end container -->

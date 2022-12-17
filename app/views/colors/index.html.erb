@@ -1,0 +1,40 @@
+<% content_for :pagetitle do %><%= t('library.library') %><% end %>
+<% content_for :description do %><%= t('library.sort_pattern_here') %><% end %>
+
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <div class="page-title__container">
+    <h2 class="page-title"><%= t('library.library') %></h2>
+  </div>
+
+  <div class="page-section__small">
+    <h3 class="page-subtitle"><%= t('library.my_colors') %></h3>
+    <div class="page-container">
+      <div class="drag-n-drop-area">
+        <div id="selected" class="page-container drag-n-drop-cont">
+          <% @selected_colors.each do |color| %>
+            <%= render color %>
+          <% end %>
+        </div>  
+      </div>      
+    </div>
+  </div>
+
+  <% if @colors.count.eql?(0) %>
+    <div class="page-section__small">
+      <% if !@colors.count.eql?(0) %>
+        <div class="page-cover"></div>
+        <%= link_to 'Unlock all premium colors lifetime for just $30 ', upgrade_path, class: 'page-unpayed-label' %>
+        <h3 class="page-subtitle">Other Sets: </h3>
+      <% end %>
+      <div id="other" class="page-container colors-container">       
+        <% @colors.each do |color| %>
+          <%= render color %>
+        <% end %>
+      </div>    
+    </div>
+  <% end %>
+
+  <%= render 'colors/modal' %>
+</div>

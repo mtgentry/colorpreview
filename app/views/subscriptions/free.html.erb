@@ -1,0 +1,33 @@
+
+<div class="page-content">
+  <%= render 'shared/header' %>
+
+  <div class="page-title__container">
+    <h2 class="page-title">Select a Plan</h2>
+  </div>
+
+  <div class="plans__container">
+    <%= simple_form_for :select_plan do |f| %>
+      <div class="plan__form">
+      <div class="plan__item"></div>
+
+        <% @plans.each do |plan| %>
+          <%= form_tag(subscriptions_path, {method: :post, plan: plan}) do %>
+            <%= hidden_field_tag :plan_id, plan.id %>
+            <div class="plan__item">
+              <label class="plan__label">
+                <span class="label__title"><%=plan.nickname%> – $<%=plan.amount / 100%>/year</span>
+                <span class="label__description">Works on up to <strong>2</strong> computers</span>
+              </label>
+              <div class="stripe-button-container">
+                <script class="stripe-button" data-amount="<%=plan.amount%>" data-name="Color Supply" data-description="<%= plan.nickname %> 1 Year" data-currency="<%= plan.currency %>" data-email="<%= current_user.email %>" data-key="<%=Rails.configuration.stripe[:publishable_key]%>" src="https://checkout.stripe.com/checkout.js"> </script>
+                <%= f.button :button, 'Select', type: 'submit', name: 'selected', class: 'btn btn--blue' %>
+              </div>
+            </div>
+          <% end %>  
+        <% end %>
+      <div class="plan__item"></div>
+      </div>
+    <% end %>
+  </div>
+</div>

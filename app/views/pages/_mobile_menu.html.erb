@@ -1,0 +1,25 @@
+<div class="mobile-menu hidden">
+
+  <% if user_signed_in? %>
+    <nav class="mob-nav">
+      <%= link_to('Pick', app_path, class: 'mob-link') %>
+
+      <%= link_to('Favorites', favorites_path, class: 'mob-link') %>
+      <%= link_to('Library', colors_path, class: 'mob-link') %>
+    
+
+      <%= link_to('Account', account_index_path, class: 'mob-link') %>
+      <%= link_to('Contact', contact_path, class: 'mob-link') %> 
+      <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'mob-link') %>
+    </nav>
+  <% else %>
+    <nav class="mob-nav">
+      <%= link_to('Pick', app_path, class: 'mob-link') %>                
+
+      <%= link_to('Log in', new_user_session_path, class: 'mob-link') %> 
+            
+      <%= link_to('Sign Up', new_user_registration_path, class: 'mob-link') %>
+    </nav>
+  <% end %>
+
+</div>

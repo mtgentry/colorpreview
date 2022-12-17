@@ -1,0 +1,22 @@
+<% content_for :pagetitle do %>Color Picker — A handy design tool from Color Supply<% end %>
+<% content_for :description do %>Use the color wheel to select a style you like. Then pick a hex code..<% end %>
+
+<%= render 'shared/header' %>
+
+<div class="app_container">
+  <div class="page-title__container">
+    <h1 class="page-title">Payment Attempts</h1>
+  </div>
+  
+  <div class="form__group">
+    <label for="" class="form__label">Email : <%= @payment_attempt.email%></label> 
+    <label for="" class="form__label">Code : <%= @payment_attempt.code%></label> 
+    <label for="" class="form__label">Type : <%= @payment_attempt.type_error%></label> 
+    <label for="" class="form__label">Message : <%= @payment_attempt.message%></label> 
+    <label for="" class="form__label">Created At : <%= @payment_attempt.created_at%></label> 
+  </div>
+  <br />
+  <%= link_to 'Back', payment_attempts_path %>
+</div>
+
+

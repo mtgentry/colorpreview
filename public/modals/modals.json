@@ -1,0 +1,92 @@
+{
+  "Complementary": {
+  	"Item1": {
+	    "title": "Complementary 1",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp1.jpg"
+  	},
+  	"Item2": {
+	    "title": "Complementary 2",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp2.jpg"
+  	},
+  	"Item3": {
+	    "title": "Complementary 3",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp3.jpg"
+  	},
+  	"Item4": {
+	    "title": "Complementary 4",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp4.jpg"
+  	}
+  },
+  "Fresh": {
+  	"Item1": {
+	    "title": "Fresh 1",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp1.jpg"
+  	},
+  	"Item2": {
+	    "title": "Fresh 2",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp2.jpg"
+  	},
+  	"Item3": {
+	    "title": "Fresh 3",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp3.jpg"
+  	},
+  	"Item4": {
+	    "title": "Fresh 4",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp4.jpg"
+  	}
+  },
+  "Analogous": {
+  	"Item1": {
+	    "title": "Analogous 1",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp1.jpg"
+  	},
+  	"Item2": {
+	    "title": "Analogous 2",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp2.jpg"
+  	},
+  	"Item3": {
+	    "title": "Analogous 3",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp3.jpg"
+  	},
+  	"Item4": {
+	    "title": "Analogous 4",
+	    "credit": "Coen Pohl",
+	    "creditURL": "https://www.behance.net/coenpohl",
+	    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"image": "/modals/slideshow_comp4.jpg"
+  	}
+  }
+}
