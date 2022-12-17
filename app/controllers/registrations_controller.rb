@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegistrationsController < Devise::RegistrationsController
   private
 
@@ -10,6 +12,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :title, :phone_number, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(
+      :first_name, :last_name, :title, :phone_number, :email,
+      :password, :password_confirmation, :current_password
+    )
   end
 end

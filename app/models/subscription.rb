@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Subscription < ApplicationRecord
   belongs_to :user
   has_many :licenses, dependent: :destroy 
@@ -14,14 +16,14 @@ class Subscription < ApplicationRecord
 
   def is_active?
     if subscribed_till
-     subscribed_till > Time.now 
+      subscribed_till > Time.now
     else
-      false 
+      false
     end
   end
 
   def upsert_subscrption_for(user, stripe_subscription)
-    self.update_attributes(
+    update_attributes(
       name: stripe_subscription.plan.id,
       plan_data: stripe_subscription.plan,
       last_payment: DateTime.strptime(stripe_subscription.current_period_start.to_s,'%s'),
@@ -32,32 +34,33 @@ class Subscription < ApplicationRecord
   end
 
   def cancel_subscription
-    if SubscriptionService.new({subscription_id: self.stripe_subscription_id}).delete_subscription
-      return true
+    if SubscriptionService.new({ subscription_id: stripe_subscription_id }).delete_subscription
+      true
     else
-      return false 
+      false
     end
   end
 
   def generate_licenses
-    Array.new(self.license_count.to_i).each_with_index do |_, i|      
+    Array.new(license_count.to_i).each_with_index do |_, _i|
       license = License.new(subscription: self)
-      license.generate_key()
-      license.save()
+      license.generate_key
+      license.save
     end
   end
 
   def update_licenses
-    current_license_count = self.licenses.count
-    new_license_count = self.license_count.to_i
+    current_license_count = licenses.count
+    new_license_count = license_count.to_i
+
     if current_license_count <= new_license_count
-      Array.new(new_license_count - current_license_count).each_with_index do |_, i|      
+      Array.new(new_license_count - current_license_count).each_with_index do |_, _i|
         license = License.new(subscription: self)
-        license.generate_key()
-        license.save()
+        license.generate_key
+        license.save
       end
     else
-      self.licenses.offset(new_license_count).destroy_all
-    end 
+      licenses.offset(new_license_count).destroy_all
+    end
   end
 end

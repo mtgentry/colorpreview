@@ -1,36 +1,32 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   def index
     if user_signed_in?
-      @favorites = current_user.favorites rescue []
-      @shared = current_user.get_shared_favorite.favorites.map(&:id) rescue []
-      @shared_favorite = current_user.get_shared_favorite rescue []
-      @blank = (50 - @favorites.count)
-      blank_total = (1..50)
+      @favorites = current_user&.favorites || []
+      @shared = current_user&.get_shared_favorite&.favorites&.map(&:id) || []
+      @shared_favorite = current_user&.get_shared_favorite || []
     else
-      @favorites = Favorite.where(last_pick_color_in_ip: request.remote_ip) rescue []
-      @shared = SharedFavorite.get_shared_favorite(request.remote_ip).favorites.map(&:id) rescue []
-      @shared_favorite = SharedFavorite.find_by(ip_address: request.remote_ip) rescue []
-      @blank = (50 - @favorites.count)
-      blank_total = (1..50)
+      @favorites = Favorite.where(last_pick_color_in_ip: request.remote_ip) || []
+      @shared = SharedFavorite.get_shared_favorite(request.remote_ip)&.favorites&.map(&:id) || []
+      @shared_favorite = SharedFavorite.find_by(ip_address: request.remote_ip) || []
     end
+    blank_total = (1..50)
+    @blank = (50 - @favorites.count)
 
     @all_check = @favorites.size.eql?(@shared.size)
 
     @favorites_with_index = []
-    blank_total.each_with_index do |idx|
+    blank_total.each do |idx|
       favorite = @favorites.select{|f| f if f.index == idx}.sort
-      
+
       if favorite.count > 1
         favorite.each_with_index do |fav, idx|
-          fav.delete unless ((idx+1)==1)
+          fav.delete unless (idx + 1) == 1
         end
       end
 
-      if favorite.present?
-        fave = {idx: idx, favorite: favorite.first}
-      else
-        fave = nil
-      end
+      fave = { idx: idx, favorite: favorite.first } if favorite.present?
 
       @favorites_with_index << fave
     end
@@ -38,19 +34,19 @@ class FavoritesController < ApplicationController
 
   def show
     shared_fav = SharedFavorite.find_by(link: params[:id])
-    @shared = shared_fav.favorites.map(&:id) rescue []
-    @favorites = shared_fav.favorites rescue []
+    @favorites = shared_fav&.favorites || []
+    @shared = @favorites&.map(&:id) || []
     @blank = (50 - @favorites.count)
     @all_check = @favorites.size.eql?(@shared.size)
 
     @favorites_with_index = []
     fav_data = []
     fav_nil = []
-    (1..50).each_with_index do |idx|
-      favorite = @favorites.select{|f| f if f.index == idx}.sort
+    (1..50).each do |idx|
+      favorite = @favorites.select { |f| f if f.index == idx }.sort
 
       if favorite.present?
-        fav_data << {idx: idx, favorite: favorite.first}
+        fav_data << { idx: idx, favorite: favorite.first }
       else
         fav_nil << nil
       end
@@ -68,6 +64,7 @@ class FavoritesController < ApplicationController
       counter = 50
       fav_limit = fav.count >= counter
     end
+
     if !fav_limit
       color_1 = params[:color_1]
       color_2 = params[:color_2]
@@ -75,62 +72,72 @@ class FavoritesController < ApplicationController
       color_4 = params[:color_4]
 
       colors = []
-      colors << color_1 if !color_1.eql?("undefined")
-      colors << color_2 if !color_2.eql?("undefined")
-      colors << color_3 if !color_3.eql?("undefined")
-      colors << color_4 if !color_4.eql?("undefined")
+      colors << color_1 unless color_1.eql?('undefined')
+      colors << color_2 unless color_2.eql?('undefined')
+      colors << color_3 unless color_3.eql?('undefined')
+      colors << color_4 unless color_4.eql?('undefined')
 
       if user_signed_in?
         favorite  = Favorite.where(user: current_user, color: colors)
         favorites = current_user.favorites
       else
         favorite  = Favorite.where(last_pick_color_in_ip: request.remote_ip, color: colors)
-        favorites = Favorite.where(last_pick_color_in_ip: request.remote_ip) rescue []
+        favorites = Favorite.where(last_pick_color_in_ip: request.remote_ip) || []
       end
+
       if !favorite.present?
         if favorites.map(&:index).include?(counter)
-          (1..counter).each_with_index do |idx|
-            index_exist = Favorite.where(user: current_user).map(&:index).include?(idx) if user_signed_in?
-            index_exist = Favorite.where(last_pick_color_in_ip: request.remote_ip).map(&:index).include?(idx) if !user_signed_in?
+          (1..counter).each do |idx|
+            index_exist = if user_signed_in?
+                            Favorite.where(user: current_user).map(&:index).include?(idx)
+                          else
+                            Favorite.where(last_pick_color_in_ip: request.remote_ip).map(&:index).include?(idx)
+                          end
+
             @index = idx
-            break if !index_exist
+
+            break unless index_exist
           end
-          favorite  = Favorite.create(user: current_user, color: colors, index: @index) if user_signed_in?
-          favorite  = Favorite.create(last_pick_color_in_ip: request.remote_ip, color: colors, index: @index) if !user_signed_in?
+          _favorite = if user_signed_in?
+                        Favorite.create(user: current_user, color: colors, index: @index)
+                      else
+                        Favorite.create(last_pick_color_in_ip: request.remote_ip, color: colors, index: @index)
+                      end
         else
-          favorites.each do |favorite|
-            favorite.update(index: favorite.index+1)
+          favorites.each do |favo|
+            favo.update(index: favo.index + 1)
           end
-          favorite  = Favorite.create(user: current_user, color: colors, index: 1) if user_signed_in?
-          favorite  = Favorite.create(last_pick_color_in_ip: request.remote_ip, color: colors, index: 1) if !user_signed_in?
+          _favorite = if user_signed_in?
+                        Favorite.create(user: current_user, color: colors, index: 1)
+                      else
+                        Favorite.create(last_pick_color_in_ip: request.remote_ip, color: colors, index: 1)
+                      end
         end
 
         # flash[:notice] = "This color succesfully saved on your favorite list"
         # render :js => "window.location = '/favorites'"
-        render json: {message: "This color succesfully saved on your favorite list" }
+        render json: { message: 'This color succesfully saved on your favorite list' }
       else
         # flash[:notice] = "This color is already on your favorite list"
         # render :js => "window.location = '/favorites'"
-        render json: {message: "This color is already on your favorite list" }
+        render json: { message: 'This color is already on your favorite list' }
       end
     else
       # flash[:notice] = "Your favorite list has reached the limit"
       # render :js => "window.location = '/favorites'"
-      render json: {message: "Your favorite list has reached the limit"}
-
+      render json: { message: 'Your favorite list has reached the limit' }
     end
   end
 
   def destroy
-    fave     = Favorite.find(params[:id]) if params[:id].present?
-    if fave.present?
-      if fave.destroy
-        flash = "Unfavorite succesfully"
-        render json: {response: true, notice: flash }
-      else
-        flash = @fave.errors.full_messages.to_sentence
-        render json: {response: false, notice: flash }
-      end
+    fave = Favorite.find_by(id: params[:id])
+
+    if fave&.destroy
+      flash = 'Unfavorite succesfully'
+      render json: {response: true, notice: flash }
+    else
+      flash = @fave.errors.full_messages.to_sentence
+      render json: {response: false, notice: flash }
     end
   end
 
