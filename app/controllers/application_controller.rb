@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     properties[:cookies] = datas
 
     @tracking_data = begin
-      current_visit
+      Ahoy::Visit.find_by(ip: request.remote_ip) || current_visit
     rescue => _e
       nil
     end
@@ -85,11 +85,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_geocoder_data(tracking_data)
-    geocoder_data = Geocoder.search(@tracking_data.ip).first
+    geocoder_data = Geocoder.search(request.remote_ip).first
     return if geocoder_data.blank?
 
     tracking_data.update(
       {
+        ip: request.remote_ip,
         country: geocoder_data.country,
         region: geocoder_data.region,
         city: geocoder_data.city,
