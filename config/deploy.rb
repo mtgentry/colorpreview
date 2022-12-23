@@ -11,8 +11,13 @@ set :branch, 'feature-update'
 set :deploy_to, '/home/rails/colormeiser'
 
 # set :linked_files, %w{config/database.yml config/secrets.yml config/application.yml}
+set :linked_files, fetch(:linked_files, []).push(
+  *%w[config/application.yml config/database.yml config/secrets.yml config/puma.rb]
+)
 set :linked_dirs, %w[
-  log node_modules tmp/pids tmp/cache tmp/sockets vendor/bundle vendor/assets public/system public/uploads
+  log node_modules tmp/cache tmp/pids tmp/sockets vendor/bundle vendor/assets
+  public/uploads public/system public/assets public/packs storage
+  lib/custom_commads
 ]
 
 set :nvm_type, :user # or :system, depends on your nvm setup
