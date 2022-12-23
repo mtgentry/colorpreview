@@ -58,9 +58,8 @@ class ApplicationController < ActionController::Base
       nil
     end
 
-    ahoy.track('Ran action', properties)
-
     if @tracking_data
+      ahoy.track('Ran action', properties)
       # events = @tracking_data.events
       # compares = []
       # events.each do |event|
@@ -79,8 +78,25 @@ class ApplicationController < ActionController::Base
   def track_location
     return true if Rails.env.development?
 
+    @tracking_data = set_geocoder_data(@tracking_data) if @tracking_data.country.blank?
     request_country = @tracking_data&.country.to_s&.downcase
-    redirect_to Rails.application.secrets.colorsupplyyy_url and return unless request_country.eql?('Japan')
+
+    redirect_to Rails.application.secrets.colorsupplyyy_url and return unless %w[ja jp japan].include?(request_country)
+  end
+
+  def set_geocoder_data(tracking_data)
+    geocoder_data = Geocoder.search(@tracking_data.ip).first
+    return if geocoder_data.blank?
+
+    tracking_data.update(
+      {
+        country: geocoder_data.country,
+        region: geocoder_data.region,
+        city: geocoder_data.city,
+        latitude: geocoder_data.latitude,
+        longitude: geocoder_data.longitude
+      }
+    )
   end
 
   def set_locale
