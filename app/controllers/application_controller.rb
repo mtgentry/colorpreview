@@ -97,6 +97,7 @@ class ApplicationController < ActionController::Base
         longitude: geocoder_data.longitude
       }
     )
+    tracking_data
   end
 
   def set_locale
