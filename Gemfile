@@ -71,6 +71,9 @@ gem 'mini_magick'
 # STRIPE
 gem 'stripe'
 
+gem 'ed25519', '~> 1.2'
+gem 'bcrypt_pbkdf', '~> 1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %w[mri mingw x64_mingw]
@@ -81,9 +84,11 @@ group :development, :test do
   gem 'capistrano', '~> 3.7'
   gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
   gem 'capistrano-bundler', '2.1.0'
+  gem 'capistrano-nvm', require: false
   gem 'capistrano-rails', '1.6.2'
   gem 'capistrano-rails-console', '2.3.0'
   gem 'capistrano-rvm', '0.1.2'
+  gem 'capistrano-yarn'
   gem 'pry', '~> 0.10.3'
 end
 

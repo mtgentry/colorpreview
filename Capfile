@@ -11,8 +11,6 @@ install_plugin Capistrano::SCM::Git
 
 # If you are using rbenv add these lines:
 require 'capistrano/rvm'
-set :rbenv_type, :user
-set :rbenv_ruby, '2.7.2'
 
 require 'capistrano/puma'
 install_plugin Capistrano::Puma

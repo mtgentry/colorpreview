@@ -6,9 +6,9 @@ set :repo_url, 'git@github.com:mtgentry/colormeister.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-set :branch, 'update-feature'
+set :branch, 'feature-update'
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/deploy/colormeiser'
+set :deploy_to, '/home/rails/colormeiser'
 
 # set :linked_files, %w{config/database.yml config/secrets.yml config/application.yml}
 set :linked_dirs, %w[
