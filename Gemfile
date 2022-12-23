@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ruby '2.5.3'
+ruby '2.7.2'
 
 source 'https://rubygems.org'
 
@@ -10,7 +10,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '6.0.3.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'pg', '~> 0.19.0'
 
-gem 'webpacker', '~> 6.x'
+gem 'webpacker', '6.0.0.pre.2'
 
 gem 'devise'
 gem 'select2-rails'
