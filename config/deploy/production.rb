@@ -11,4 +11,4 @@
 # role :db,  %w{deploy@example.com}
 
 set :stage, :production
-server '34.102.136.180', user: 'deploy', roles: %w[web app db]
+server '139.59.112.179', user: 'rails', roles: %w[web app db]

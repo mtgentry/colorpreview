@@ -10,13 +10,18 @@ require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
 # If you are using rbenv add these lines:
-require 'capistrano/rbenv'
+require 'capistrano/rvm'
 set :rbenv_type, :user
-set :rbenv_ruby, '2.5.3'
+set :rbenv_ruby, '2.7.2'
+
+require 'capistrano/puma'
+install_plugin Capistrano::Puma
 
 require 'capistrano/bundler'
-require 'capistrano/rails'
-require 'capistrano/passenger'
+# require 'capistrano/rails'
+require 'capistrano/rails/console'
+# require "capistrano/rails/assets"
+require 'capistrano/rails/migrations'
 
 require 'capistrano/yarn'
 require 'capistrano/nvm'

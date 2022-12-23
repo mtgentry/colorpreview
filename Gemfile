@@ -11,8 +11,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.0.3.4'
-# Use Puma as the app server
-gem 'puma', '~> 3.7'
+# Use the Puma web server [https://github.com/puma/puma]
+gem 'puma', '~> 5.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -77,14 +77,13 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  # capistrano
-  gem 'capistrano', '~> 3.7', '>= 3.7.1'
-  gem 'capistrano-bundler'
-  gem 'capistrano-nvm', require: false
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rails', '~> 1.2'
-  gem 'capistrano-rbenv', '~> 2.1'
-  gem 'capistrano-yarn'
+  # Deployment capistrano
+  gem 'capistrano', '~> 3.7'
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
+  gem 'capistrano-bundler', '2.1.0'
+  gem 'capistrano-rails', '1.6.2'
+  gem 'capistrano-rails-console', '2.3.0'
+  gem 'capistrano-rvm', '0.1.2'
   gem 'pry', '~> 0.10.3'
 end
 
