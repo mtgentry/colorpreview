@@ -58,30 +58,34 @@ class ApplicationController < ActionController::Base
       nil
     end
 
-    if @tracking_data
-      ahoy.track('Ran action', properties)
-      # events = @tracking_data.events
-      # compares = []
-      # events.each do |event|
-      #   ep = event.properties.class.eql?(Array) ? event.properties.first : event.properties
-      #   cookies_data = ep["cookies"]
-      #   compares << (cookies_data == datas) ? true : false
-      # end
+    # if @tracking_data
+    #   events = @tracking_data.events
+    #   compares = []
+    #   events.each do |event|
+    #     ep = event.properties.class.eql?(Array) ? event.properties.first : event.properties
+    #     cookies_data = ep["cookies"]
+    #     compares << (cookies_data == datas) ? true : false
+    #   end
 
-      # if !compares.include?(true)
-      #   ahoy.track("Ran action", properties)
-      # end
-      ahoy.track('Ran action', properties)
-    end
+    #   if !compares.include?(true)
+    #     ahoy.track("Ran action", properties)
+    #   end
+    #   ahoy.track('Ran action', properties)
+    # end
+    ahoy.track('Ran action', properties) if @tracking_data
   end
 
   def track_location
     return true if Rails.env.development?
 
     @tracking_data = set_geocoder_data(@tracking_data) if @tracking_data.country.blank?
-    request_country = @tracking_data&.country.to_s&.downcase
+    request_country = @tracking_data&.country.to_s.downcase
 
-    redirect_to Rails.application.secrets.colorsupplyyy_url and return unless %w[ja jp japan].include?(request_country)
+    # Allowed country:
+    # JP = Japan
+    # ID = Indonesia
+    # US = United State
+    redirect_to Rails.application.secrets.colorsupplyyy_url and return unless %w[jp id us].include?(request_country)
   end
 
   def set_geocoder_data(tracking_data)
