@@ -1,7 +1,7 @@
 <div class="header">
   <div class="header__content">
     <a class="header__brand" href="/">
-      <%= image_tag('rainbow_logo.svg', alt: 'Color Picking Logo')%>
+      <%= image_tag(asset_path('rainbow_logo.svg'), alt: 'Color Picking Logo')%>
     </a>
     <nav class="header__nav desc <%= 'header__logged-in' if user_signed_in? %>">
       <div class="main_navigation_container">
