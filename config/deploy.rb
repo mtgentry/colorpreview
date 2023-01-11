@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 set :ssh_options, { forward_agent: true }
-set :application, 'colormeiser'
-set :repo_url, 'git@github.com:mtgentry/colormeister.git'
+set :application, 'colorpreview'
+set :repo_url, 'git@github.com:mtgentry/colorpreview.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 set :branch, 'feature-update'
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/rails/colormeiser'
+set :deploy_to, '/home/rails/colorpreview'
 
 # set :linked_files, %w{config/database.yml config/secrets.yml config/application.yml}
 set :linked_files, fetch(:linked_files, []).push(

@@ -12,5 +12,5 @@
 
 set :stage, :production
 # server '13.56.207.222', user: 'ubuntu', roles: %w{web app db}
-set :deploy_to, '/home/ubuntu/colormeiser'
+set :deploy_to, '/home/ubuntu/colorpreview'
 set :branch, 'elvin-update'
