@@ -181,7 +181,7 @@ jp:
 
   contact:
     contact: 連絡先
-    contact_color_supply_team: カラーサプライチームへのお問い合わせは、
+    contact_color_supply_team: カラープレビューチームへのお問い合わせは、
 
   licensed_account:
     add_licensed_account: ライセンスアカウントの追加
@@ -202,7 +202,15 @@ jp:
     free_trial: 無料体験
     free_trial_ended: 無料トライアル終了
     upgrade_now: 今すぐアップグレードする
-    upgrade_now_desc: カラーサプライをお試しいただきありがとうございます！引き続きサイトをご利用いただくには、今すぐアップグレードしてください。
+    upgrade_now_desc: カラープレビューをお試しいただきありがとうございます！引き続きサイトをご利用いただくには、今すぐアップグレードしてください。
     upgrade_with_code: "と10％オフになります。コード: <b>%{code}</b>"
     use_promo_code: '24時間以内にアップグレードすると<strong><i>10％</i></strong>オフになります。プロモコード：<span class="blue-link"><b>%{code}</b></span>をご利用ください。'
-    used_companies: カラーサプライはこんな会社で使われています
+    used_companies: カラープレビューはこんな会社で使われています
+
+  website_config:
+    app_name: Color Preview
+    contact_email1: hello@color-preview.jp
+    contact_email2: colorpreview@gmail.com
+    default_from_email: info@color-preview.jp
+    default_from_name: ColorPreview
+    website_address: https://color-preview.jp

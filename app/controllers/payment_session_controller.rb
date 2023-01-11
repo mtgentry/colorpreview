@@ -18,7 +18,7 @@ class PaymentSessionController < ApplicationController
     end
 
     # domain_path = if Rails.env.eql?("production")
-    #   'https://colorsupplyyy.com/'
+    #   I18n.t('website_config.website_address')
     # else
     #   'http://localhost:3000/'
     # end

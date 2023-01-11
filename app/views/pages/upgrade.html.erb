@@ -1,11 +1,11 @@
-<% content_for :pagetitle do %>Upgrade to Color Supply Premium<% end %>
-<% content_for :description do %>Upgrade to Color Supply Premium.<% end %>
+<% content_for :pagetitle do %>Upgrade to <%= I18n.t('website_config.app_name') %> Premium<% end %>
+<% content_for :description do %>Upgrade to <%= I18n.t('website_config.app_name') %> Premium.<% end %>
 
 <div class="page-content">
 	<%= render 'shared/header' %>
 
 	<div class="premium__title-container">
-		<h2 class="page-title">Color Supply <span class="text-premium">Premium</span> </h2>
+		<h2 class="page-title"><%= I18n.t('website_config.app_name') %> <span class="text-premium">Premium</span> </h2>
 	</div>
 
 	<div class="page-section__text">
@@ -49,7 +49,7 @@
 					</svg>
 				</button>
 			</div>
-			<p class="page-text">A demo of color supply premium</p>
+			<p class="page-text">A demo of <%= I18n.t('website_config.app_name') %> premium</p>
 		</div>
 	</div>
 
@@ -71,7 +71,7 @@
 			<p class="page-text">That’s what my ideal color picker looked like. Just one problem...</p>
 
 			<h3>The tool I wanted didn't exist</h3>
-			<p class="page-text">So I set out to make it! Color Supply Premium is like the free version you've already used but with more options. Now I have these color palettes at my disposal:</p>
+			<p class="page-text">So I set out to make it! <%= I18n.t('website_config.app_name') %> Premium is like the free version you've already used but with more options. Now I have these color palettes at my disposal:</p>
 			<div class="wrap-upgrade-circle">
 				<div class="wrap-content-circle">
 					<div class="text-circle">

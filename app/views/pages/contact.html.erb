@@ -1,5 +1,5 @@
 <% content_for :pagetitle do %>Contact Us<% end %>
-<% content_for :description do %>Contact the Color Supply team.<% end %>
+<% content_for :description do %>Contact the <%= I18n.t('website_config.app_name') %> team.<% end %>
 
 <div class="page-content">
   <%= render 'shared/header' %>
@@ -13,8 +13,9 @@
       <p class="page-text" style="font-size: 18px;">
         <%= t('contact.contact_color_supply_team') %>
         <br>
-      <a class="blue-link" href="mailto: colorsupplyyy@gmail.com" style="line-height: 50px;">colorsupplyyy@gmail.com</a>
+        <%= link_to I18n.t('website_config.contact_email2'), "mailto:#{I18n.t('website_config.contact_email2')}",
+            class: 'blue-link', style: 'line-height: 50px;' %>
       </p>
     </div>
-  </div>    
+  </div>
 </div>

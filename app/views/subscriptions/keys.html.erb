@@ -3,7 +3,7 @@
     <div class="keys__title">Thank you for Upgrading!</div>
      <div class="keys__content">
        <p>
-          The next step is to log in to your account  at <a class="blue-link" href="https://colorsupplyyy.com/users/sign_in" target = "blank">colorsupplyyy.com</a> and complete the step below. Then visit the <strong>'Library'</strong> section where you can drag & drop your new colors to load them into the color wheel.
+          The next step is to log in to your account  at <a class="blue-link" href="<%= I18n.t('website_config.website_address') %>/users/sign_in" target = "blank">color-preview.jp</a> and complete the step below. Then visit the <strong>'Library'</strong> section where you can drag & drop your new colors to load them into the color wheel.
        </p>
 
 
@@ -30,10 +30,11 @@
    
         <p>
         If you have any questions, email us here:
-        <a class="blue-link" href="mailto:hello@colorsupplyyy.com">colorsupplyyy@gmail.com</a>
+        <%= link_to I18n.t('website_config.contact_email2'), "mailto:#{I18n.t('website_config.contact_email1')}",
+            class: 'blue-link' %>
       </p>
      
-      <!-- <span class="keys__team">The Color Supply Team</span> -->
+      <!-- <span class="keys__team">The <%= I18n.t('website_config.app_name') %> Team</span> -->
     </div> 
   </div>
 </div>
