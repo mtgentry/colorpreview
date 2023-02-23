@@ -4,24 +4,11 @@ class SharedLinkController < ApplicationController
   def show
     check_shared_title
     @shared_favorite = SharedFavorite.find_by(link: params[:id])
-    @shared    = @shared_favorite&.favorites&.map(&:id) || []
-    @favorites = @shared_favorite&.favorites
-    @favorites = Favorite.where(last_pick_color_in_ip: @shared_favorite&.ip_address) if @favorites.blank?
-    @blank     = (50 - @favorites.count)
-    @all_check = @favorites.size.eql?(@shared.size)
-    @user = @shared_favorite&.user if user_signed_in?
+    @favorites       = @shared_favorite&.favorites&.order(index: :asc) || []
+    @shared          = @favorites&.pluck(:id) || []
 
-    @favorites_with_index = []
-    fav_data = []
-    fav_nil = []
-
-    (1..50).each do |idx|
-      favorite = @favorites.select { |f| f if f.index == idx }.sort
-
-      fav_data << { idx: idx, favorite: favorite.first } if favorite.present?
-      fav_nil << nil unless favorite.present?
-      @favorites_with_index = fav_data + fav_nil
-    end
+    @all_check            = @favorites.size.eql?(@shared.size)
+    @favorites_with_index = @favorites.map { |fav| { idx: fav.index, favorite: fav } }
   end
 
   def update_title

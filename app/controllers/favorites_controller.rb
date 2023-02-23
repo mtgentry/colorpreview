@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
   def show
     @shared_favorite = SharedFavorite.find_by(link: params[:id])
     @favorites       = @shared_favorite&.favorites&.order(index: :asc) || []
-    @shared          = @favorites&.map(&:id) || []
+    @shared          = @favorites&.pluck(:id) || []
 
     @all_check            = @favorites.size.eql?(@shared.size)
     @favorites_with_index = @favorites.map { |fav| { idx: fav.index, favorite: fav } }
