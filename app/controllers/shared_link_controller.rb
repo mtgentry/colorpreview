@@ -6,10 +6,10 @@ class SharedLinkController < ApplicationController
     @shared_favorite = SharedFavorite.find_by(link: params[:id])
     @shared    = @shared_favorite&.favorites&.map(&:id) || []
     @favorites = @shared_favorite&.favorites
-    @favorites = Favorite.where(last_pick_color_in_ip: @shared_favorite.ip_address) if @favorites.blank?
+    @favorites = Favorite.where(last_pick_color_in_ip: @shared_favorite&.ip_address) if @favorites.blank?
     @blank     = (50 - @favorites.count)
     @all_check = @favorites.size.eql?(@shared.size)
-    @user = @shared_favorite.user if user_signed_in?
+    @user = @shared_favorite&.user if user_signed_in?
 
     @favorites_with_index = []
     fav_data = []
