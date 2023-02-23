@@ -82,6 +82,7 @@ $(document).ready(function() {
       },
       url: "/favorites",
       success: function(result){
+        window.alert(result.message);
         console.log(result.message);
       }
     });

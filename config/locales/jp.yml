@@ -209,8 +209,8 @@ jp:
 
   website_config:
     app_name: Color Preview
-    contact_email1: hello@color-preview.jp
-    contact_email2: colorpreview@gmail.com
-    default_from_email: info@color-preview.jp
+    contact_email1: hello@colorpreview.jp
+    contact_email2: info@colorpreview.jp
+    default_from_email: info@colorpreview.jp
     default_from_name: ColorPreview
-    website_address: https://color-preview.jp
+    website_address: https://colorpreview.jp
