@@ -1,3 +1,68 @@
+function getFormToken() {
+  return $('meta[name=csrf-token]').attr('content');
+}
+
+function initSortable(sortableItem, disable) {
+  var sortable = Sortable.create(sortableItem, {
+    swap : true,    
+    draggable: ".selector_badge",
+    group : 'replace',  
+    ghostClass: 'blue-background-class',
+    animation : 150,
+    ghostClass: "sortable-ghost",
+    disabled: disable,
+    onEnd: function (evt) {
+      // get dragged element item
+      element1 = $(evt.item);
+      columnIndex1 = element1.data('column-index');
+      position1 = element1.data('position');
+
+      // get target element item
+      columnIndex2 = element1.parent().data('column-index')
+      position2 = columnIndex2 + evt.newIndex + 1
+      element2 = $("div[data-position='" + position2 + "']");
+
+      // set attribute between 2 elements (dragged item and target item)
+      element1.data('position', position2);
+      element1.data('column-index', columnIndex2);
+      element2.data('position', position1);
+      element2.data('column-index', columnIndex1);
+
+      function arraymove(arr, fromIndex, toIndex) {
+        var element = arr[fromIndex];
+        arr.splice(fromIndex, 1);
+        arr.splice(toIndex, 0, element);
+      }
+
+      if ($('.favorites-trial').length !== 0) {
+        arraymove(color_fav, evt.oldIndex, evt.newIndex)
+        $.cookie('favorites', JSON.stringify(color_fav))
+      }
+
+      // restore id
+      id1 = element1.data('favorite-id');
+      id2 = element2.data('favorite-id');
+
+      $.ajax({
+        type: "PUT",
+        dataType:"json",
+        data: {
+          favorite:{
+            id1: id1,
+            position1: position2,
+            id2: id2,
+            position2: position1
+          }
+        },
+        url: "/favorites/update_index_favorite?authenticity_token=" + getFormToken(),
+        success: function(result){
+          location.reload();
+        }
+      });
+    },
+  })
+}
+
 $(document).ready(function() {
   $('#header-trigger').click(function () {
     $('.wrapper').toggleClass('open');
@@ -27,10 +92,6 @@ $(document).ready(function() {
   $(document).on('click','.alert-fade', function() {
     $(this).addClass('dismiss')
   })
-
-  function getFormToken() {
-    return $('meta[name=csrf-token]').attr('content');
-  }
 
   $('.close-alert').click(function(){
     $.ajax({
@@ -90,8 +151,24 @@ $(document).ready(function() {
         console.log(result.message);
       }
     });
-
   });
+
+  $('.button-remove').click(function() {
+    $(this).attr('disabled', 'disabled');
+    favorite_id = $('.favorite_id').data('id');
+    if (favorite_id) {
+      $.ajax({
+        type: "DELETE",
+        dataType:"json",
+        url: "/favorites/" + favorite_id + "authenticity_token?" + getFormToken(),
+        success: function(result){
+          console.log(result.notice);
+        }
+      });
+    } else {
+      console.log("Please Select Color First");
+    }
+  })
 
   function getCookie(cname) {
     var name = cname + "=";
@@ -107,7 +184,7 @@ $(document).ready(function() {
       }
     }
     return "";
-    }
+  }
 
 
   var alert = getCookie("popupalert");

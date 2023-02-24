@@ -22,16 +22,19 @@
         </div>
       </div>
       <div class="color_selector_favorites load_fading">
-        <% @favorites_with_index.in_groups_of(50).each do |favorites_box| %>
+        <% row_index = 0 %>
+        <% @favorites_with_index.in_groups_of(50).each_with_index do |favorites_box, idx1| %>
           <div class="row favorites-color">
-            <% favorites_box.in_groups_of(10).each_with_index do |favorites, idx1| %>
-              <% idx1 = idx1 + 1 %>
+            <% favorites_box.in_groups_of(10).each_with_index do |favorites, idx2| %>
+              <% row_index   += 1 %>
+              <% column_index = ((row_index - 1) * 10) %>
               <div>
-                <div class="row_selector_badge col-md-2 <%= idx1.eql?(1) ? 'col-md-offset-1' : ''%>" id="draggable<%= idx1 %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
-                  <% favorites.each_with_index do |favorite, idx2| %>
-                    <% idx2 = idx2 + 1 + ( ( idx1 - 1 ) * 10 ) %>
+                <div class="row_selector_badge col-md-2 <%= idx2.eql?(1) ? 'col-md-offset-1' : ''%>" id='draggable-<%= "#{idx1}-#{idx2}" %>' data-column-index="<%= column_index %>">
+                  <% favorites.each_with_index do |favorite, idx3| %>
+                    <% position_index = column_index + (idx3 + 1) %>
+                    <% idx3 = idx3 + 1 + ( ( idx2 - 1 ) * 10 ) %>
                     <% if favorite.nil? || favorite[:favorite].blank? %>
-                      <div class="selector_badge" data-position="<%= idx2 %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
+                      <div class="selector_badge" data-position="<%= position_index %>" data-column-index="<%= column_index %>">
                         <div class="color_blank"></div>
                       </div>
                     <% else %>
@@ -39,13 +42,13 @@
                         <input type="checkbox" data-favorite-id="<%= favorite[:favorite].id %>" data-shared-favorite-id="" <%= 'checked' if @shared.include?(favorite[:favorite].id) %> class="<%= 'checked' if @shared.include?(favorite[:favorite].id) %>">
                         <span class="checkmark"></span>
                       </div>
-                      <div class="selector_badge" data-position="<%= idx2 %>" data-favorite-id="<%= favorite[:favorite].id %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
+                      <div class="selector_badge" data-position="<%= position_index %>" data-favorite-id="<%= favorite[:favorite].id %>" data-column-index="<%= column_index %>">
                         <% colors = favorite[:favorite].color %>
                         <div class="color_selector" data-col1="<%= colors.first %>" data-col2="<%= colors.second %>" data-col3="<%= colors.third %>" data-col4="<%= colors.fourth %>" style="transform: scale(1);">
                           <a class="selector_link">
-                            <% colors.each_with_index do |color, idx3| %>
-                              <% idx3 = idx3+1 %>
-                              <span class="cs colors_<%= idx3 %>" style="background:<%= color %>"></span>
+                            <% colors.each_with_index do |color, idx4| %>
+                              <% idx4 += 1 %>
+                              <span class="cs colors_<%= idx4 %>" style="background:<%= color %>"></span>
                             <% end %>
                           </a><div class="author"></div>
                         </div>
@@ -138,129 +141,26 @@
       </div>
     </div>
   </section>
-
-  
-<!-- MODAL CLICK REACHED -->
-<!--
-<%# if user_signed_in? && !current_user.is_payed? && !current_user.subscription.present? && !current_user.payment_sessions.present? && !current_user.license.present? || !user_signed_in? %>
-	<div class="modal-usage-limit" id="modal-usage-limit">
-		<div class="modal-usage-content">
-		<%#= t("trial_ended_modal.free_trial") %> 
-		<%#= image_tag("#{trial_countdown(cookies[:counter].to_i, 'icon')}", :alt => "LIMIT USAGE", :class => "img-responsive img-tip", width:"100%")%>
-		</div>
-	</div>
-
-	<div class="modal-usage-limit-message hide" id="modal-usage-limit-message">
-		<div class="icon-close-limit">
-			<%#= image_tag("close_button_very_small.svg", :alt => "Close", :class => "img-responsive", width:"100%")%>
-		</div>
-		<div class="text-tip"><%#= trial_countdown(cookies[:counter].to_i, "text") %></div>
-		<%# if cookies[:counter].to_i >= 6 %>
-			<div class="subtext-tip">
-				<%#= link_to t("trial_ended_modal.upgrade_now"), pricing_path(promo: "vDOLkivN") %> <%#= "#{t("trial_ended_modal.upgrade_with_code", code: "vDOLkivN")}".html_safe %>
-			</div>
-		<%# end %>
-	</div>
-
-	<%#= render 'main/usage-modal' %>
-<%# end %>
--->
-
-</div><!-- end container -->
+</div>
+<!-- end container -->
 
 <script type="text/javascript" charset="utf-8" async defer>
-  $('.selector_badge').click(function(){
+  $('.selector_badge').click(function() {
     favorite_id = $(this).data('favorite-id')
     $('.favorite_id').attr('data-id', favorite_id);
-  })
+  });
  
-  var getid = $('.color_selector:first').parent().data('favorite-id')
-  $('.favorite_id').attr('data-id',getid)
+  var getid = $('.color_selector:first').parent().data('favorite-id');
+  $('.favorite_id').attr('data-id', getid);
 
-  $('.button-remove').click(function(){
-    $(this).attr('disabled', 'disabled');
-    favorite_id = $('.favorite_id').data('id');
-    if(favorite_id){
-      $.ajax({
-        type: "DELETE",
-        dataType:"json",
-        url: "/favorites/"+favorite_id,
-        success: function(result){
-          console.log(result.notice);
-        }
-      });
-    }else{
-      console.log("Please Select Color First");
-    }
-
-  })
-  <% @favorites_with_index.in_groups_of(10).each_with_index do |favorites, idx1| %>
-    var getclass =  document.getElementById('draggable<%= idx1+1 %>')
-    function sortable(disable){
-        var sortable = Sortable.create(getclass,{
-        swap : true,    
-        draggable: ".selector_badge",
-        group : 'replace',  
-        ghostClass: 'blue-background-class',
-        animation : 150,
-        ghostClass: "sortable-ghost",
-        disabled: disable,
-        onEnd: function (evt) {
-          // get element item drag
-          element1 = $(evt.item);
-          columnIndex1 = element1.data('column-index');
-          position1 = element1.data('position');
-
-          // get element item target
-          columnIndex2 = element1.parent().data('column-index')
-          position2 = columnIndex2 + evt.newIndex + 1
-          element2 = $("div[data-position='" + position2 + "']");
-
-          // set attribute between 2 elements (item drag and item target)
-          element1.data('position', position2);
-          element1.data('column-index', columnIndex2);
-          element2.data('position', position1);
-          element2.data('column-index', columnIndex1);
-
-          function arraymove(arr, fromIndex, toIndex) {
-            var element = arr[fromIndex];
-            arr.splice(fromIndex, 1);
-            arr.splice(toIndex, 0, element);
-          }
-
-          if($('.favorites-trial').length !== 0){
-            arraymove(color_fav, evt.oldIndex, evt.newIndex)
-            $.cookie('favorites', JSON.stringify(color_fav))
-
-          }
-
-          // restore id
-          id1 = element1.data('favorite-id');
-          id2 = element2.data('favorite-id');
-          $.ajax({
-            type: "PUT",
-            dataType:"json",
-            data: {
-              favorite:{
-                id1: id1,
-                position1: position2,
-                id2: id2,
-                position2: position1
-              }
-            },
-            url: "/favorites/update_index_favorite",
-            success: function(result){
-              location.reload();
-            }
-          });
-        },
-      })
-    }
-
-    if(window.innerWidth < 768){
-      sortable(true)
-    }else{
-      sortable(false)
-    }
+  <% @favorites_with_index.in_groups_of(50).each_with_index do |favorites_box, idx1| %>
+    <% favorites_box.in_groups_of(10).each_with_index do |favorites, idx2| %>
+      var sortableItem = document.getElementById('draggable-<%= "#{idx1}-#{idx2}" %>')
+      if (window.innerWidth < 768) {
+        initSortable(sortableItem, true);
+      } else {
+        initSortable(sortableItem, false);
+      }
+    <% end %>
   <% end %>
 </script>
