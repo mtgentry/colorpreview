@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
+# :nodoc
 class FavoritesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[create update_index_favorite]
-
   def index
     @favorites       = Favorite.with_ip_address(request.remote_ip).order(index: :asc)
     @shared          = SharedFavorite.get_shared_favorite(request.remote_ip)&.favorites&.ids || []
-    @shared_favorite = SharedFavorite.find_by(ip_address: request.remote_ip) || []
+    @shared_favorite = SharedFavorite.find_by(ip_address: request.remote_ip)
 
     @all_check            = @favorites.size.eql?(@shared.size)
     @favorites_with_index = @favorites.map { |fav| { idx: fav.index, favorite: fav } }

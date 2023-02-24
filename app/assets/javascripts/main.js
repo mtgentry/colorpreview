@@ -28,14 +28,18 @@ $(document).ready(function() {
     $(this).addClass('dismiss')
   })
 
+  function getFormToken() {
+    return $('meta[name=csrf-token]').attr('content');
+  }
+
   $('.close-alert').click(function(){
     $.ajax({
       type: "GET",
       dataType:"json",
-      url: "/main/close_alert_active",
+      url: "/main/close_alert_active?authenticity_token=" + getFormToken(),
       success: function(result){
-          console.log(result)
-        }
+        console.log(result)
+      }
     });
   });
 
@@ -80,7 +84,7 @@ $(document).ready(function() {
         color_3: color_3,
         color_4: color_4
       },
-      url: "/favorites",
+      url: "/favorites?authenticity_token=" + getFormToken(),
       success: function(result){
         window.alert(result.message);
         console.log(result.message);
