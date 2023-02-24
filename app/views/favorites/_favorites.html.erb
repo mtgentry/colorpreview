@@ -20,35 +20,41 @@
     <% if @shared_favorite.present? %>
       <% @favorites_with_index.in_groups_of(50).each do |favorites_box| %>
         <div class="row favorites-color">
-          <% favorites_box.in_groups_of(10).each_with_index do |favorites, idx1| %>
-            <% idx1 += 1 %>
-            <div>
-              <div class="col-md-2 <%= idx1.eql?(1) ? 'col-md-offset-1' : ''%>" id="draggable<%= idx1 %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
-                <% favorites.each_with_index do |favorite, idx2| %>
-                  <% idx2 = idx2 + 1 + ( (idx1 - 1) * 10 ) %>
-                  <% if favorite.nil? || favorite[:favorite].blank? %>
-                    <div class="selector_badge" data-position="<%= idx2 %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
-                      <div class="color_blank"></div>
-                    </div>
-                  <% else %>
-                    <div class="checkbox_color">
-                      <input type="checkbox" data-favorite-id="<%= favorite[:favorite].id %>" data-shared-favorite-id="" <%= 'checked' if @shared.include?(favorite[:favorite].id) %>>
-                      <span class="checkmark"></span>
-                    </div>
-                    <div class="selector_badge" data-position="<%= idx2 %>" data-favorite-id="<%= favorite[:favorite].id %>" data-column-index="<%= ((idx1 - 1) * 10) %>">
-                      <% colors = favorite[:favorite].color %>
-                      <div class="color_selector" data-col1="<%= colors.first %>" data-col2="<%= colors.second %>" data-col3="<%= colors.third %>" data-col4="<%= colors.fourth %>" style="transform: scale(1);">
-                        <a class="selector_link">
-                          <% colors.each_with_index do |color, idx3| %>
-                            <% idx3 = idx3+1 %>
-                            <span class="cs colors_<%= idx3 %>" style="background:<%= color %>"></span>
-                          <% end %>
-                        </a><div class="author"></div>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
+          <% row_index = 0 %>
+          <% @favorites_with_index.in_groups_of(50).each_with_index do |favorites_box, idx1| %>
+            <div class="row favorites-color">
+              <% favorites_box.in_groups_of(10).each_with_index do |favorites, idx2| %>
+                <% row_index   += 1 %>
+                <% column_index = ((row_index - 1) * 10) %>
+                <div>
+                  <div class="row_selector_badge col-md-2 <%= idx2.eql?(1) ? 'col-md-offset-1' : ''%>" id='draggable-<%= "#{idx1}-#{idx2}" %>' data-column-index="<%= column_index %>">
+                    <% favorites.each_with_index do |favorite, idx3| %>
+                      <% position_index = column_index + (idx3 + 1) %>
+                      <% if favorite.nil? || favorite[:favorite].blank? %>
+                        <div class="selector_badge" data-position="<%= position_index %>" data-column-index="<%= column_index %>">
+                          <div class="color_blank"></div>
+                        </div>
+                      <% else %>
+                        <div class="checkbox_color">
+                          <input type="checkbox" data-favorite-id="<%= favorite[:favorite].id %>" data-shared-favorite-id="" <%= 'checked' if @shared.include?(favorite[:favorite].id) %> class="<%= 'checked' if @shared.include?(favorite[:favorite].id) %>">
+                          <span class="checkmark"></span>
+                        </div>
+                        <div class="selector_badge" data-position="<%= position_index %>" data-favorite-id="<%= favorite[:favorite].id %>" data-column-index="<%= column_index %>">
+                          <% colors = favorite[:favorite].color %>
+                          <div class="color_selector" data-col1="<%= colors.first %>" data-col2="<%= colors.second %>" data-col3="<%= colors.third %>" data-col4="<%= colors.fourth %>" style="transform: scale(1);">
+                            <a class="selector_link">
+                              <% colors.each_with_index do |color, idx4| %>
+                                <% idx4 += 1 %>
+                                <span class="cs colors_<%= idx4 %>" style="background:<%= color %>"></span>
+                              <% end %>
+                            </a><div class="author"></div>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>

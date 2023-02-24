@@ -1,7 +1,7 @@
 <%= render 'shared/header' %>
 <div class="app_container">
   <style type="text/css" media="screen">
-    .cs{
+    .cs {
       display: inline-block;
       width: 31px;
       height: 16px;
@@ -32,7 +32,6 @@
                 <div class="row_selector_badge col-md-2 <%= idx2.eql?(1) ? 'col-md-offset-1' : ''%>" id='draggable-<%= "#{idx1}-#{idx2}" %>' data-column-index="<%= column_index %>">
                   <% favorites.each_with_index do |favorite, idx3| %>
                     <% position_index = column_index + (idx3 + 1) %>
-                    <% idx3 = idx3 + 1 + ( ( idx2 - 1 ) * 10 ) %>
                     <% if favorite.nil? || favorite[:favorite].blank? %>
                       <div class="selector_badge" data-position="<%= position_index %>" data-column-index="<%= column_index %>">
                         <div class="color_blank"></div>
