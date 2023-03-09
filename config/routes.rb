@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'registrations' }
+  # devise_for :users, controllers: { registrations: 'registrations' }
 
   root 'pages#main'
 
@@ -24,17 +24,17 @@ Rails.application.routes.draw do
 
     resources :colors, only: %i[index create], path: 'library'
 
-    resources :subscriptions, except: %i[index create], path: 'pricing' do
-      collection do 
-        patch :update_card
-        get :keys
-        get :thank_you
-        get :final_step
-      end
-    end
+    # resources :subscriptions, except: %i[index create], path: 'pricing' do
+    #   collection do
+    #     patch :update_card
+    #     get :keys
+    #     get :thank_you
+    #     get :final_step
+    #   end
+    # end
 
-    get '/pricing/free/kFvmm3LoPq' => 'subscriptions#free'
-    post '/pricing/free/kFvmm3LoPq' => 'subscriptions#create'
+    # get '/pricing/free/kFvmm3LoPq' => 'subscriptions#free'
+    # post '/pricing/free/kFvmm3LoPq' => 'subscriptions#create'
     # get '/analytics' => 'analytics#index'
     get '/analytics/daily' => 'analytics#analytics_daily'
     get '/analytics/details' => 'analytics#analytics_details'
@@ -63,38 +63,38 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :licensed_account, path: 'add_licensed_account', only: %i[create new]
+  # resources :licensed_account, path: 'add_licensed_account', only: %i[create new]
 
   # get '/next_step' => 'licensed_account#next_step'
-  get '/checkout_webhook' => 'payment_session#checkout_webhook'
-  post '/checkout' => 'payment_session#checkout'
-  get '/success' => 'payment_session#success'
-  get '/cancel' => 'payment_session#cancel'
-  post '/create-payment-intent' => 'payment_session#create_payment_intent'
-  get '/account_valid_stripe' => 'account#account_valid_stripe'
-  get '/check_coupon'  => 'account#check_coupon'
-  get '/payment_info'  => 'subscriptions#payment_info'
-  get '/pricing' => 'subscriptions#index'
-  post '/pricing' => 'subscriptions#create'
+  # get '/checkout_webhook' => 'payment_session#checkout_webhook'
+  # post '/checkout' => 'payment_session#checkout'
+  # get '/success' => 'payment_session#success'
+  # get '/cancel' => 'payment_session#cancel'
+  # post '/create-payment-intent' => 'payment_session#create_payment_intent'
+  # get '/account_valid_stripe' => 'account#account_valid_stripe'
+  # get '/check_coupon'  => 'account#check_coupon'
+  # get '/payment_info'  => 'subscriptions#payment_info'
+  # get '/pricing' => 'subscriptions#index'
+  # post '/pricing' => 'subscriptions#create'
 
   # STATIC
   get '/' => 'pages#main'
   get '/legwork' => 'pages#legwork'
   get '/preserve' => 'pages#preserve'
   get '/si-le-soleil' => 'pages#silesoleil'
-  get '/premium' => 'pages#premium'
+  # get '/premium' => 'pages#premium'
   get '/terms' => 'pages#terms'
   get '/contact' => 'pages#contact'
   get '/privacy' => 'pages#privacy'
-  get '/upgrade' => 'pages#upgrade'
+  # get '/upgrade' => 'pages#upgrade'
   get '/sample_site' => 'pages#sample_site'
   get '/free_design_course' => 'pages#course'
-  get '/promotion' => 'pages#promotion'
-  get '/promotion2' => 'pages#promotion2'
+  # get '/promotion' => 'pages#promotion'
+  # get '/promotion2' => 'pages#promotion2'
   get '/adobe-color' => 'pages#adobe-color'
   get '/red-aesthetic-alternate' => 'main#red-aesthetic-alternate'
   get '/freemium' => 'pages#freemium'
   get '/freebies' => 'pages#freebies'
 
-  resources :payment_attempts, except: %i[edit update new]
+  # resources :payment_attempts, except: %i[edit update new]
 end

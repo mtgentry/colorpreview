@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class License < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :subscription, optional: true
@@ -6,13 +8,13 @@ class License < ApplicationRecord
   default_scope { order('created_at ASC') }
 
   def generate_key
-    loop do 
+    loop do
       self.key = SecureRandom.hex(4)[0...7].upcase
-      break if License.where(key: self.key).count == 0
+      break if License.where(key: key).zero?
     end
   end
 
   def is_activated?
-    !!self.user 
+    !!user
   end
 end

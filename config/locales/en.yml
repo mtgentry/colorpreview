@@ -93,7 +93,7 @@ en:
     license_for_5: License for 5 computers
     license_for_2: License for 2 computers
     50_favorites: Save up to 50 favorites
-    color_supply_is_used: Color Supply is used at these companies
+    color_supply_is_used: Color Preview is used at these companies
     buy_now: Buy Now
     testimonials: Testimonials
     change_a_plan: Change a Plan
@@ -181,7 +181,7 @@ en:
 
   contact:
     contact: Contact
-    contact_color_supply_team: "You can contact the Color Supply team at:"
+    contact_color_supply_team: "You can contact the Color Preview team at:"
 
   licensed_account:
     add_licensed_account: Add Licensed Account
@@ -202,7 +202,15 @@ en:
     free_trial: Free Trial
     free_trial_ended: Free trial ended
     upgrade_now: Upgrade now
-    upgrade_now_desc: Thanks for trying Color Supply! To keep using the site please upgrade now.
+    upgrade_now_desc: Thanks for trying Color Preview! To keep using the site please upgrade now.
     upgrade_with_code: "for 10% off. Use code : <b>%{code}</b>"
     use_promo_code: 'Get <strong><i>10% off</i></strong> if you upgrade in the next 24 hrs. Use promo code: <span class="blue-link"><b>%{code}</b></span>'
-    used_companies: Color Supply is used at these companies
+    used_companies: Color Preview is used at these companies
+
+  website_config:
+    app_name: Color Preview
+    contact_email1: hello@colorpreview.jp
+    contact_email2: info@colorpreview.jp
+    default_from_email: info@colorpreview.jp
+    default_from_name: ColorPreview
+    website_address: https://colorpreview.jp

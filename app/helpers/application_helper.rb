@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include Pagy::Frontend
-  
+
   STATE_LIST = [
     ['AK', 'AK'],
     ['AL', 'AL'],
@@ -54,7 +56,7 @@ module ApplicationHelper
     ['WV', 'WV'],
     ['WY', 'WY']
   ]
-  
+
   def trial_checker
     if user_signed_in? &&
        !current_user.paid? &&
@@ -63,7 +65,7 @@ module ApplicationHelper
           render partial: 'plans/trial_expired'
     end
   end
-  
+
   def plan_feature_icon(val)
     case val
     when true
@@ -76,7 +78,7 @@ module ApplicationHelper
       val.to_s
     end
   end
-  
+
   def modal(attr = {}, &block)
     render partial: 'layouts/modal', locals: { attr: attr, block: block }
   end
@@ -89,7 +91,7 @@ module ApplicationHelper
       rescue
         true
       end
-    
+
     if plan
       transform_data, amount = if new_stripe 
         [plan.transform_quantity["divide_by"], plan.unit_amount]

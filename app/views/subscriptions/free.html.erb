@@ -20,7 +20,7 @@
                 <span class="label__description">Works on up to <strong>2</strong> computers</span>
               </label>
               <div class="stripe-button-container">
-                <script class="stripe-button" data-amount="<%=plan.amount%>" data-name="Color Supply" data-description="<%= plan.nickname %> 1 Year" data-currency="<%= plan.currency %>" data-email="<%= current_user.email %>" data-key="<%=Rails.configuration.stripe[:publishable_key]%>" src="https://checkout.stripe.com/checkout.js"> </script>
+                <script class="stripe-button" data-amount="<%=plan.amount%>" data-name="<%= I18n.t('website_config.app_name') %>" data-description="<%= plan.nickname %> 1 Year" data-currency="<%= plan.currency %>" data-email="<%= current_user.email %>" data-key="<%=Rails.configuration.stripe[:publishable_key]%>" src="https://checkout.stripe.com/checkout.js"> </script>
                 <%= f.button :button, 'Select', type: 'submit', name: 'selected', class: 'btn btn--blue' %>
               </div>
             </div>

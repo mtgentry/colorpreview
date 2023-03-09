@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PaymentAttemptsController < ApplicationController
-  before_action :validate_user_analytic, only: [:index, :show, :destroy]
-  before_action :set_payment_attempt, only: [:show, :edit, :update, :destroy]
+  before_action :validate_user_analytic, only: %i[index show destroy]
+  before_action :set_payment_attempt, only: %i[show edit update destroy]
 
   # GET /payment_attempts
   # GET /payment_attempts.json
@@ -10,8 +12,7 @@ class PaymentAttemptsController < ApplicationController
 
   # GET /payment_attempts/1
   # GET /payment_attempts/1.json
-  def show
-  end
+  def show; end
 
   # POST /payment_attempts
   # POST /payment_attempts.json
@@ -35,20 +36,21 @@ class PaymentAttemptsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_payment_attempt
-      @payment_attempt = PaymentAttempt.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def payment_attempt_params
-      params.require(:payment_attempt).permit(:email, :code, :type_error, :message)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_payment_attempt
+    @payment_attempt = PaymentAttempt.find(params[:id])
+  end
 
-    def validate_user_analytic
-      if (current_user && !current_user.analytic_admin) || !current_user
-        flash[:alert] = "You are not allowed to visit this page."
-        redirect_to account_index_path 
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def payment_attempt_params
+    params.require(:payment_attempt).permit(:email, :code, :type_error, :message)
+  end
+
+  def validate_user_analytic
+    return unless (current_user && !current_user.analytic_admin) || !current_user
+
+    flash[:alert] = 'You are not allowed to visit this page.'
+    redirect_to account_index_path
+  end
 end

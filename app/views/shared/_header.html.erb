@@ -1,58 +1,39 @@
 <div class="header">
   <div class="header__content">
     <a class="header__brand" href="/">
-      <%= image_tag('rainbow_logo.svg', alt: 'Color Picking Logo')%>
+      <%= image_tag(asset_path('rainbow_logo.svg'), alt: 'Color Picking Logo')%>
     </a>
     <nav class="header__nav desc <%= 'header__logged-in' if user_signed_in? %>">
       <div class="main_navigation_container">
-        <% if user_signed_in? %>
-          <%= link_to(t('home_page.header.create'), app_path, class: 'header__nav-link') %>
-          <%= link_to(t('home_page.header.favorites'), favorites_path, class: 'header__nav-link') %>
-          <%= link_to(t('home_page.header.is_user.library'), colors_path, class: 'header__nav-link') %>
-          <%# if freebies_for_selected_country %>
-            <%#= link_to(t('home_page.header.freebies'), freebies_path, class: 'header__nav-link') %>
-          <%# end %>
-          <div class="dropdown header__nav-right" href="#"><%= image_tag('account_icon.svg', alt: 'Account Icon')%>
-          <div class="dropdown__chevron"></div>
-            <div class="dropdown__wrapper">
-              <div class="dropdown__triangle"></div>
-              <div class="dropdown__container">              
-                <%= link_to(t('home_page.header.is_user.account'), account_index_path, class: 'dropdown__item') %>
-                <%= link_to(t('home_page.header.is_user.contact'), contact_path, class: 'dropdown__item') %>
-                <%= link_to(t('home_page.header.is_user.logout'), destroy_user_session_path, method: :delete, class: 'dropdown__item') %>
+        <%= link_to(t('home_page.header.create'), app_path, class: 'header__nav-link') %>                
+        <%= link_to(t('home_page.header.favorites'), favorites_path, class: 'header__nav-link') %> 
+        <%#= link_to(t('home_page.header.pricing'), pricing_path, class: 'header__nav-link') %>          
+        <%# if freebies_for_selected_country %>
+          <%#= link_to(t('home_page.header.freebies'), freebies_path, class: 'header__nav-link') %>
+        <%# end %>
+        <!--
+        <div class="header__nav-right">
+          <div class="header__modal">
+            <div class="header__modal-limit" id="header__modal-limit">
+              <div class="header__modal-content">
+              <%#= t('create_page.free_trial') %>
+              <%#= image_tag("#{trial_countdown(cookies[:counter].to_i, 'icon')}", :alt => "LIMIT USAGE", :class => "img-responsive header__img-tip", width:"100%")%>
               </div>
             </div>
-          </div>
-        <% else %>
-          <%= link_to(t('home_page.header.create'), app_path, class: 'header__nav-link') %>                
-          <%= link_to(t('home_page.header.favorites'), favorites_path, class: 'header__nav-link') %> 
-          <%= link_to(t('home_page.header.pricing'), pricing_path, class: 'header__nav-link') %>          
-          <%# if freebies_for_selected_country %>
-            <%#= link_to(t('home_page.header.freebies'), freebies_path, class: 'header__nav-link') %>
-          <%# end %>
-          <div class="header__nav-right">
-            <div class="header__modal">
-              <div class="header__modal-limit" id="header__modal-limit">
-                <div class="header__modal-content">
-                <%= t('create_page.free_trial') %>
-                <%= image_tag("#{trial_countdown(cookies[:counter].to_i, 'icon')}", :alt => "LIMIT USAGE", :class => "img-responsive header__img-tip", width:"100%")%>
-                </div>
+            <div class="header__modal-message hide" id="header__modal-message">
+              <div class="header__modal-icon">
+                <%#= image_tag("close_button_very_small.svg", :alt => "Close", :class => "img-responsive", width:"100%")%>
               </div>
-              <div class="header__modal-message hide" id="header__modal-message">
-                <div class="header__modal-icon">
-                  <%= image_tag("close_button_very_small.svg", :alt => "Close", :class => "img-responsive", width:"100%")%>
+              <div class="text-tip"><%#= trial_countdown(cookies[:counter].to_i, "text") %></div>
+              <%# if cookies[:counter].to_i >= 6 %>
+                <div class="subtext-tip">
+                  <%#= link_to t("trial_ended_modal.upgrade_now"), pricing_path(promo: "vDOLkivN") %> <%#= "#{t("trial_ended_modal.upgrade_with_code", code: "vDOLkivN")}".html_safe %>
                 </div>
-                <div class="text-tip"><%= trial_countdown(cookies[:counter].to_i, "text") %></div>
-                <% if cookies[:counter].to_i >= 6 %>
-                  <div class="subtext-tip">
-                    <%= link_to t("trial_ended_modal.upgrade_now"), pricing_path(promo: "vDOLkivN") %> <%= "#{t("trial_ended_modal.upgrade_with_code", code: "vDOLkivN")}".html_safe %>
-                  </div>
-                <% end %>
-              </div>
+              <%# end %>
             </div>
-            <%= link_to(t('home_page.header.login'), new_user_session_path, class: 'header__nav-link header__nav-login') %>  
           </div>
-        <% end %>
+        </div>
+        -->
       </div>
       
       <% if @sub_navigation_avail %>

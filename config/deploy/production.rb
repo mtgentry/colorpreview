@@ -10,5 +10,10 @@
 # role :web, %w{deploy@example.com}
 # role :db,  %w{deploy@example.com}
 
+set :user, 'rails'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.7.2'
+set :rvm_custom_path, '/usr/share/rvm/'
+
 set :stage, :production
-server '34.102.136.180', user: 'deploy', roles: %w[web app db]
+server '139.59.112.179', user: 'rails', roles: %w[web app db]

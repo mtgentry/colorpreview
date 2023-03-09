@@ -1,5 +1,6 @@
-class PaymentSessionController < ApplicationController
+# frozen_string_literal: true
 
+class PaymentSessionController < ApplicationController
   def checkout
     if current_user
       @user = current_user
@@ -8,9 +9,7 @@ class PaymentSessionController < ApplicationController
       if @user.save
         @user.set_up_default_favorite
         fav = Favorite.where(last_pick_color_in_ip: request.remote_ip)
-        if fav.present?
-          @user.favorites += fav
-        end
+        @user.favorites += fav if fav.present?
       else
         flash[:notice] = @user.errors.full_messages.to_sentence
         render js: "window.location.replace('#{payment_info_path(plan_id: params[:plan_id])}');"
@@ -19,7 +18,7 @@ class PaymentSessionController < ApplicationController
     end
 
     # domain_path = if Rails.env.eql?("production")
-    #   'https://colorsupplyyy.com/'
+    #   I18n.t('website_config.website_address')
     # else
     #   'http://localhost:3000/'
     # end
@@ -29,11 +28,11 @@ class PaymentSessionController < ApplicationController
     # if session[:promo_code]
     #   discounts[0][:coupon] = session[:promo_code]
     #   cancel = "?promo="+session[:promo_code]
-    # end 
+    # end
     # allow_promotion_code = true if !session[:promo_code].present?
 
     # success_url, cancel_url = [domain_path+'success', domain_path+'cancel'+cancel]
-    
+
     # puts session[:promo_code]
     # session = Stripe::Checkout::Session.create({
     #   customer_email: @user.email,
@@ -63,7 +62,7 @@ class PaymentSessionController < ApplicationController
   def checkout_webhook
     # line_items = Stripe::Checkout::Session.retrieve({id: params["data"]["object"]["id"], expand: ['line_items']})
     user = User.find_by(email: params[:email]) || current_user
-    customer = user.get_stripe_customer(params[:payment_id])
+    _customer = user.get_stripe_customer(params[:payment_id])
     payment = PaymentSession.find_or_initialize_by(stripe_payment_intent_id: params[:payment_id])
     notice = false
 
@@ -85,7 +84,7 @@ class PaymentSessionController < ApplicationController
 
       if payment.save
         payment.generate_licenses
-        sign_in(user) if !current_user
+        sign_in(user) unless current_user
         notice = true
         SubscriptionsMailer.payment_completed(user).deliver_now
         SubscriptionsMailer.new_paid_user(user).deliver_later(wait: 1.hour)
@@ -93,10 +92,10 @@ class PaymentSessionController < ApplicationController
     end
 
     if notice
-      flash[:notice] = "Payment accepted."
+      flash[:notice] = 'Payment accepted.'
       result_url = success_path
     else
-      flash[:alert] = "Payment failed, please try again."
+      flash[:alert] = 'Payment failed, please try again.'
       result_url = payment_info_path(plan_id: params[:plan_id])
     end
 
@@ -106,20 +105,20 @@ class PaymentSessionController < ApplicationController
   def success
     session[:promo_code] = nil
   end
-  
-  def cancel
-    flash[:alert] = "Payment failed, please try again."
-    pricing_data = if params[:promo].present?
-      pricing_path(promo: params[:promo])
-    else
-      pricing_path
-    end
-    
-    redirect_to pricing_data
-  end
+
+  # def cancel
+  #   flash[:alert] = 'Payment failed, please try again.'
+  #   pricing_data = if params[:promo].present?
+  #                    pricing_path(promo: params[:promo])
+  #                  else
+  #                    pricing_path
+  #                  end
+
+  #   redirect_to pricing_data
+  # end
 
   def calculate_order_amount(item)
-    item["amount"].to_i
+    item['amount'].to_i
   end
 
   def create_payment_intent

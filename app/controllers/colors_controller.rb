@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ColorsController < ApplicationController
-  def index    
+  def index
     @selected_colors = current_user.colors.all
     @colors = Color.all - @selected_colors
   end
@@ -17,6 +19,4 @@ class ColorsController < ApplicationController
       format.js
     end
   end
-
-  private
 end

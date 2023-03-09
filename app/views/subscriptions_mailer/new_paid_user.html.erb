@@ -65,7 +65,8 @@
          </p>
         <p>
           If you have any questions, email us here:
-          <a class="blue-link" href="mailto:colorsupplyyy@gmail.com">colorsupplyyy@gmail.com</a>
+          <%= link_to I18n.t('website_config.contact_email2'), "mailto:#{I18n.t('website_config.contact_email2')}",
+              class: 'blue-link' %>
         </p>
       </div> 
     </div>

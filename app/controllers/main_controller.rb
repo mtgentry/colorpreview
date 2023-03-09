@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class MainController < ApplicationController
   respond_to :html
 
   def index
     @sub_navigation_avail = true
 
-    if current_user
-      @colors = current_user.colors.all
-    else
-      @colors = []
-    end    
+    @colors = if current_user
+                current_user.colors.all
+              else
+                []
+              end
   end
 
   def hex_match
@@ -28,7 +30,7 @@ class MainController < ApplicationController
   end
 
   def close_alert_active
-    current_user.update(close_alert_active: false) if current_user
+    current_user&.update(close_alert_active: false)
 
     render json: :no_content, status: :ok
   end

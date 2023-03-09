@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ruby '2.5.3'
+ruby '2.7.2'
 
 source 'https://rubygems.org'
 
@@ -10,9 +10,9 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
-# Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'rails', '6.0.3.4'
+# Use the Puma web server [https://github.com/puma/puma]
+gem 'puma', '~> 5.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'pg', '~> 0.19.0'
 
-gem 'webpacker', '~> 6.x'
+gem 'webpacker', '6.0.0.pre.2'
 
 gem 'devise'
 gem 'select2-rails'
@@ -71,19 +71,23 @@ gem 'mini_magick'
 # STRIPE
 gem 'stripe'
 
+gem 'ed25519', '~> 1.2'
+gem 'bcrypt_pbkdf', '~> 1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %w[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  # capistrano
-  gem 'capistrano', '~> 3.7', '>= 3.7.1'
-  gem 'capistrano-bundler'
+  # Deployment capistrano
+  gem 'capistrano', '~> 3.7'
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
+  gem 'capistrano-bundler', '2.1.0'
   gem 'capistrano-nvm', require: false
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rails', '~> 1.2'
-  gem 'capistrano-rbenv', '~> 2.1'
+  gem 'capistrano-rails', '1.6.2'
+  gem 'capistrano-rails-console', '2.3.0'
+  gem 'capistrano-rvm', '0.1.2'
   gem 'capistrano-yarn'
   gem 'pry', '~> 0.10.3'
 end
@@ -103,7 +107,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'ahoy_matey'
 gem 'figaro'
+gem 'geocoder'
 gem 'groupdate'
+gem 'maxminddb'
 gem 'pundit'
 
 # detect user language

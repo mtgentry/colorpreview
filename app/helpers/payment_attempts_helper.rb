@@ -1,2 +1,3 @@
-module PaymentAttemptsHelper
-end
+# frozen_string_literal: true
+
+module PaymentAttemptsHelper; end

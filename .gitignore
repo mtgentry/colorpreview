@@ -20,13 +20,7 @@
 # Ignore uploaded files in development
 /storage/*
 
-/node_modules
-/yarn-error.log
-/yarn-debug.log*
-
 /public/assets
-/public/packs
-/public/packs-test
 .byebug_history
 .yarn-integrity
 
@@ -37,3 +31,10 @@
 /config/secrets.yml
 
 !/public/assets/.keep
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

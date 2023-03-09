@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class IntakeAnswerDecorator < BaseDecorator
-  
   def render_answer_form(form, intake_section_form, intake_section: nil)
     partial = question.question_type.to_s
     render partial: "intake_answers/templates/#{partial}", locals: { intake_section: intake_section, f: form, answer: object, intake_section_form: intake_section_form, field_type: get_field_type }
@@ -18,12 +19,12 @@ class IntakeAnswerDecorator < BaseDecorator
     when 'password'
       'password'
     when 'birthdate', 'birthday'
-      object.answer_text ? 'string' : 'date_select' #TODO
+      object.answer_text ? 'string' : 'date_select' # TODO
     when 'state'
       'state_select'
     else
       'string'
-    end 
+    end
   end
 
   private
@@ -35,5 +36,4 @@ class IntakeAnswerDecorator < BaseDecorator
   def title
     question.title.downcase
   end
-
 end

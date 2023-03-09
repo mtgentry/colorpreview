@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AnalyticsController < ApplicationController
-  before_action :validate_user_analytic, only: [:index, :analytics_daily,  :analytics_details]
+  before_action :validate_user_analytic, only: %i[index analytics_daily analytics_details]
   before_action :get_analytic_period, only: [:index]
 
   def index
@@ -19,31 +21,39 @@ class AnalyticsController < ApplicationController
   private
 
   def validate_user_analytic
-    if !current_user.analytic_admin
-      flash[:alert] = "You are not allowed to visit this page."
-      redirect_to account_index_path 
-    end
+    return if current_user.analytic_admin
+
+    flash[:alert] = 'You are not allowed to visit this page.'
+    redirect_to account_index_path
   end
 
   def get_analytic_period
     params[:filter] ||= {}
-    view              = params[:filter]["view"]
-    date_range        = params[:filter]["date_range"]
+    view              = params[:filter]['view']
+    date_range        = params[:filter]['date_range']
 
     if date_range.present?
-      split_date      = date_range.gsub(" ", "").split("-")
+      split_date      = date_range.gsub(' ', '').split('-')
       @start_analytic = Date.strptime(split_date.first, '%m/%d/%Y')
       @end_analytic   = Date.strptime(split_date.last, '%m/%d/%Y')
     elsif view.present?
-      @start_analytic = Date.today             if view.eql?("Today")
-      @start_analytic = (Date.today - 1.day)   if view.eql?("Yesterday")
-      @start_analytic = (Date.today - 7.days)  if view.eql?("Last 7 Days")
-      @start_analytic = (Date.today - 28.days) if view.eql?("Last 28 Days")
-      @start_analytic = (Date.today - 90.days) if view.eql?("Last 90 Days")
-      @end_analytic   = view.eql?("Yesterday") ? @start_analytic.to_date : Date.today.to_date
+      @start_analytic = case view
+                        when 'Today'
+                          Date.today
+                        when 'Yesterday'
+                          (Date.today - 1.day)
+                        when 'Last 7 Days'
+                          (Date.today - 7.days)
+                        when 'Last 28 Days'
+                          (Date.today - 28.days)
+                        when 'Last 90 Days'
+                          (Date.today - 90.days)
+                        end
+
+      @end_analytic   = view.eql?('Yesterday') ? @start_analytic.to_date : Date.today.to_date
     else
       @start_analytic = (Date.today - 7.days).to_date
-      @end_analytic   = (Date.today).to_date
+      @end_analytic   = Date.today.to_date
     end
   end
 end

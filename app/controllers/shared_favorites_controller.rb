@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class SharedFavoritesController < ApplicationController
   def create
     shared = current_user.try(:get_shared_favorite)
-    shared = SharedFavorite.get_shared_favorite(request.remote_ip) if !user_signed_in?
+    shared = SharedFavorite.get_shared_favorite(request.remote_ip) unless user_signed_in?
     if shared.blank?
-      shared = SharedFavorite.new()
+      shared = SharedFavorite.new
       shared.link = SecureRandom.alphanumeric(10)
       shared.user_id = current_user.id if user_signed_in?
       shared.ip_address = request.remote_ip unless user_signed_in?
@@ -22,7 +24,7 @@ class SharedFavoritesController < ApplicationController
     #       ch = Favorite.find_by_color_and_user_id(col['colors'], shared.user_id)
     #     end
     #     next if ch.present?
-    #     @fav = Favorite.new()
+    #     @fav = Favorite.new
     #     @fav.color = col['colors']
     #     @fav.index = col['id']
     #     @fav.last_pick_color_in_ip = request.remote_ip unless user_signed_in?
@@ -30,7 +32,7 @@ class SharedFavoritesController < ApplicationController
     #     @fav.save!
     #     shared.favorites << @fav if !@fav.blank?
     #   end
-    # end 
+    # end
 
     respond_to do |format|
       if shared.save
@@ -41,12 +43,12 @@ class SharedFavoritesController < ApplicationController
     end
   end
 
-  def destroy;end
+  def destroy; end
 
   def create_or_update_fav
     get_colors
     if SharedFavorite.is_already_generate_link_today?(request.remote_ip, current_user.try(:id))
-      @shared = SharedFavorite.get_existing_favorite(request.remote_ip, current_user.try(:id), @colors)
+      @shared = SharedFavorite.get_existing_favorite(@colors, request.remote_ip, current_user.try(:id))
       if @shared.blank?
         set_new_shared
       else
@@ -136,6 +138,7 @@ class SharedFavoritesController < ApplicationController
   end
 
   private
+
   def set_new_shared
     if user_signed_in?
       @shared = current_user.shared_favorites.new

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -5,51 +7,52 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  #validates :first_name, :last_name, presence: true
-  #callbacks
+  # validates :first_name, :last_name, presence: true
+  # callbacks
 
-  enum language: [:en, :jp]
-  enum currency: [:usd, :yen]
+  enum language: %i[en jp]
+  enum currency: %i[usd yen]
 
-  AVAILABLE_CURRENCY = [:usd, :yen]
+  AVAILABLE_CURRENCY = %i[usd yen].freeze
 
   has_many :user_colors, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :colors, -> { includes(:user_colors).order('position') }, through: :user_colors
   has_one :subscription, -> { includes(:licenses) }, dependent: :destroy
   has_one :license, -> { includes(:subscription) }, dependent: :destroy
-  has_one :payed_license, -> {includes(:subscription)}, class_name: 'License', dependent: :destroy
+  has_one :payed_license, -> { includes(:subscription) }, class_name: 'License', dependent: :destroy
   has_many :shared_favorites
   has_many :payment_sessions
-  has_many :visits, class_name: "Ahoy::Visit"
-  has_many :events, class_name: "Ahoy::Event"
+  has_many :visits, class_name: 'Ahoy::Visit'
+  has_many :events, class_name: 'Ahoy::Event'
 
   after_create :set_default_colors, :create_favorites
 
   def get_shared_favorite
-    SharedFavorite.where(user_id: self.id).last
+    SharedFavorite.where(user_id: id).last
   end
 
   def set_up_default_favorite
-    default_favorite = self.favorites.new
-    default_favorite.color = ["#f74703", "#e9eb2e", "#50b490", "#2e5ec0"]
+    default_favorite = favorites.new
+    default_favorite.color = %w[#f74703 #e9eb2e #50b490 #2e5ec0]
     default_favorite.index = 1
     default_favorite.save
   end
 
   def full_name
-    self.first_name + " " + self.last_name if self.first_name.present? && self.last_name.present?
+    "#{first_name} #{last_name}" if first_name.present? && last_name.present?
   end
 
   def subscribe(plan_id, token, coupon)
     coupon = nil if coupon.eql?('undefined')
     stripe_subscription = SubscriptionService.new({
-      email:   email,
+      email: email,
       plan_id: plan_id,
-      token:   token,
-      customer_id: self.stripe_customer,
+      token: token,
+      customer_id: stripe_customer,
       coupon: coupon
     }).create_subscription
+
     if stripe_subscription
       subscription = Subscription.find_or_create_by(stripe_subscription_id: stripe_subscription.id)
       subscription.upsert_subscrption_for(self,stripe_subscription)
@@ -108,11 +111,11 @@ class User < ApplicationRecord
   def org_admin_ps
     self.license.payment_session.user
   end
-  
+
   def cancel_subscription
     if SubscriptionService.new({subscription_id: self.subscription.stripe_subscription_id}).delete_subscription
       self.subscription.destroy
-      self.set_default_colors()
+      self.set_default_colors
     end
   end
 
@@ -129,22 +132,22 @@ class User < ApplicationRecord
   def activate_license(license)
     if license && !license.try(:user).try(:id)
       license.user = self
-      license.save()
+      license.save
       if license.payment_session
         user = self
         user.fav_limit = 100
         if !license.payment_session.plan_data['transform_quantity']['divide_by'].eql?(2)
-          active_others_color 
+          active_others_color
           user.fav_limit = 9999
         end
         user.save
       elsif license.subscription
-        cond = begin 
+        cond = begin
           !license.subscription.plan_data['transform_usage']['divide_by'].eql?(2)
         rescue
           !license.subscription.plan_data['transform_quantity']['divide_by'].eql?(2)
         end
-        
+
         active_others_color if cond
       end
       true
@@ -156,16 +159,16 @@ class User < ApplicationRecord
   def active_others_color
     selected_colors = colors.all
     other_colors = Color.all - selected_colors
-    
+
     other_colors.each do |other_color|
-      UserColor.create({ user_id: self.id, color_id: other_color.id})
+      UserColor.create({ user_id: id, color_id: other_color.id })
     end
   end
 
   def set_default_colors
     colors = Color.where(default: true)
     self.colors = colors
-    self.save()
+    save
   end
 
   def set_favorites_from_cookie(favorites_color)
