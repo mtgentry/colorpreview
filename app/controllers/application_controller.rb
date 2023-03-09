@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :track_action
   before_action :track_location
   before_action :set_session_click_modal, :set_page_for_devise_controller, :set_locale
-  before_action :get_ga_tacking_id
+  before_action :get_ga_tacking_id, :get_gtag_id
 
   helper_method :current_user
   helper_method :user_signed_in?
@@ -80,12 +80,9 @@ class ApplicationController < ActionController::Base
 
     @tracking_data = set_geocoder_data(@tracking_data) if @tracking_data.country.blank?
     request_country = @tracking_data&.country.to_s.downcase
+    return true if Rails.application.config.allowed_countries.include?(request_country)
 
-    # Allowed country:
-    # JP = Japan
-    # ID = Indonesia
-    # US = United State
-    redirect_to Rails.application.secrets.colorsupplyyy_url and return unless %w[jp id us].include?(request_country)
+    redirect_to Rails.application.secrets.colorsupplyyy_url and return
   end
 
   def set_geocoder_data(tracking_data)
@@ -117,5 +114,9 @@ class ApplicationController < ActionController::Base
 
   def get_ga_tacking_id
     @tracking_id = Rails.application.secrets.ga_tracking_id
+  end
+
+  def get_gtag_id
+    @gtag_id ||= Rails.application.secrets.gtag_id
   end
 end
