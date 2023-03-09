@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:mtgentry/colorpreview.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-set :branch, 'feature-update'
+set :branch, 'master'
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/home/rails/colorpreview'
 
