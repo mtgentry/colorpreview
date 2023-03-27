@@ -147,7 +147,6 @@ $(document).ready(function() {
       },
       url: "/favorites?authenticity_token=" + getFormToken(),
       success: function(result){
-        window.alert(result.message);
         console.log(result.message);
       }
     });
