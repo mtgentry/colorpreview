@@ -40,7 +40,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'pg', '~> 1.5'
 
-gem 'webpacker', '6.0.0.pre.2'
+gem 'webpacker', '~> 5.4'
 
 gem 'devise'
 gem 'select2-rails'
