@@ -432,7 +432,7 @@ DEPENDENCIES
   webpacker (= 6.0.0.pre.2)
 
 RUBY VERSION
-   ruby 2.7.2p137
+   ruby 2.7.8p0
 
 BUNDLED WITH
    2.3.26
