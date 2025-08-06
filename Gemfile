@@ -6,6 +6,8 @@ ruby '3.2.2'
 
 gem 'mutex_m', require: false
 
+gem 'logger'
+
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
