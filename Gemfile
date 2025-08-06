@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.4.5'
+ruby '3.2.2'
 
 gem 'mutex_m', require: false
 
@@ -13,7 +13,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0.3.4'
+gem 'rails', '6.1.8'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.1'
 # Use SCSS for stylesheets
