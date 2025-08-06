@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+source 'https://rubygems.org'
+
 ruby '3.4.5'
 
-source 'https://rubygems.org'
+gem 'mutex_m', require: false
+
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -35,7 +38,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
-gem 'pg', '~> 0.19.0'
+gem 'pg', '~> 1.5'
 
 gem 'webpacker', '6.0.0.pre.2'
 
