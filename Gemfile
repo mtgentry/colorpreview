@@ -113,7 +113,7 @@ gem 'maxminddb'
 gem 'pundit'
 
 # detect user language
-gem 'http_accept_language'
+# gem 'http_accept_language'
 
 # table pagination
 gem 'pagy'

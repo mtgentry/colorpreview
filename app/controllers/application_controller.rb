@@ -76,13 +76,13 @@ class ApplicationController < ActionController::Base
   end
 
   def track_location
-    return true if Rails.env.development?
+    return true # if Rails.env.development?
 
-    @tracking_data = set_geocoder_data(@tracking_data) if @tracking_data.country.blank?
-    request_country = @tracking_data&.country.to_s.downcase
-    return true if Rails.application.config.allowed_countries.include?(request_country)
+    # @tracking_data = set_geocoder_data(@tracking_data) if @tracking_data.country.blank?
+    # request_country = @tracking_data&.country.to_s.downcase
+    # return true if Rails.application.config.allowed_countries.include?(request_country)
 
-    redirect_to Rails.application.secrets.colorsupplyyy_url and return
+    # redirect_to Rails.application.secrets.colorsupplyyy_url and return
   end
 
   def set_geocoder_data(tracking_data)
@@ -103,12 +103,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    locale_browser     = http_accept_language.compatible_language_from(I18n.available_locales)
-    I18n.locale        = locale_browser.to_s.eql?('ja') ? 'jp' : locale_browser
-    params[:locale]    = I18n.locale
+    # locale_browser     = http_accept_language.compatible_language_from(I18n.available_locales)
+    # I18n.locale        = locale_browser.to_s.eql?('ja') ? 'jp' : locale_browser
+    # params[:locale]    = I18n.locale
 
-    # used to compare the last language with current language
-    @updated_to_jp     = !session[:language].to_s.eql?(I18n.locale.to_s) && I18n.locale.to_s.eql?('jp')
+    # # used to compare the last language with current language
+    # @updated_to_jp     = !session[:language].to_s.eql?(I18n.locale.to_s) && I18n.locale.to_s.eql?('jp')
+    I18n.locale = 'jp'
     session[:language] = I18n.locale
   end
 
