@@ -42,12 +42,53 @@ en:
       pricing: Pricing
       freebies: Freebies
       login: LOGIN
-
       is_user:
         library: Library
         account: Account
         contact: Contact
         logout: Logout
+    headline1:
+      title: COPY THE HEX CODE
+      subtitle: Use the color wheel to select what you like, then copy the html color codes.
+    headline2:
+      title: COOL COLORS FROM THE PROS
+      subtitle: Each selected artist is great at picking colors that work well together.
+      featured_artists: "Here are some featured artists:"
+    headline3:
+      title: HOW TO PICK COLORS
+      subtitle: Use the color app as a starting point, then push yourself further.
+    content:
+      paragraph1: |
+        <p>Color is an underrated design tool. When you select the right palette, it can make a website sing. When I was a beginner, I often used too many colors in my designs. My choices weren’t based on much - either trends at the time or whatever mood I was in. Eventually, I would fumble my way to create something nice, but it often took a while.</p>
+        <p>There’s a better way!</p>
+        <p>There are three ideas you can use that will make it easier to pick colors. They are: The <strong>concept</strong> of the site, the <strong>brand</strong>, and your <strong>personal preferences</strong>. If you can figure out these three things, choosing colors will be much easier. Let's explore each of them.</p>
+      paragraph2: |
+        <p>
+          <h5>The Concept</h5>
+        </p>
+        <p>Does your site have a concept? It probably should. Here are some handpicked examples of sites with concepts: %{cta_link1}, %{cta_link2}, %{cta_link3}. Look at each example and try to figure out what the concept is (hint: answers at the bottom).</p>
+        <p>Having a concept can greatly narrow down your color options. If your concept is water-related, using lots of red probably won’t work well. Water & the color red live in different worlds.</p>
+        <p>Your colors should support your concept. Or at the very least, not conflict. </p>
+      paragraph3: |
+        <p>
+          <h5>The Brand</h5>
+        </p>
+        <p>Let's say you’re doing a site for the Vietnam Veteran’s Memorial in Washington DC. That’s a very serious subject matter. The tone (or brand) of any war memorial is respectful and serious, so your color choices should be as well. Bright and happy colors would feel out of place, in the same way that someone selling balloons near the memorial would feel tacky. Blacks, whites, dark, and muted colors would be a better fit for a war memorial site, these colors would be "on brand".</p>
+        <p>Or maybe you're doing a site for a big company. In that case, they'll have a well-defined brand which will make picking colors easier. If you’re doing a site for Target, you would likely use a combination of red and white, because red is a large part of their brand. Or a site for Ikea would use their signature blue and yellow. There are some instances when the site experience you're creating will be so far removed from the brand that you can use other unrelated colors. But before doing this, make sure you clear it with your creative director or the client. </p>
+        <p>Doing a site for a small client? In this case, the brand won’t be well defined in a style guide. For small businesses, it’s much more important to find out what the owners like. Get examples of websites they admire and ask what they like about them.</p>
+        <p>Your instinct will be to push for colors you really like, but small businesses the owners live and breath the business so it’s just going to be a matter of what they like.</p>
+      paragraph4: |
+        <p>
+          <h5>Your Tastes</h5>
+        </p>
+        <p>This is the last step. If you’ve chosen a concept and know what the brand represents, now it's time to figure out what you like and measure it against your concept and the brand. You want things you like that ALSO work with your website's concept and brand. I like to find inspiration from sites like %{cta_link1}. Or sometimes I'll use the %{cta_link2}. Say your concept is “handmade" like in the Preserve example above. What are some other sites that embody handmade? What colors do they use? Do they use a complimentary color scheme? Analogous? My guess is many of them will use a %{cta_link3} with warm colors because the concept of "handmade" is a very human notion.</p>
+    cta_link:
+      legwork: Legwork
+      mind_sparkle_mag: Mind Sparkle Mag
+      preserve: Preserve
+      random_color_generator: random color generator
+      red_aesthetic: red aesthetic
+      si_le_soleil: Si Le Soleil
 
   create_page:
     color_wheel: Color Wheel
